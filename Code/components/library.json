@@ -1,0 +1,398 @@
+{
+    "components": [
+        {
+            "type": "input",
+            "width": 5,
+            "height": 5,
+            "outputconnectionX": 5,
+            "outputconnectionY": 2,
+            "valves": 1,
+            "valveList": [
+                "inputvalve"
+            ]
+        },
+        {
+            "type": "output",
+            "width": 5,
+            "height": 5,
+            "inputconnectionX": -1,
+            "inputconnectionY": 2,
+            "valves": 1,
+            "valveList": [
+                "outputvalve"
+            ]
+        },
+        {
+            "type": "filter",
+            "width": 120,
+            "height": 30,
+            "inputconnectionX": -1,
+            "inputconnectionY": 15,
+            "outputconnectionX": 120,
+            "outputconnectionY": 15,
+            "route": false,
+            "valves": 2,
+            "valveList": [
+                "inputvalve",
+                "outputvalve"
+            ]
+        },
+        {
+            "type": "ftfilter",
+            "width": 120,
+            "height": 60,
+            "inputconnectionX": -1,
+            "inputconnectionY": 30,
+            "outputconnectionX": 120,
+            "outputconnectionY": 30,
+            "faulttolerance": "channel",
+            "route": false,
+            "valves": 6,
+            "valveList": [
+                "inputvalve",
+                "outputvalve",
+                "channel1inputvalve",
+                "channel2inputvalve",
+                "channel1outputvalve",
+                "channel2outputvalve"
+            ]
+        },
+        {
+            "type": "heater",
+            "width": 40,
+            "height": 15,
+            "inputconnectionX": -1,
+            "inputconnectionY": 7,
+            "outputconnectionX": 40,
+            "outputconnectionY": 7,
+            "route": false,
+            "valves": 2,
+            "valveList": [
+                "inputvalve",
+                "outputvalve"
+            ] 
+        },
+        {
+            "type": "ftheater",
+            "width": 40,
+            "height": 30,
+            "inputconnectionX": -1,
+            "inputconnectionY": 15,
+            "outputconnectionX": 40,
+            "outputconnectionY": 15,
+            "faulttolerance": "channel",
+            "route": false,
+            "valves": 6,
+            "valveList": [
+                "inputvalve",
+                "outputvalve",
+                "channel1inputvalve",
+                "channel2inputvalve",
+                "channel1outputvalve",
+                "channel2outputvalve"
+            ]
+        },
+        {
+            "type": "mixer",
+            "width": 30,
+            "height": 30,
+            "inputconnectionX": -1,
+            "inputconnectionY": 15,
+            "outputconnectionX": 30,
+            "outputconnectionY": 15,
+            "route": true,
+            "valves": 9,
+            "valveList": [
+                "inputvalve",
+                "channel1inputvalve",
+                "channel2inputvalve",
+                "outputvalve",
+                "channel1outputvalve",
+                "channel2outputvalve",
+                "pumpvalve1",
+                "pumpvalve2",
+                "pumpvalve3"
+            ]
+        },
+        {
+            "type": "ftmixer",
+            "width": 30,
+            "height": 30,
+            "inputconnectionX": -1,
+            "inputconnectionY": 15,
+            "outputconnectionX": 30,
+            "outputconnectionY": 15,
+            "faulttolerance": "pump",
+            "route": true,
+            "valves": 10,
+            "valveList": [
+                "inputvalve",
+                "channel1inputvalve",
+                "channel2inputvalve",
+                "outputvalve",
+                "channel1outputvalve",
+                "channel2outputvalve",
+                "pumpvalve1",
+                "pumpvalve2",
+                "pumpvalve3",
+                "pumpvalve4"
+            ]
+
+        },
+        {
+            "type": "detector",
+            "width": 20,
+            "height": 20,
+            "inputconnectionX": -1,
+            "inputconnectionY": 10,
+            "outputconnectionX": 20,
+            "outputconnectionY": 10,
+            "route": true,
+            "valves": 2,
+            "valveList": [
+                "inputvalve",
+                "outputvalve"
+            ]
+        },
+        {
+            "type": "ftdetector",
+            "width": 20,
+            "height": 40,
+            "inputconnectionX": -1,
+            "inputconnectionY": 20,
+            "outputconnectionX": 20,
+            "outputconnectionY": 20,
+            "faulttolerance": "channel",
+            "route": true,
+            "valves": 6,
+            "valveList": [
+                "inputvalve",
+                "outputvalve",
+                "channel1inputvalve",
+                "channel2inputvalve",
+                "channel1outputvalve",
+                "channel2outputvalve"
+            ]
+        },
+        {
+            "type": "separator",
+            "width": 70,
+            "height": 20,
+            "inputconnectionX": -1,
+            "inputconnectionY": 10,
+            "outputconnectionX": 70,
+            "outputconnectionY": 10,
+            "route": false,
+            "valves": 2,
+            "valveList": [
+                "inputvalve",
+                "outputvalve"
+            ]
+        },
+        {
+            "type": "ftseparator",
+            "width": 70,
+            "height": 40,
+            "inputconnectionX": -1,
+            "inputconnectionY": 20,
+            "outputconnectionX": 70,
+            "outputconnectionY": 20,
+            "faulttolerance": "channel",
+            "route": false,
+            "valves": 6,
+            "valveList": [
+                "inputvalve",
+                "outputvalve",
+                "channel1inputvalve",
+                "channel2inputvalve",
+                "channel1outputvalve",
+                "channel2outputvalve"
+            ]
+        },
+        {
+            "type": "metering",
+            "width": 30,
+            "height": 15,
+            "inputconnectionX": -1,
+            "inputconnectionY": 7,
+            "outputconnectionX": 30,
+            "outputconnectionY": 7,
+            "route": true,
+            "valves": 6,
+            "valveList": [
+                "inputvalve",
+                "outputvalve"
+            ]
+        },
+        {
+            "type": "multiplexer",
+            "width": 30,
+            "height": 10,
+            "inputconnectionX": -1,
+            "inputconnectionY": 5,
+            "outputconnectionX": 30,
+            "outputconnectionY": 5,
+            "route": true,
+            "valves": 2,
+            "valveList": [
+                "inputvalve",
+                "outputvalve"
+            ] 
+        },
+        {
+            "type": "storage",
+            "width": 90,
+            "height": 30,
+            "inputconnectionX": -1,
+            "inputconnectionY": 15,
+            "outputconnectionX": 30,
+            "outputconnectionY": 15,
+            "route": true,
+            "valves": 28,
+            "valveList": [
+                "top-inputvalve",
+                "bottom-inputvalve",
+                "top-outputvalve",
+                "bottom-outputvalve",
+                "bottomhalf-top-inputvalve",
+                "bottomhalf-bottom-inputvalve",
+                "bottomhalf-top-outputvalve",
+                "bottomhalf-bottom-outputvalve",
+                "tophalf-top-inputvalve",
+                "tophalf-bottom-inputvalve",
+                "tophalf-top-outputvalve",
+                "tophalf-bottom-outputvalve",
+                "storagechannel1-inputvalve",
+                "storagechannel1-outputvalve",
+                "storagechannel2-inputvalve",
+                "storagechannel2-outputvalve",
+                "storagechannel3-inputvalve",
+                "storagechannel3-outputvalve",
+                "storagechannel4-inputvalve",
+                "storagechannel4-outputvalve",
+                "storagechannel5-inputvalve",
+                "storagechannel5-outputvalve",
+                "storagechannel6-inputvalve",
+                "storagechannel6-outputvalve",
+                "storagechannel7-inputvalve",
+                "storagechannel7-outputvalve",
+                "storagechannel8-inputvalve",
+                "storagechannel8-outputvalve"
+            ]
+        },
+        {
+            "type": "ftstorage",
+            "width": 90,
+            "height": 40,
+            "inputconnectionX": -1,
+            "inputconnectionY": 20,
+            "outputconnectionX": 30,
+            "outputconnectionY": 20,
+            "faulttolerance": "channel",
+            "route": true,
+            "valves": 34,
+            "valveList": [
+                "top-inputvalve",
+                "bottom-inputvalve",
+                "top-outputvalve",
+                "bottom-outputvalve",
+                "bottomhalf-top-inputvalve",
+                "bottomhalf-bottom-inputvalve",
+                "bottomhalf-top-outputvalve",
+                "bottomhalf-bottom-outputvalve",
+                "tophalf-top-inputvalve",
+                "tophalf-bottom-inputvalve",
+                "tophalf-top-outputvalve",
+                "tophalf-bottom-outputvalve",
+                "storagechannel1-inputvalve",
+                "storagechannel1-outputvalve",
+                "storagechannel2-inputvalve",
+                "storagechannel2-outputvalve",
+                "storagechannel3-inputvalve",
+                "storagechannel3-outputvalve",
+                "storagechannel4-inputvalve",
+                "storagechannel4-outputvalve",
+                "storagechannel5-inputvalve",
+                "storagechannel5-outputvalve",
+                "storagechannel6-inputvalve",
+                "storagechannel6-outputvalve",
+                "storagechannel7-inputvalve",
+                "storagechannel7-outputvalve",
+                "storagechannel8-inputvalve",
+                "storagechannel8-outputvalve",
+                "storagechannel9-inputvalve",
+                "storagechannel9-outputvalve",
+                "storagechannel7-8-9-inputvalve",
+                "storagechannel7-8-9-outputvalve",
+                "to-storagechannel7-8-inputvalve",
+                "from-storagechannel7-8-outputvalve",
+                "to-storagechannel9-inputvalve",
+                "from-storagechannel9-outputvalve"
+            ]
+        },
+        {
+            "type": "switch",
+            "width": 1,
+            "height": 1,
+            "inputconnectionX": 0,
+            "inputconnectionY": 0,
+            "outputconnectionX": 0,
+            "outputconnectionY": 0,
+            "route": true,
+            "valves": 3,
+            "valveList": [
+                "north-valve",
+                "east-valve",
+                "west-valve"
+            ]
+        },
+        {
+            "type": "switchI",
+            "width": 1,
+            "height": 1,
+            "inputconnectionX": -1,
+            "inputconnectionY": 0,
+            "outputconnectionX": 1,
+            "outputconnectionY": 0,
+            "route": true,
+            "valves": 2,
+            "valveList": [
+                "inputvalve",
+                "outputvalve"
+            ]
+        },
+        {
+            "type": "switchT",
+            "width": 1,
+            "height": 1,
+            "inputconnectionX": -1,
+            "inputconnectionY": 0,
+            "outputconnectionX": 1,
+            "outputconnectionY": 0,
+            "route": true,
+            "valves": 3,
+            "valveList": [
+                "south-valve",
+                "east-valve",
+                "west-valve"
+            ]
+        },
+        {
+            "type": "switchX",
+            "width": 1,
+            "height": 1,
+            "inputconnectionX": -1,
+            "inputconnectionY": 0,
+            "outputconnectionX": 1,
+            "outputconnectionY": 0,
+            "route": true,
+            "valves": 4,
+            "valveList": [
+                "north-valve",
+                "south-valve",
+                "west-valve",
+                "east-valve"
+            ]
+        }
+    ]
+}

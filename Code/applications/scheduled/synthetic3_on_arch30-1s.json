@@ -1,0 +1,1041 @@
+{
+    "architecture": "arch30-1s",
+    "assay": "synthetic3",
+    "bound": true,
+    "scheduledOps": true,
+    "scheduledRoutes": true,
+    "operations": [
+        {
+            "executionTime": 0.0,
+            "name": "i1",
+            "objectType": "component",
+            "operation": "input",
+            "component": "Source1",
+            "scheduledTime": 0
+        },
+        {
+            "executionTime": 0.0,
+            "name": "i2",
+            "objectType": "component",
+            "operation": "input",
+            "component": "Source2",
+            "scheduledTime": 0
+        },
+        {
+            "executionTime": 0.0,
+            "name": "i3",
+            "objectType": "component",
+            "operation": "input",
+            "component": "Source1",
+            "scheduledTime": 0
+        },
+        {
+            "executionTime": 0.0,
+            "name": "i4",
+            "objectType": "component",
+            "operation": "input",
+            "component": "Source2",
+            "scheduledTime": 0
+        },
+        {
+            "executionTime": 0.0,
+            "name": "i5",
+            "objectType": "component",
+            "operation": "input",
+            "component": "Source1",
+            "scheduledTime": 0
+        },
+        {
+            "executionTime": 0.0,
+            "name": "i6",
+            "objectType": "component",
+            "operation": "input",
+            "component": "Source2",
+            "scheduledTime": 0
+        },
+        {
+            "executionTime": 0.0,
+            "name": "i7",
+            "objectType": "component",
+            "operation": "input",
+            "component": "Source1",
+            "scheduledTime": 0
+        },
+        {
+            "executionTime": 0.0,
+            "name": "i8",
+            "objectType": "component",
+            "operation": "input",
+            "component": "Source2",
+            "scheduledTime": 0
+        },
+        {
+            "executionTime": 0.0,
+            "name": "i9",
+            "objectType": "component",
+            "operation": "input",
+            "component": "Source1",
+            "scheduledTime": 0
+        },
+        {
+            "executionTime": 0.0,
+            "name": "i10",
+            "objectType": "component",
+            "operation": "input",
+            "component": "Source2",
+            "scheduledTime": 0
+        },
+        {
+            "executionTime": 0.0,
+            "name": "i11",
+            "objectType": "component",
+            "operation": "input",
+            "component": "Source1",
+            "scheduledTime": 0
+        },
+        {
+            "executionTime": 0.0,
+            "name": "i12",
+            "objectType": "component",
+            "operation": "input",
+            "component": "Source2",
+            "scheduledTime": 0
+        },
+        {
+            "executionTime": 0.0,
+            "name": "i13",
+            "objectType": "component",
+            "operation": "input",
+            "component": "Source1",
+            "scheduledTime": 0
+        },
+        {
+            "executionTime": 0.0,
+            "name": "i14",
+            "objectType": "component",
+            "operation": "input",
+            "component": "Source2",
+            "scheduledTime": 0
+        },
+        {
+            "executionTime": 0.0,
+            "name": "i15",
+            "objectType": "component",
+            "operation": "input",
+            "component": "Source1",
+            "scheduledTime": 0
+        },
+        {
+            "executionTime": 0.0,
+            "name": "i16",
+            "objectType": "component",
+            "operation": "input",
+            "component": "Source2",
+            "scheduledTime": 0
+        },
+        {
+            "executionTime": 0.0,
+            "name": "i17",
+            "objectType": "component",
+            "operation": "input",
+            "component": "Source1",
+            "scheduledTime": 0
+        },
+        {
+            "executionTime": 0.0,
+            "name": "i18",
+            "objectType": "component",
+            "operation": "input",
+            "component": "Source2",
+            "scheduledTime": 0
+        },
+        {
+            "executionTime": 4,
+            "name": "O1",
+            "objectType": "component",
+            "operation": "mix",
+            "component": "Mixer3",
+            "scheduledTime": 3.0,
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i1"
+                },
+                {
+                    "amount": 10,
+                    "name": "i2"
+                }
+            ]
+        },
+        {
+            "executionTime": 3,
+            "name": "O2",
+            "objectType": "component",
+            "operation": "mix",
+            "component": "Mixer2",
+            "scheduledTime": 4.5,
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i3"
+                },
+                {
+                    "amount": 10,
+                    "name": "i4"
+                }
+            ]
+        },
+        {
+            "executionTime": 5,
+            "name": "O3",
+            "objectType": "component",
+            "operation": "heat",
+            "component": "Heater2",
+            "scheduledTime": 1.0,
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i5"
+                }
+            ]
+        },
+        {
+            "executionTime": 4,
+            "name": "O4",
+            "objectType": "component",
+            "operation": "filter",
+            "component": "Filter1",
+            "scheduledTime": 2.0,
+            "dependencies": [
+                {
+                    "amount": 20,
+                    "name": "i6"
+                }
+            ]
+        },
+        {
+            "executionTime": 2,
+            "name": "O5",
+            "objectType": "component",
+            "operation": "mix",
+            "component": "Mixer2",
+            "scheduledTime": 23.0,
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i7"
+                },
+                {
+                    "amount": 10,
+                    "name": "i8"
+                }
+            ]
+        },
+        {
+            "executionTime": 3,
+            "name": "O6",
+            "objectType": "component",
+            "operation": "filter",
+            "component": "Filter1",
+            "scheduledTime": 15.5,
+            "dependencies": [
+                {
+                    "amount": 20,
+                    "name": "i9"
+                }
+            ]
+        },
+        {
+            "executionTime": 4,
+            "name": "O7",
+            "objectType": "component",
+            "operation": "heat",
+            "component": "Heater1",
+            "scheduledTime": 11.5,
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i10"
+                }
+            ]
+        },
+        {
+            "executionTime": 4,
+            "name": "O8",
+            "objectType": "component",
+            "operation": "heat",
+            "component": "Heater2",
+            "scheduledTime": 15.0,
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i11"
+                }
+            ]
+        },
+        {
+            "executionTime": 5,
+            "name": "O9",
+            "objectType": "component",
+            "operation": "mix",
+            "component": "Mixer6",
+            "scheduledTime": 12.5,
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i12"
+                },
+                {
+                    "amount": 10,
+                    "name": "i13"
+                }
+            ]
+        },
+        {
+            "executionTime": 2,
+            "name": "O10",
+            "objectType": "component",
+            "operation": "mix",
+            "component": "Mixer2",
+            "scheduledTime": 28.5,
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i14"
+                },
+                {
+                    "amount": 10,
+                    "name": "i15"
+                }
+            ]
+        },
+        {
+            "executionTime": 6,
+            "name": "O11",
+            "objectType": "component",
+            "operation": "mix",
+            "component": "Mixer1",
+            "scheduledTime": 14.0,
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i16"
+                },
+                {
+                    "amount": 10,
+                    "name": "i17"
+                }
+            ]
+        },
+        {
+            "executionTime": 3,
+            "name": "O12",
+            "objectType": "component",
+            "operation": "mix",
+            "component": "Mixer3",
+            "scheduledTime": 10.5,
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O1"
+                },
+                {
+                    "amount": 10,
+                    "name": "i18"
+                }
+            ]
+        },
+        {
+            "executionTime": 4,
+            "name": "O13",
+            "objectType": "component",
+            "operation": "filter",
+            "component": "Filter2",
+            "scheduledTime": 10.0,
+            "dependencies": [
+                {
+                    "amount": 20,
+                    "name": "O2"
+                }
+            ]
+        },
+        {
+            "executionTime": 7,
+            "name": "O14",
+            "objectType": "component",
+            "operation": "mix",
+            "component": "Mixer5",
+            "scheduledTime": 9.0,
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O4"
+                },
+                {
+                    "amount": 10,
+                    "name": "O3"
+                }
+            ]
+        },
+        {
+            "executionTime": 2,
+            "name": "O15",
+            "objectType": "component",
+            "operation": "filter",
+            "component": "Filter1",
+            "scheduledTime": 27.0,
+            "dependencies": [
+                {
+                    "amount": 20,
+                    "name": "O5"
+                }
+            ]
+        },
+        {
+            "executionTime": 4,
+            "name": "O16",
+            "objectType": "component",
+            "operation": "mix",
+            "component": "Mixer3",
+            "scheduledTime": 22.0,
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O6"
+                },
+                {
+                    "amount": 10,
+                    "name": "O7"
+                }
+            ]
+        },
+        {
+            "executionTime": 3,
+            "name": "O17",
+            "objectType": "component",
+            "operation": "mix",
+            "component": "Mixer4",
+            "scheduledTime": 20.5,
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O8"
+                },
+                {
+                    "amount": 10,
+                    "name": "O9"
+                }
+            ]
+        },
+        {
+            "executionTime": 1,
+            "name": "O18",
+            "objectType": "component",
+            "operation": "heat",
+            "component": "Heater3",
+            "scheduledTime": 31.0,
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O10"
+                }
+            ]
+        },
+        {
+            "executionTime": 4,
+            "name": "O19",
+            "objectType": "component",
+            "operation": "detect",
+            "component": "Detector2",
+            "scheduledTime": 24.5,
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O11"
+                }
+            ]
+        },
+        {
+            "executionTime": 4,
+            "name": "O20",
+            "objectType": "component",
+            "operation": "mix",
+            "component": "Mixer7",
+            "scheduledTime": 16.5,
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O12"
+                },
+                {
+                    "amount": 10,
+                    "name": "O13"
+                }
+            ]
+        },
+        {
+            "executionTime": 3,
+            "name": "O21",
+            "objectType": "component",
+            "operation": "detect",
+            "component": "Detector1",
+            "scheduledTime": 19.5,
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O14"
+                }
+            ]
+        },
+        {
+            "executionTime": 2,
+            "name": "O22",
+            "objectType": "component",
+            "operation": "heat",
+            "component": "Heater2",
+            "scheduledTime": 31.0,
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O15"
+                }
+            ]
+        },
+        {
+            "executionTime": 3,
+            "name": "O23",
+            "objectType": "component",
+            "operation": "mix",
+            "component": "Mixer11",
+            "scheduledTime": 29.5,
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O16"
+                },
+                {
+                    "amount": 10,
+                    "name": "O17"
+                }
+            ]
+        },
+        {
+            "executionTime": 4,
+            "name": "O24",
+            "objectType": "component",
+            "operation": "mix",
+            "component": "Mixer7",
+            "scheduledTime": 33.5,
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O18"
+                },
+                {
+                    "amount": 10,
+                    "name": "O19"
+                }
+            ]
+        },
+        {
+            "executionTime": 7,
+            "name": "O25",
+            "objectType": "component",
+            "operation": "mix",
+            "component": "Mixer9",
+            "scheduledTime": 25.0,
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O20"
+                },
+                {
+                    "amount": 10,
+                    "name": "O21"
+                }
+            ]
+        },
+        {
+            "executionTime": 2,
+            "name": "O26",
+            "objectType": "component",
+            "operation": "mix",
+            "component": "Mixer4",
+            "scheduledTime": 36.0,
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O22"
+                },
+                {
+                    "amount": 10,
+                    "name": "O23"
+                }
+            ]
+        },
+        {
+            "executionTime": 4,
+            "name": "O27",
+            "objectType": "component",
+            "operation": "heat",
+            "component": "Heater6",
+            "scheduledTime": 39.5,
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O24"
+                }
+            ]
+        },
+        {
+            "executionTime": 5,
+            "name": "O28",
+            "objectType": "component",
+            "operation": "mix",
+            "component": "Mixer12",
+            "scheduledTime": 39.5,
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O25"
+                },
+                {
+                    "amount": 10,
+                    "name": "O26"
+                }
+            ]
+        },
+        {
+            "executionTime": 2,
+            "name": "O29",
+            "objectType": "component",
+            "operation": "mix",
+            "component": "Mixer14",
+            "scheduledTime": 45.5,
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O28"
+                },
+                {
+                    "amount": 10,
+                    "name": "O27"
+                }
+            ]
+        },
+        {
+            "executionTime": 2,
+            "name": "O30",
+            "objectType": "component",
+            "operation": "detect",
+            "component": "Detector3",
+            "scheduledTime": 49.0,
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O29"
+                }
+            ]
+        },
+        {
+            "executionTime": 0,
+            "name": "o1",
+            "objectType": "component",
+            "operation": "output",
+            "component": "Out1",
+            "scheduledTime": 51.5,
+            "dependencies": [
+                {
+                    "amount": null,
+                    "name": "O30"
+                }
+            ]
+        }
+    ],
+    "routes": [
+        {
+            "duration": 0.5,
+            "name": "i1-O1",
+            "objectType": "route",
+            "sourceOp": "i1",
+            "sinkOp": "O1",
+            "scheduledTime": 2.0
+        },
+        {
+            "duration": 0.5,
+            "name": "i2-O1",
+            "objectType": "route",
+            "sourceOp": "i2",
+            "sinkOp": "O1",
+            "scheduledTime": 2.5
+        },
+        {
+            "duration": 1.0,
+            "name": "i3-O2",
+            "objectType": "route",
+            "sourceOp": "i3",
+            "sinkOp": "O2",
+            "scheduledTime": 3.0
+        },
+        {
+            "duration": 0.5,
+            "name": "i4-O2",
+            "objectType": "route",
+            "sourceOp": "i4",
+            "sinkOp": "O2",
+            "scheduledTime": 4.0
+        },
+        {
+            "duration": 1.0,
+            "name": "i5-O3",
+            "objectType": "route",
+            "sourceOp": "i5",
+            "sinkOp": "O3",
+            "scheduledTime": 0
+        },
+        {
+            "duration": 1.0,
+            "name": "i6-O4",
+            "objectType": "route",
+            "sourceOp": "i6",
+            "sinkOp": "O4",
+            "scheduledTime": 1.0
+        },
+        {
+            "duration": 1.0,
+            "name": "i7-O5",
+            "objectType": "route",
+            "sourceOp": "i7",
+            "sinkOp": "O5",
+            "scheduledTime": 22.0
+        },
+        {
+            "duration": 0.5,
+            "name": "i8-O5",
+            "objectType": "route",
+            "sourceOp": "i8",
+            "sinkOp": "O5",
+            "scheduledTime": 17.5
+        },
+        {
+            "duration": 0.5,
+            "name": "i9-O6",
+            "objectType": "route",
+            "sourceOp": "i9",
+            "sinkOp": "O6",
+            "scheduledTime": 15.0
+        },
+        {
+            "duration": 1.0,
+            "name": "i10-O7",
+            "objectType": "route",
+            "sourceOp": "i10",
+            "sinkOp": "O7",
+            "scheduledTime": 10.5
+        },
+        {
+            "duration": 1.0,
+            "name": "i11-O8",
+            "objectType": "route",
+            "sourceOp": "i11",
+            "sinkOp": "O8",
+            "scheduledTime": 14.0
+        },
+        {
+            "duration": 1.0,
+            "name": "i12-O9",
+            "objectType": "route",
+            "sourceOp": "i12",
+            "sinkOp": "O9",
+            "scheduledTime": 11.5
+        },
+        {
+            "duration": 1.0,
+            "name": "i13-O9",
+            "objectType": "route",
+            "sourceOp": "i13",
+            "sinkOp": "O9",
+            "scheduledTime": 10.0
+        },
+        {
+            "duration": 0.5,
+            "name": "i14-O10",
+            "objectType": "route",
+            "sourceOp": "i14",
+            "sinkOp": "O10",
+            "scheduledTime": 27.0
+        },
+        {
+            "duration": 1.0,
+            "name": "i15-O10",
+            "objectType": "route",
+            "sourceOp": "i15",
+            "sinkOp": "O10",
+            "scheduledTime": 27.5
+        },
+        {
+            "duration": 1.5,
+            "name": "i16-O11",
+            "objectType": "route",
+            "sourceOp": "i16",
+            "sinkOp": "O11",
+            "scheduledTime": 12.5
+        },
+        {
+            "duration": 1.0,
+            "name": "i17-O11",
+            "objectType": "route",
+            "sourceOp": "i17",
+            "sinkOp": "O11",
+            "scheduledTime": 11.0
+        },
+        {
+            "duration": 0.0,
+            "name": "O1-O12",
+            "objectType": "route",
+            "sourceOp": "O1",
+            "sinkOp": "O12",
+            "scheduledTime": 7.0
+        },
+        {
+            "duration": 0.5,
+            "name": "i18-O12",
+            "objectType": "route",
+            "sourceOp": "i18",
+            "sinkOp": "O12",
+            "scheduledTime": 10.0
+        },
+        {
+            "duration": 2.5,
+            "name": "O2-O13",
+            "objectType": "route",
+            "sourceOp": "O2",
+            "sinkOp": "O13",
+            "scheduledTime": 7.5
+        },
+        {
+            "duration": 1.5,
+            "name": "O4-O14",
+            "objectType": "route",
+            "sourceOp": "O4",
+            "sinkOp": "O14",
+            "scheduledTime": 7.5
+        },
+        {
+            "duration": 1.5,
+            "name": "O3-O14",
+            "objectType": "route",
+            "sourceOp": "O3",
+            "sinkOp": "O14",
+            "scheduledTime": 6.0
+        },
+        {
+            "duration": 2.0,
+            "name": "O5-O15",
+            "objectType": "route",
+            "sourceOp": "O5",
+            "sinkOp": "O15",
+            "scheduledTime": 25.0
+        },
+        {
+            "duration": 2.5,
+            "name": "O6-O16",
+            "objectType": "route",
+            "sourceOp": "O6",
+            "sinkOp": "O16",
+            "scheduledTime": 19.5
+        },
+        {
+            "duration": 2.0,
+            "name": "O7-O16",
+            "objectType": "route",
+            "sourceOp": "O7",
+            "sinkOp": "O16",
+            "scheduledTime": 15.5
+        },
+        {
+            "duration": 1.0,
+            "name": "O8-O17",
+            "objectType": "route",
+            "sourceOp": "O8",
+            "sinkOp": "O17",
+            "scheduledTime": 19.5
+        },
+        {
+            "duration": 1.0,
+            "name": "O9-O17",
+            "objectType": "route",
+            "sourceOp": "O9",
+            "sinkOp": "O17",
+            "scheduledTime": 17.5
+        },
+        {
+            "duration": 0.5,
+            "name": "O10-O18",
+            "objectType": "route",
+            "sourceOp": "O10",
+            "sinkOp": "O18",
+            "scheduledTime": 30.5
+        },
+        {
+            "duration": 4.5,
+            "name": "O11-O19",
+            "objectType": "route",
+            "sourceOp": "O11",
+            "sinkOp": "O19",
+            "scheduledTime": 20.0
+        },
+        {
+            "duration": 1.5,
+            "name": "O12-O20",
+            "objectType": "route",
+            "sourceOp": "O12",
+            "sinkOp": "O20",
+            "scheduledTime": 13.5
+        },
+        {
+            "duration": 1.5,
+            "name": "O13-O20",
+            "objectType": "route",
+            "sourceOp": "O13",
+            "sinkOp": "O20",
+            "scheduledTime": 15.0
+        },
+        {
+            "duration": 3.5,
+            "name": "O14-O21",
+            "objectType": "route",
+            "sourceOp": "O14",
+            "sinkOp": "O21",
+            "scheduledTime": 16.0
+        },
+        {
+            "duration": 2.0,
+            "name": "O15-O22",
+            "objectType": "route",
+            "sourceOp": "O15",
+            "sinkOp": "O22",
+            "scheduledTime": 29.0
+        },
+        {
+            "duration": 2.5,
+            "name": "O16-O23",
+            "objectType": "route",
+            "sourceOp": "O16",
+            "sinkOp": "O23",
+            "scheduledTime": 27.0
+        },
+        {
+            "duration": 3.5,
+            "name": "O17-O23",
+            "objectType": "route",
+            "sourceOp": "O17",
+            "sinkOp": "O23",
+            "scheduledTime": 23.5
+        },
+        {
+            "duration": 1.0,
+            "name": "O18-O24",
+            "objectType": "route",
+            "sourceOp": "O18",
+            "sinkOp": "O24",
+            "scheduledTime": 32.5
+        },
+        {
+            "duration": 3.0,
+            "name": "O19-O24",
+            "objectType": "route",
+            "sourceOp": "O19",
+            "sinkOp": "O24",
+            "scheduledTime": 29.5
+        },
+        {
+            "duration": 0.5,
+            "name": "O20-O25",
+            "objectType": "route",
+            "sourceOp": "O20",
+            "sinkOp": "O25",
+            "scheduledTime": 24.5
+        },
+        {
+            "duration": 1.0,
+            "name": "O21-O25",
+            "objectType": "route",
+            "sourceOp": "O21",
+            "sinkOp": "O25",
+            "scheduledTime": 22.5
+        },
+        {
+            "duration": 1.0,
+            "name": "O22-O26",
+            "objectType": "route",
+            "sourceOp": "O22",
+            "sinkOp": "O26",
+            "scheduledTime": 35.0
+        },
+        {
+            "duration": 2.5,
+            "name": "O23-O26",
+            "objectType": "route",
+            "sourceOp": "O23",
+            "sinkOp": "O26",
+            "scheduledTime": 32.5
+        },
+        {
+            "duration": 1.0,
+            "name": "O24-O27",
+            "objectType": "route",
+            "sourceOp": "O24",
+            "sinkOp": "O27",
+            "scheduledTime": 38.5
+        },
+        {
+            "duration": 3.5,
+            "name": "O25-O28",
+            "objectType": "route",
+            "sourceOp": "O25",
+            "sinkOp": "O28",
+            "scheduledTime": 35.0
+        },
+        {
+            "duration": 1.0,
+            "name": "O26-O28",
+            "objectType": "route",
+            "sourceOp": "O26",
+            "sinkOp": "O28",
+            "scheduledTime": 38.5
+        },
+        {
+            "duration": 0.5,
+            "name": "O28-O29",
+            "objectType": "route",
+            "sourceOp": "O28",
+            "sinkOp": "O29",
+            "scheduledTime": 45.0
+        },
+        {
+            "duration": 1.5,
+            "name": "O27-O29",
+            "objectType": "route",
+            "sourceOp": "O27",
+            "sinkOp": "O29",
+            "scheduledTime": 43.5
+        },
+        {
+            "duration": 1.5,
+            "name": "O29-O30",
+            "objectType": "route",
+            "sourceOp": "O29",
+            "sinkOp": "O30",
+            "scheduledTime": 47.5
+        },
+        {
+            "duration": 0.5,
+            "name": "O30-o1",
+            "objectType": "route",
+            "sourceOp": "O30",
+            "sinkOp": "o1",
+            "scheduledTime": 51.0
+        }
+    ]
+}

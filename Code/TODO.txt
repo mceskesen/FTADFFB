@@ -1,0 +1,27 @@
+TODO:
+
+Code:
+Make architecture data structure X
+Read netlist and component library file X
+Application model data structure X
+Read application model file X
+List scheduling X
+JSON files for examples done in hand X
+JSON file for Wajid's application graph X
+File format for fault model X
+Read fault model file X
+Generate all fault combinations
+Schedule application
+K-connectivity
+Simulated annealing - cost function
+
+
+Storage faults?
+Fault model file
+Generation of subsets of faults
+Component library - extend with more fault tolerant components
+
+Other stuff:
+Drawings of components
+Table as in 2.2
+Motivational example - naive vs optimal

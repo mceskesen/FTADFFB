@@ -1,0 +1,875 @@
+{
+    "architecture": null,
+    "assay": "synthetic5",
+    "bound": false,
+    "operations": [
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i1",
+            "operation": "input"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i2",
+            "operation": "input"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i3",
+            "operation": "input"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i4",
+            "operation": "input"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i5",
+            "operation": "input"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i6",
+            "operation": "input"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i7",
+            "operation": "input"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i8",
+            "operation": "input"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i9",
+            "operation": "input"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i10",
+            "operation": "input"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i11",
+            "operation": "input"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i12",
+            "operation": "input"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i13",
+            "operation": "input"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i14",
+            "operation": "input"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i15",
+            "operation": "input"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i16",
+            "operation": "input"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i17",
+            "operation": "input"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i18",
+            "operation": "input"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i19",
+            "operation": "input"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i20",
+            "operation": "input"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i21",
+            "operation": "input"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i22",
+            "operation": "input"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i23",
+            "operation": "input"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i24",
+            "operation": "input"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i25",
+            "operation": "input"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i26",
+            "operation": "input"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i27",
+            "operation": "input"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i1"
+                },
+                {
+                    "amount": 10,
+                    "name": "i2"
+                }
+            ],
+            "executionTime": 4,
+            "isOperation": true,
+            "name": "O1",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i3"
+                }
+            ],
+            "executionTime": 3,
+            "isOperation": true,
+            "name": "O2",
+            "operation": "heat"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 20,
+                    "name": "i4"
+                }
+            ],
+            "executionTime": 4,
+            "isOperation": true,
+            "name": "O3",
+            "operation": "filter"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i5"
+                },
+                {
+                    "amount": 10,
+                    "name": "i6"
+                }
+            ],
+            "executionTime": 5,
+            "isOperation": true,
+            "name": "O4",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i7"
+                },
+                {
+                    "amount": 10,
+                    "name": "i8"
+                }
+            ],
+            "executionTime": 3,
+            "isOperation": true,
+            "name": "O5",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i9"
+                },
+                {
+                    "amount": 10,
+                    "name": "i10"
+                }
+            ],
+            "executionTime": 3,
+            "isOperation": true,
+            "name": "O6",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i11"
+                },
+                {
+                    "amount": 10,
+                    "name": "i12"
+                }
+            ],
+            "executionTime": 2,
+            "isOperation": true,
+            "name": "O7",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i13"
+                }
+            ],
+            "executionTime": 4,
+            "isOperation": true,
+            "name": "O8",
+            "operation": "heat"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 20,
+                    "name": "i14"
+                }
+            ],
+            "executionTime": 3,
+            "isOperation": true,
+            "name": "O9",
+            "operation": "filter"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i15"
+                }
+            ],
+            "executionTime": 2,
+            "isOperation": true,
+            "name": "O10",
+            "operation": "heat"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 20,
+                    "name": "i16"
+                }
+            ],
+            "executionTime": 1,
+            "isOperation": true,
+            "name": "O11",
+            "operation": "filter"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i17"
+                }
+            ],
+            "executionTime": 4,
+            "isOperation": true,
+            "name": "O12",
+            "operation": "heat"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i18"
+                },
+                {
+                    "amount": 10,
+                    "name": "i19"
+                }
+            ],
+            "executionTime": 4,
+            "isOperation": true,
+            "name": "O13",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i20"
+                },
+                {
+                    "amount": 10,
+                    "name": "i21"
+                }
+            ],
+            "executionTime": 4,
+            "isOperation": true,
+            "name": "O14",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i22"
+                },
+                {
+                    "amount": 10,
+                    "name": "i23"
+                }
+            ],
+            "executionTime": 3,
+            "isOperation": true,
+            "name": "O15",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i24"
+                },
+                {
+                    "amount": 10,
+                    "name": "i25"
+                }
+            ],
+            "executionTime": 5,
+            "isOperation": true,
+            "name": "O16",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i26"
+                },
+                {
+                    "amount": 10,
+                    "name": "i27"
+                }
+            ],
+            "executionTime": 2,
+            "isOperation": true,
+            "name": "O17",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O1"
+                }
+            ],
+            "executionTime": 3,
+            "isOperation": true,
+            "name": "O18",
+            "operation": "heat"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O2"
+                },
+                {
+                    "amount": 10,
+                    "name": "O3"
+                }
+            ],
+            "executionTime": 2,
+            "isOperation": true,
+            "name": "O19",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O4"
+                }
+            ],
+            "executionTime": 3,
+            "isOperation": true,
+            "name": "O20",
+            "operation": "heat"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O5"
+                },
+                {
+                    "amount": 10,
+                    "name": "O6"
+                }
+            ],
+            "executionTime": 2,
+            "isOperation": true,
+            "name": "O21",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O7"
+                }
+            ],
+            "executionTime": 7,
+            "isOperation": true,
+            "name": "O22",
+            "operation": "heat"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O8"
+                },
+                {
+                    "amount": 10,
+                    "name": "O9"
+                }
+            ],
+            "executionTime": 2,
+            "isOperation": true,
+            "name": "O23",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O10"
+                },
+                {
+                    "amount": 10,
+                    "name": "O11"
+                }
+            ],
+            "executionTime": 2,
+            "isOperation": true,
+            "name": "O24",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O12"
+                },
+                {
+                    "amount": 10,
+                    "name": "O13"
+                }
+            ],
+            "executionTime": 3,
+            "isOperation": true,
+            "name": "O25",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O14"
+                }
+            ],
+            "executionTime": 4,
+            "isOperation": true,
+            "name": "O26",
+            "operation": "heat"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 20,
+                    "name": "O15"
+                }
+            ],
+            "executionTime": 2,
+            "isOperation": true,
+            "name": "O27",
+            "operation": "filter"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O16"
+                },
+                {
+                    "amount": 10,
+                    "name": "O17"
+                }
+            ],
+            "executionTime": 3,
+            "isOperation": true,
+            "name": "O28",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O18"
+                },
+                {
+                    "amount": 10,
+                    "name": "O19"
+                }
+            ],
+            "executionTime": 3,
+            "isOperation": true,
+            "name": "O29",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O20"
+                },
+                {
+                    "amount": 10,
+                    "name": "O21"
+                }
+            ],
+            "executionTime": 4,
+            "isOperation": true,
+            "name": "O30",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 20,
+                    "name": "O22"
+                }
+            ],
+            "executionTime": 2,
+            "isOperation": true,
+            "name": "O31",
+            "operation": "filter"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O23"
+                }
+            ],
+            "executionTime": 4,
+            "isOperation": true,
+            "name": "O32",
+            "operation": "heat"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 20,
+                    "name": "O24"
+                }
+            ],
+            "executionTime": 3,
+            "isOperation": true,
+            "name": "O33",
+            "operation": "filter"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 20,
+                    "name": "O25"
+                }
+            ],
+            "executionTime": 2,
+            "isOperation": true,
+            "name": "O34",
+            "operation": "detect"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 20,
+                    "name": "O26"
+                }
+            ],
+            "executionTime": 3,
+            "isOperation": true,
+            "name": "O35",
+            "operation": "detect"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 20,
+                    "name": "O27"
+                }
+            ],
+            "executionTime": 2,
+            "isOperation": true,
+            "name": "O36",
+            "operation": "detect"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 20,
+                    "name": "O28"
+                }
+            ],
+            "executionTime": 3,
+            "isOperation": true,
+            "name": "O37",
+            "operation": "detect"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O29"
+                },
+                {
+                    "amount": 10,
+                    "name": "O30"
+                }
+            ],
+            "executionTime": 4,
+            "isOperation": true,
+            "name": "O38",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O31"
+                },
+                {
+                    "amount": 10,
+                    "name": "O32"
+                }
+            ],
+            "executionTime": 3,
+            "isOperation": true,
+            "name": "O39",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O33"
+                },
+                {
+                    "amount": 10,
+                    "name": "O34"
+                }
+            ],
+            "executionTime": 2,
+            "isOperation": true,
+            "name": "O40",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O35"
+                }
+            ],
+            "executionTime": 1,
+            "isOperation": true,
+            "name": "O41",
+            "operation": "heat"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O36"
+                },
+                {
+                    "amount": 10,
+                    "name": "O37"
+                }
+            ],
+            "executionTime": 4,
+            "isOperation": true,
+            "name": "O42",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O38"
+                }
+            ],
+            "executionTime": 3,
+            "isOperation": true,
+            "name": "O43",
+            "operation": "heat"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 20,
+                    "name": "O39"
+                }
+            ],
+            "executionTime": 4,
+            "isOperation": true,
+            "name": "O44",
+            "operation": "filter"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O41"
+                },
+                {
+                    "amount": 10,
+                    "name": "O42"
+                }
+            ],
+            "executionTime": 2,
+            "isOperation": true,
+            "name": "O45",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O43"
+                },
+                {
+                    "amount": 10,
+                    "name": "O44"
+                }
+            ],
+            "executionTime": 3,
+            "isOperation": true,
+            "name": "O46",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O40"
+                },
+                {
+                    "amount": 10,
+                    "name": "O45"
+                }
+            ],
+            "executionTime": 2,
+            "isOperation": true,
+            "name": "O47",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O47"
+                }
+            ],
+            "executionTime": 3,
+            "isOperation": true,
+            "name": "O48",
+            "operation": "heat"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O46"
+                },
+                {
+                    "amount": 10,
+                    "name": "O48"
+                }
+            ],
+            "executionTime": 2,
+            "isOperation": true,
+            "name": "O49",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O49"
+                }
+            ],
+            "executionTime": 2,
+            "isOperation": true,
+            "name": "O50",
+            "operation": "detect"
+        }
+    ],
+    "scheduledOps": false,
+    "scheduledRoutes": false
+}

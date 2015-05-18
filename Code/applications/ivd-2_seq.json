@@ -1,0 +1,261 @@
+{
+    "architecture": null,
+    "assay": "in_vitro_diagnostics",
+    "bound": false,
+    "operations": [
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i1",
+            "operation": "input",
+			"component": "Source1"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i2",
+            "operation": "input",
+			"component": "Source1"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i3",
+            "operation": "input",
+			"component": "Source2"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i4",
+            "operation": "input",
+			"component": "Source2"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i5",
+            "operation": "input",
+			"component": "Source3"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i6",
+            "operation": "input",
+			"component": "Source3"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i7",
+            "operation": "input",
+			"component": "Source4"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i8",
+            "operation": "input",
+			"component": "Source4"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i9",
+            "operation": "input",
+			"component": "Source5"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i10",
+            "operation": "input",
+			"component": "Source5"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i11",
+            "operation": "input",
+			"component": "Source6"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i12",
+            "operation": "input",
+			"component": "Source6"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i1"
+                },
+                {
+                    "amount": 10,
+                    "name": "i7"
+                }
+            ],
+            "executionTime": 4,
+            "isOperation": true,
+            "name": "O1",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i2"
+                },
+                {
+                    "amount": 10,
+                    "name": "i8"
+                }
+            ],
+            "executionTime": 4,
+            "isOperation": true,
+            "name": "O2",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i3"
+                },
+                {
+                    "amount": 10,
+                    "name": "i9"
+                }
+            ],
+            "executionTime": 4,
+            "isOperation": true,
+            "name": "O3",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i4"
+                },
+                {
+                    "amount": 10,
+                    "name": "i10"
+                }
+            ],
+            "executionTime": 4,
+            "isOperation": true,
+            "name": "O4",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i5"
+                },
+                {
+                    "amount": 10,
+                    "name": "i11"
+                }
+            ],
+            "executionTime": 4,
+            "isOperation": true,
+            "name": "O5",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i6"
+                },
+                {
+                    "amount": 10,
+                    "name": "i12"
+                }
+            ],
+            "executionTime": 4,
+            "isOperation": true,
+            "name": "O6",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 20,
+                    "name": "O1"
+                }
+            ],
+            "executionTime": 7,
+            "isOperation": true,
+            "name": "O7",
+            "operation": "detect"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 20,
+                    "name": "O2"
+                }
+            ],
+            "executionTime": 7,
+            "isOperation": true,
+            "name": "O8",
+            "operation": "detect"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 20,
+                    "name": "O3"
+                }
+            ],
+            "executionTime": 7,
+            "isOperation": true,
+            "name": "O9",
+            "operation": "detect"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 20,
+                    "name": "O4"
+                }
+            ],
+            "executionTime": 7,
+            "isOperation": true,
+            "name": "O10",
+            "operation": "detect"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 20,
+                    "name": "O5"
+                }
+            ],
+            "executionTime": 7,
+            "isOperation": true,
+            "name": "O11",
+            "operation": "detect"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 20,
+                    "name": "O6"
+                }
+            ],
+            "executionTime": 7,
+            "isOperation": true,
+            "name": "O12",
+            "operation": "detect"
+        }
+    ],
+    "scheduledOps": false,
+    "scheduledRoutes": false
+}

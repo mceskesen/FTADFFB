@@ -1,0 +1,9 @@
+Component library
+	Sizes of fault tolerant components just doubled height
+	Need to add extra valves
+
+Take into account the extra valves when having two channels as input to a component
+
+The same connection between two components is not allowed by Michael
+
+Application deadline and flow between component average time (command line arguments?) 

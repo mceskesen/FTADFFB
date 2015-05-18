@@ -1,0 +1,99 @@
+{
+    "architecture": "arch_mes_example",
+    "faultmodel": "Example1",
+    "valvefaults": 2,
+    "channelfaults": 2,
+    "channelfaultList": [
+        {
+            "fault": "block",
+            "name": "Blocked-channel-Switch1-Mixer1",
+            "shortname": "c1",
+            "objectType": "connection",
+            "objectName": "Switch1-Mixer1"
+        },
+        {
+            "fault": "block",
+            "name": "Blocked-channel-Mixer1",
+            "shortname": "c2",
+            "objectType": "component",
+            "objectName": "Mixer1"
+        },
+        {
+            "fault": "block",
+            "name": "Blocked-channel-Heater1",
+            "shortname": "c3",
+            "objectType": "component",
+            "objectName": "Heater1"
+        },
+        {
+            "fault": "block",
+            "name": "Blocked-channel-Switch3-Switch4",
+            "shortname": "c4",
+            "objectType": "connection",
+            "objectName": "Switch3-Switch4"
+        },
+        {
+            "fault": "block",
+            "name": "Blocked-channel-Switch4-Filter1",
+            "shortname": "c5",
+            "objectType": "connection",
+            "objectName": "Switch4-Filter1"
+        }
+    ],
+    "valvefaultList": [
+        {
+            "fault": "open",
+            "name": "Open-valve-Switch2-to-storage",
+            "shortname": "v1",
+            "objectType": "component",
+            "objectName": "Switch2",
+            "control": "east-valve",
+            "affected": "Switch2-Storage8"
+        },
+        {
+            "fault": "open",
+            "name": "Open-valve-Mixer1-pump",
+            "shortname": "v2",
+            "objectType": "component",
+            "objectName": "Mixer1",
+            "control": "pumpvalve2",
+            "affected": "pump"
+        },
+        {
+            "fault": "open",
+            "name": "Open-valve-Filter1-output",
+            "shortname": "v3",
+            "objectType": "component",
+            "objectName": "Filter1",
+            "control": "outputvalve",
+            "affected": "output"
+        },
+        {
+            "fault": "open",
+            "name": "Open-valve-Switch2-to-Switch1",
+            "shortname": "v4",
+            "objectType": "component",
+            "objectName": "Switch2",
+            "control": "north-valve",
+            "affected": "Switch1-Switch2"
+        },
+        {
+            "fault": "open",
+            "name": "Open-valve-Switch4-to-Switch3",
+            "shortname": "v5",
+            "objectType": "component",
+            "objectName": "Switch4",
+            "control": "north-valve",
+            "affected": "Switch3-Switch4"
+        },
+        {
+            "fault": "open",
+            "name": "Open-valve-Switch4-to-Switch5",
+            "shortname": "v5",
+            "objectType": "component",
+            "objectName": "Switch4",
+            "control": "south-valve",
+            "affected": "Switch4-Switch5"
+        }
+    ]
+}

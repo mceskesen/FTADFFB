@@ -1,0 +1,72 @@
+{
+    "architecture": "arch_mes_example",
+    "faultmodel": "Example2",
+    "valvefaults": 2,
+    "channelfaults": 2,
+    "channelfaultList": [
+        {
+            "fault": "block",
+            "name": "Blocked-channel-Switch1-Mixer1",
+            "shortname": "c1",
+            "objectType": "connection",
+            "objectName": "Switch1-Mixer1"
+        },
+        {
+            "fault": "block",
+            "name": "Blocked-channel-Mixer1",
+            "shortname": "c2",
+            "objectType": "component",
+            "objectName": "Mixer1"
+        }
+    ],
+    "valvefaultList": [
+        {
+            "fault": "open",
+            "name": "Open-valve-Switch2-to-storage",
+            "shortname": "v1",
+            "objectType": "component",
+            "objectName": "Switch2",
+            "control": "east-valve"
+        },
+        {
+            "fault": "open",
+            "name": "Open-valve-Mixer1-pump",
+            "shortname": "v2",
+            "objectType": "component",
+            "objectName": "Mixer1",
+            "control": "pumpvalve2"
+        },
+        {
+            "fault": "open",
+            "name": "Open-valve-Filter1-output",
+            "shortname": "v3",
+            "objectType": "component",
+            "objectName": "Filter1",
+            "control": "outputvalve"
+        },
+        {
+            "fault": "open",
+            "name": "Open-valve-Switch2-to-Switch1",
+            "shortname": "v4",
+            "objectType": "component",
+            "objectName": "Switch2",
+            "control": "north-valve"
+        },
+        {
+            "fault": "open",
+            "name": "Open-valve-Switch4-to-Switch3",
+            "shortname": "v5",
+            "objectType": "component",
+            "objectName": "Switch4",
+            "control": "west-valve"
+        },
+        {
+            "fault": "open",
+            "name": "Open-valve-Switch4-to-Switch5",
+            "shortname": "v5",
+            "objectType": "component",
+            "objectName": "Switch4",
+            "control": "east-valve"
+        }
+    ]
+}

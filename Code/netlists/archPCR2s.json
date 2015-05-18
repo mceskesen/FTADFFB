@@ -1,0 +1,1328 @@
+{
+  "architecture" : "archPCR2s",
+  "flowPlaced" : true,
+  "height" : 120,
+  "width" : 115,
+  "layers" : [ {
+    "layerName" : "flow",
+    "layerType" : "flow"
+  } ],
+  "componentList" : [ {
+    "objectType" : "component",
+    "name" : "Source1",
+    "functions" : [ "Input" ],
+    "connections" : [ "con_15" ],
+    "placed" : true,
+    "xLocation" : 5,
+    "yLocation" : 90,
+    "width" : 5,
+    "height" : 5,
+    "layer" : "flow",
+    "Orientation" : "0"
+  }, {
+    "objectType" : "component",
+    "name" : "Source2",
+    "functions" : [ "Input" ],
+    "connections" : [ "con_11" ],
+    "placed" : true,
+    "xLocation" : 5,
+    "yLocation" : 60,
+    "width" : 5,
+    "height" : 5,
+    "layer" : "flow",
+    "Orientation" : "0"
+  }, {
+    "objectType" : "component",
+    "name" : "Source3",
+    "functions" : [ "Input" ],
+    "connections" : [ "con_22" ],
+    "placed" : true,
+    "xLocation" : 5,
+    "yLocation" : 75,
+    "width" : 5,
+    "height" : 5,
+    "layer" : "flow",
+    "Orientation" : "0"
+  }, {
+    "objectType" : "component",
+    "name" : "Mixer1",
+    "functions" : [ "Mixer" ],
+    "connections" : [ "con_1" ],
+    "placed" : true,
+    "xLocation" : 20,
+    "yLocation" : 85,
+    "width" : 30,
+    "height" : 30,
+    "layer" : "flow",
+    "Orientation" : "0"
+  }, {
+    "objectType" : "component",
+    "name" : "Mixer2",
+    "functions" : [ "Mixer" ],
+    "connections" : [ "con_32" ],
+    "placed" : true,
+    "xLocation" : 60,
+    "yLocation" : 60,
+    "width" : 30,
+    "height" : 30,
+    "layer" : "flow",
+    "Orientation" : "0"
+  }, {
+    "objectType" : "component",
+    "name" : "Mixer3",
+    "functions" : [ "Mixer" ],
+    "connections" : [ "con_28" ],
+    "placed" : true,
+    "xLocation" : 20,
+    "yLocation" : 45,
+    "width" : 30,
+    "height" : 30,
+    "layer" : "flow",
+    "Orientation" : "0"
+  }, {
+    "objectType" : "component",
+    "name" : "Out1",
+    "functions" : [ "Output" ],
+    "placed" : true,
+    "xLocation" : 75,
+    "yLocation" : 100,
+    "width" : 5,
+    "height" : 5,
+    "layer" : "flow",
+    "Orientation" : "3"
+  }, {
+    "objectType" : "component",
+    "name" : "Out2",
+    "functions" : [ "Output" ],
+    "placed" : true,
+    "xLocation" : 60,
+    "yLocation" : 100,
+    "width" : 5,
+    "height" : 5,
+    "layer" : "flow",
+    "Orientation" : "3"
+  }, {
+    "objectType" : "component",
+    "name" : "Out3",
+    "functions" : [ "Output" ],
+    "placed" : true,
+    "xLocation" : 60,
+    "yLocation" : 45,
+    "width" : 5,
+    "height" : 5,
+    "layer" : "flow",
+    "Orientation" : "1"
+  }, {
+    "objectType" : "component",
+    "name" : "Storage1",
+    "functions" : [ "Storage" ],
+    "connections" : [ "con_29" ],
+    "placed" : true,
+    "xLocation" : 20,
+    "yLocation" : 5,
+    "width" : 90,
+    "height" : 30,
+    "layer" : "flow",
+    "Orientation" : "2"
+  }, {
+    "objectType" : "component",
+    "name" : "Switch1",
+    "functions" : [ "Switch" ],
+    "connections" : [ "con_12", "con_20" ],
+    "placed" : true,
+    "xLocation" : 10,
+    "yLocation" : 62,
+    "width" : 1,
+    "height" : 1,
+    "layer" : "flow",
+    "Orientation" : "0"
+  }, {
+    "objectType" : "component",
+    "name" : "Switch2",
+    "functions" : [ "Switch" ],
+    "connections" : [ "con_18", "con_21", "con_23" ],
+    "placed" : true,
+    "xLocation" : 10,
+    "yLocation" : 75,
+    "width" : 1,
+    "height" : 1,
+    "layer" : "flow",
+    "Orientation" : "0"
+  }, {
+    "objectType" : "component",
+    "name" : "Switch3",
+    "functions" : [ "Switch" ],
+    "connections" : [ "con_48", "con_50", "con_55" ],
+    "placed" : true,
+    "xLocation" : 90,
+    "yLocation" : 35,
+    "width" : 1,
+    "height" : 1,
+    "layer" : "flow",
+    "Orientation" : "0"
+  }, {
+    "objectType" : "component",
+    "name" : "Switch4",
+    "functions" : [ "Switch" ],
+    "connections" : [ "con_41", "con_43", "con_46" ],
+    "placed" : true,
+    "xLocation" : 77,
+    "yLocation" : 99,
+    "width" : 1,
+    "height" : 1,
+    "layer" : "flow",
+    "Orientation" : "0"
+  }, {
+    "objectType" : "component",
+    "name" : "Switch5",
+    "functions" : [ "Switch" ],
+    "connections" : [ "con_35", "con_37", "con_44", "con_47" ],
+    "placed" : true,
+    "xLocation" : 62,
+    "yLocation" : 99,
+    "width" : 1,
+    "height" : 1,
+    "layer" : "flow",
+    "Orientation" : "0"
+  }, {
+    "objectType" : "component",
+    "name" : "Switch6",
+    "functions" : [ "Switch" ],
+    "connections" : [ "con_38", "con_40", "con_51" ],
+    "placed" : true,
+    "xLocation" : 19,
+    "yLocation" : 100,
+    "width" : 1,
+    "height" : 1,
+    "layer" : "flow",
+    "Orientation" : "0"
+  }, {
+    "objectType" : "component",
+    "name" : "Switch7",
+    "functions" : [ "Switch" ],
+    "connections" : [ "con_16", "con_19" ],
+    "placed" : true,
+    "xLocation" : 10,
+    "yLocation" : 77,
+    "width" : 1,
+    "height" : 1,
+    "layer" : "flow",
+    "Orientation" : "0"
+  }, {
+    "objectType" : "component",
+    "name" : "Switch8",
+    "functions" : [ "Switch" ],
+    "connections" : [ "con_33", "con_36", "con_42" ],
+    "placed" : true,
+    "xLocation" : 77,
+    "yLocation" : 90,
+    "width" : 1,
+    "height" : 1,
+    "layer" : "flow",
+    "Orientation" : "0"
+  }, {
+    "objectType" : "component",
+    "name" : "Switch9",
+    "functions" : [ "Switch" ],
+    "connections" : [ "con_24", "con_25", "con_30", "con_39" ],
+    "placed" : true,
+    "xLocation" : 19,
+    "yLocation" : 75,
+    "width" : 1,
+    "height" : 1,
+    "layer" : "flow",
+    "Orientation" : "0"
+  }, {
+    "objectType" : "component",
+    "name" : "Switch10",
+    "functions" : [ "Switch" ],
+    "connections" : [ "con_13", "con_14", "con_31" ],
+    "placed" : true,
+    "xLocation" : 19,
+    "yLocation" : 60,
+    "width" : 1,
+    "height" : 1,
+    "layer" : "flow",
+    "Orientation" : "0"
+  }, {
+    "objectType" : "component",
+    "name" : "Switch11",
+    "functions" : [ "Switch" ],
+    "connections" : [ "con_34", "con_53" ],
+    "placed" : true,
+    "xLocation" : 90,
+    "yLocation" : 75,
+    "width" : 1,
+    "height" : 1,
+    "layer" : "flow",
+    "Orientation" : "0"
+  }, {
+    "objectType" : "component",
+    "name" : "Switch12",
+    "functions" : [ "Switch" ],
+    "connections" : [ "con_4", "con_6" ],
+    "placed" : true,
+    "xLocation" : 50,
+    "yLocation" : 60,
+    "width" : 1,
+    "height" : 1,
+    "layer" : "flow",
+    "Orientation" : "0"
+  }, {
+    "objectType" : "component",
+    "name" : "Switch13",
+    "functions" : [ "Switch" ],
+    "connections" : [ "con_7", "con_8", "con_49" ],
+    "placed" : true,
+    "xLocation" : 50,
+    "yLocation" : 50,
+    "width" : 1,
+    "height" : 1,
+    "layer" : "flow",
+    "Orientation" : "0"
+  }, {
+    "objectType" : "component",
+    "name" : "Switch14",
+    "functions" : [ "Switch" ],
+    "connections" : [ "con_2", "con_45" ],
+    "placed" : true,
+    "xLocation" : 50,
+    "yLocation" : 99,
+    "width" : 1,
+    "height" : 1,
+    "layer" : "flow",
+    "Orientation" : "0"
+  }, {
+    "objectType" : "component",
+    "name" : "Switch15",
+    "functions" : [ "Switch" ],
+    "connections" : [ "con_9", "con_10", "con_57" ],
+    "placed" : true,
+    "xLocation" : 62,
+    "yLocation" : 50,
+    "width" : 1,
+    "height" : 1,
+    "layer" : "flow",
+    "Orientation" : "0"
+  }, {
+    "objectType" : "component",
+    "name" : "Switch16",
+    "functions" : [ "Switch" ],
+    "connections" : [ "con_3", "con_5", "con_26", "con_27" ],
+    "placed" : true,
+    "xLocation" : 50,
+    "yLocation" : 75,
+    "width" : 1,
+    "height" : 1,
+    "layer" : "flow",
+    "Orientation" : "0"
+  }, {
+    "objectType" : "component",
+    "name" : "Switch17",
+    "functions" : [ "Switch" ],
+    "connections" : [ "con_17", "con_52" ],
+    "placed" : true,
+    "xLocation" : 10,
+    "yLocation" : 92,
+    "width" : 1,
+    "height" : 1,
+    "layer" : "flow",
+    "Orientation" : "0"
+  }, {
+    "objectType" : "component",
+    "name" : "Switch18",
+    "functions" : [ "Switch" ],
+    "connections" : [ "con_54", "con_56", "con_58" ],
+    "placed" : true,
+    "xLocation" : 90,
+    "yLocation" : 50,
+    "width" : 1,
+    "height" : 1,
+    "layer" : "flow",
+    "Orientation" : "0"
+  } ],
+  "connectionList" : [ {
+    "objectType" : "connection",
+    "name" : "con_1",
+    "sourceComponent" : "Mixer1",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch14"
+    } ],
+    "distance" : 1,
+    "points" : [ {
+      "sourceX" : 50,
+      "sourceY" : 100,
+      "sinkX" : 50,
+      "sinkY" : 99
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_2",
+    "sourceComponent" : "Switch14",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch16"
+    } ],
+    "distance" : 23,
+    "points" : [ {
+      "sourceX" : 50,
+      "sourceY" : 99,
+      "sinkX" : 50,
+      "sinkY" : 75
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_3",
+    "sourceComponent" : "Switch16",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch14"
+    } ],
+    "distance" : 23,
+    "points" : [ {
+      "sourceX" : 50,
+      "sourceY" : 75,
+      "sinkX" : 50,
+      "sinkY" : 99
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_4",
+    "sourceComponent" : "Switch12",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch16"
+    } ],
+    "distance" : 14,
+    "points" : [ {
+      "sourceX" : 50,
+      "sourceY" : 75,
+      "sinkX" : 50,
+      "sinkY" : 60
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_5",
+    "sourceComponent" : "Switch16",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch12"
+    } ],
+    "distance" : 14,
+    "points" : [ {
+      "sourceX" : 50,
+      "sourceY" : 60,
+      "sinkX" : 50,
+      "sinkY" : 75
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_6",
+    "sourceComponent" : "Switch12",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch13"
+    } ],
+    "distance" : 9,
+    "points" : [ {
+      "sourceX" : 50,
+      "sourceY" : 60,
+      "sinkX" : 50,
+      "sinkY" : 50
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_7",
+    "sourceComponent" : "Switch13",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch12"
+    } ],
+    "distance" : 9,
+    "points" : [ {
+      "sourceX" : 50,
+      "sourceY" : 50,
+      "sinkX" : 50,
+      "sinkY" : 60
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_8",
+    "sourceComponent" : "Switch13",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch15"
+    } ],
+    "distance" : 11,
+    "points" : [ {
+      "sourceX" : 50,
+      "sourceY" : 50,
+      "sinkX" : 62,
+      "sinkY" : 50
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_9",
+    "sourceComponent" : "Switch15",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch13"
+    } ],
+    "distance" : 11,
+    "points" : [ {
+      "sourceX" : 62,
+      "sourceY" : 50,
+      "sinkX" : 50,
+      "sinkY" : 50
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_10",
+    "sourceComponent" : "Switch15",
+    "sinkComponent" : [ {
+      "sinkName" : "Out3"
+    } ],
+    "distance" : 0,
+    "points" : [ {
+      "sourceX" : 62,
+      "sourceY" : 50,
+      "sinkX" : 62,
+      "sinkY" : 50
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_11",
+    "sourceComponent" : "Source2",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch1"
+    } ],
+    "distance" : 0,
+    "points" : [ {
+      "sourceX" : 10,
+      "sourceY" : 62,
+      "sinkX" : 10,
+      "sinkY" : 62
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_12",
+    "sourceComponent" : "Switch1",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch10"
+    } ],
+    "distance" : 10,
+    "points" : [ {
+      "sourceX" : 10,
+      "sourceY" : 62,
+      "sinkX" : 10,
+      "sinkY" : 60
+    }, {
+      "sourceX" : 10,
+      "sourceY" : 60,
+      "sinkX" : 19,
+      "sinkY" : 60
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_13",
+    "sourceComponent" : "Switch10",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch1"
+    } ],
+    "distance" : 10,
+    "points" : [ {
+      "sourceX" : 19,
+      "sourceY" : 60,
+      "sinkX" : 10,
+      "sinkY" : 60
+    }, {
+      "sourceX" : 10,
+      "sourceY" : 60,
+      "sinkX" : 10,
+      "sinkY" : 62
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_14",
+    "sourceComponent" : "Switch10",
+    "sinkComponent" : [ {
+      "sinkName" : "Mixer3"
+    } ],
+    "distance" : 0,
+    "points" : [ {
+      "sourceX" : 19,
+      "sourceY" : 60,
+      "sinkX" : 19,
+      "sinkY" : 60
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_15",
+    "sourceComponent" : "Source1",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch17"
+    } ],
+    "distance" : 0,
+    "points" : [ {
+      "sourceX" : 10,
+      "sourceY" : 92,
+      "sinkX" : 10,
+      "sinkY" : 92
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_16",
+    "sourceComponent" : "Switch7",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch17"
+    } ],
+    "distance" : 14,
+    "points" : [ {
+      "sourceX" : 10,
+      "sourceY" : 92,
+      "sinkX" : 10,
+      "sinkY" : 77
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_17",
+    "sourceComponent" : "Switch17",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch7"
+    } ],
+    "distance" : 14,
+    "points" : [ {
+      "sourceX" : 10,
+      "sourceY" : 77,
+      "sinkX" : 10,
+      "sinkY" : 92
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_18",
+    "sourceComponent" : "Switch2",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch7"
+    } ],
+    "distance" : 1,
+    "points" : [ {
+      "sourceX" : 10,
+      "sourceY" : 77,
+      "sinkX" : 10,
+      "sinkY" : 75
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_19",
+    "sourceComponent" : "Switch7",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch2"
+    } ],
+    "distance" : 1,
+    "points" : [ {
+      "sourceX" : 10,
+      "sourceY" : 75,
+      "sinkX" : 10,
+      "sinkY" : 77
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_20",
+    "sourceComponent" : "Switch1",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch2"
+    } ],
+    "distance" : 12,
+    "points" : [ {
+      "sourceX" : 10,
+      "sourceY" : 75,
+      "sinkX" : 10,
+      "sinkY" : 62
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_21",
+    "sourceComponent" : "Switch2",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch1"
+    } ],
+    "distance" : 12,
+    "points" : [ {
+      "sourceX" : 10,
+      "sourceY" : 62,
+      "sinkX" : 10,
+      "sinkY" : 75
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_22",
+    "sourceComponent" : "Source3",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch7"
+    } ],
+    "distance" : 0,
+    "points" : [ {
+      "sourceX" : 10,
+      "sourceY" : 77,
+      "sinkX" : 10,
+      "sinkY" : 77
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_23",
+    "sourceComponent" : "Switch2",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch9"
+    } ],
+    "distance" : 8,
+    "points" : [ {
+      "sourceX" : 10,
+      "sourceY" : 75,
+      "sinkX" : 19,
+      "sinkY" : 75
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_24",
+    "sourceComponent" : "Switch9",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch2"
+    } ],
+    "distance" : 8,
+    "points" : [ {
+      "sourceX" : 19,
+      "sourceY" : 75,
+      "sinkX" : 10,
+      "sinkY" : 75
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_25",
+    "sourceComponent" : "Switch9",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch16"
+    } ],
+    "distance" : 30,
+    "points" : [ {
+      "sourceX" : 19,
+      "sourceY" : 75,
+      "sinkX" : 50,
+      "sinkY" : 75
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_26",
+    "sourceComponent" : "Switch16",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch9"
+    } ],
+    "distance" : 30,
+    "points" : [ {
+      "sourceX" : 50,
+      "sourceY" : 75,
+      "sinkX" : 19,
+      "sinkY" : 75
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_27",
+    "sourceComponent" : "Switch16",
+    "sinkComponent" : [ {
+      "sinkName" : "Mixer2"
+    } ],
+    "distance" : 9,
+    "points" : [ {
+      "sourceX" : 50,
+      "sourceY" : 75,
+      "sinkX" : 59,
+      "sinkY" : 75
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_28",
+    "sourceComponent" : "Mixer3",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch12"
+    } ],
+    "distance" : 0,
+    "points" : [ {
+      "sourceX" : 50,
+      "sourceY" : 60,
+      "sinkX" : 50,
+      "sinkY" : 60
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_29",
+    "sourceComponent" : "Storage1",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch10"
+    } ],
+    "distance" : 40,
+    "points" : [ {
+      "sourceX" : 19,
+      "sourceY" : 20,
+      "sinkX" : 19,
+      "sinkY" : 60
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_30",
+    "sourceComponent" : "Switch9",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch10"
+    } ],
+    "distance" : 14,
+    "points" : [ {
+      "sourceX" : 19,
+      "sourceY" : 60,
+      "sinkX" : 19,
+      "sinkY" : 75
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_31",
+    "sourceComponent" : "Switch10",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch9"
+    } ],
+    "distance" : 14,
+    "points" : [ {
+      "sourceX" : 19,
+      "sourceY" : 75,
+      "sinkX" : 19,
+      "sinkY" : 60
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_32",
+    "sourceComponent" : "Mixer2",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch11"
+    } ],
+    "distance" : 0,
+    "points" : [ {
+      "sourceX" : 90,
+      "sourceY" : 75,
+      "sinkX" : 90,
+      "sinkY" : 75
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_33",
+    "sourceComponent" : "Switch8",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch11"
+    } ],
+    "distance" : 27,
+    "points" : [ {
+      "sourceX" : 90,
+      "sourceY" : 75,
+      "sinkX" : 90,
+      "sinkY" : 90
+    }, {
+      "sourceX" : 90,
+      "sourceY" : 90,
+      "sinkX" : 77,
+      "sinkY" : 90
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_34",
+    "sourceComponent" : "Switch11",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch8"
+    } ],
+    "distance" : 27,
+    "points" : [ {
+      "sourceX" : 77,
+      "sourceY" : 90,
+      "sinkX" : 90,
+      "sinkY" : 90
+    }, {
+      "sourceX" : 90,
+      "sourceY" : 90,
+      "sinkX" : 90,
+      "sinkY" : 75
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_35",
+    "sourceComponent" : "Switch5",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch8"
+    } ],
+    "distance" : 23,
+    "points" : [ {
+      "sourceX" : 77,
+      "sourceY" : 90,
+      "sinkX" : 62,
+      "sinkY" : 90
+    }, {
+      "sourceX" : 62,
+      "sourceY" : 90,
+      "sinkX" : 62,
+      "sinkY" : 99
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_36",
+    "sourceComponent" : "Switch8",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch5"
+    } ],
+    "distance" : 23,
+    "points" : [ {
+      "sourceX" : 62,
+      "sourceY" : 99,
+      "sinkX" : 62,
+      "sinkY" : 90
+    }, {
+      "sourceX" : 62,
+      "sourceY" : 90,
+      "sinkX" : 77,
+      "sinkY" : 90
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_37",
+    "sourceComponent" : "Switch5",
+    "sinkComponent" : [ {
+      "sinkName" : "Out2"
+    } ],
+    "distance" : 0,
+    "points" : [ {
+      "sourceX" : 62,
+      "sourceY" : 99,
+      "sinkX" : 62,
+      "sinkY" : 99
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_38",
+    "sourceComponent" : "Switch6",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch9"
+    } ],
+    "distance" : 24,
+    "points" : [ {
+      "sourceX" : 19,
+      "sourceY" : 75,
+      "sinkX" : 19,
+      "sinkY" : 100
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_39",
+    "sourceComponent" : "Switch9",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch6"
+    } ],
+    "distance" : 24,
+    "points" : [ {
+      "sourceX" : 19,
+      "sourceY" : 100,
+      "sinkX" : 19,
+      "sinkY" : 75
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_40",
+    "sourceComponent" : "Switch6",
+    "sinkComponent" : [ {
+      "sinkName" : "Mixer1"
+    } ],
+    "distance" : 0,
+    "points" : [ {
+      "sourceX" : 19,
+      "sourceY" : 100,
+      "sinkX" : 19,
+      "sinkY" : 100
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_41",
+    "sourceComponent" : "Switch4",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch8"
+    } ],
+    "distance" : 8,
+    "points" : [ {
+      "sourceX" : 77,
+      "sourceY" : 90,
+      "sinkX" : 77,
+      "sinkY" : 99
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_42",
+    "sourceComponent" : "Switch8",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch4"
+    } ],
+    "distance" : 8,
+    "points" : [ {
+      "sourceX" : 77,
+      "sourceY" : 99,
+      "sinkX" : 77,
+      "sinkY" : 90
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_43",
+    "sourceComponent" : "Switch4",
+    "sinkComponent" : [ {
+      "sinkName" : "Out1"
+    } ],
+    "distance" : 0,
+    "points" : [ {
+      "sourceX" : 77,
+      "sourceY" : 99,
+      "sinkX" : 77,
+      "sinkY" : 99
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_44",
+    "sourceComponent" : "Switch5",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch14"
+    } ],
+    "distance" : 11,
+    "points" : [ {
+      "sourceX" : 50,
+      "sourceY" : 99,
+      "sinkX" : 62,
+      "sinkY" : 99
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_45",
+    "sourceComponent" : "Switch14",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch5"
+    } ],
+    "distance" : 11,
+    "points" : [ {
+      "sourceX" : 62,
+      "sourceY" : 99,
+      "sinkX" : 50,
+      "sinkY" : 99
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_46",
+    "sourceComponent" : "Switch4",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch5"
+    } ],
+    "distance" : 14,
+    "points" : [ {
+      "sourceX" : 62,
+      "sourceY" : 99,
+      "sinkX" : 77,
+      "sinkY" : 99
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_47",
+    "sourceComponent" : "Switch5",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch4"
+    } ],
+    "distance" : 14,
+    "points" : [ {
+      "sourceX" : 77,
+      "sourceY" : 99,
+      "sinkX" : 62,
+      "sinkY" : 99
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_48",
+    "sourceComponent" : "Switch3",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch13"
+    } ],
+    "distance" : 54,
+    "points" : [ {
+      "sourceX" : 50,
+      "sourceY" : 50,
+      "sinkX" : 50,
+      "sinkY" : 35
+    }, {
+      "sourceX" : 50,
+      "sourceY" : 35,
+      "sinkX" : 90,
+      "sinkY" : 35
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_49",
+    "sourceComponent" : "Switch13",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch3"
+    } ],
+    "distance" : 54,
+    "points" : [ {
+      "sourceX" : 90,
+      "sourceY" : 35,
+      "sinkX" : 50,
+      "sinkY" : 35
+    }, {
+      "sourceX" : 50,
+      "sourceY" : 35,
+      "sinkX" : 50,
+      "sinkY" : 50
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_50",
+    "sourceComponent" : "Switch3",
+    "sinkComponent" : [ {
+      "sinkName" : "Storage1"
+    } ],
+    "distance" : 35,
+    "points" : [ {
+      "sourceX" : 90,
+      "sourceY" : 35,
+      "sinkX" : 110,
+      "sinkY" : 35
+    }, {
+      "sourceX" : 110,
+      "sourceY" : 35,
+      "sinkX" : 110,
+      "sinkY" : 20
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_51",
+    "sourceComponent" : "Switch6",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch17"
+    } ],
+    "distance" : 16,
+    "points" : [ {
+      "sourceX" : 10,
+      "sourceY" : 92,
+      "sinkX" : 10,
+      "sinkY" : 100
+    }, {
+      "sourceX" : 10,
+      "sourceY" : 100,
+      "sinkX" : 19,
+      "sinkY" : 100
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_52",
+    "sourceComponent" : "Switch17",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch6"
+    } ],
+    "distance" : 16,
+    "points" : [ {
+      "sourceX" : 19,
+      "sourceY" : 100,
+      "sinkX" : 10,
+      "sinkY" : 100
+    }, {
+      "sourceX" : 10,
+      "sourceY" : 100,
+      "sinkX" : 10,
+      "sinkY" : 92
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_53",
+    "sourceComponent" : "Switch11",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch18"
+    } ],
+    "distance" : 24,
+    "points" : [ {
+      "sourceX" : 90,
+      "sourceY" : 75,
+      "sinkX" : 90,
+      "sinkY" : 50
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_54",
+    "sourceComponent" : "Switch18",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch11"
+    } ],
+    "distance" : 24,
+    "points" : [ {
+      "sourceX" : 90,
+      "sourceY" : 50,
+      "sinkX" : 90,
+      "sinkY" : 75
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_55",
+    "sourceComponent" : "Switch3",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch18"
+    } ],
+    "distance" : 14,
+    "points" : [ {
+      "sourceX" : 90,
+      "sourceY" : 50,
+      "sinkX" : 90,
+      "sinkY" : 35
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_56",
+    "sourceComponent" : "Switch18",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch3"
+    } ],
+    "distance" : 14,
+    "points" : [ {
+      "sourceX" : 90,
+      "sourceY" : 35,
+      "sinkX" : 90,
+      "sinkY" : 50
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_57",
+    "sourceComponent" : "Switch15",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch18"
+    } ],
+    "distance" : 27,
+    "points" : [ {
+      "sourceX" : 90,
+      "sourceY" : 50,
+      "sinkX" : 62,
+      "sinkY" : 50
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  }, {
+    "objectType" : "connection",
+    "name" : "con_58",
+    "sourceComponent" : "Switch18",
+    "sinkComponent" : [ {
+      "sinkName" : "Switch15"
+    } ],
+    "distance" : 27,
+    "points" : [ {
+      "sourceX" : 62,
+      "sourceY" : 50,
+      "sinkX" : 90,
+      "sinkY" : 50
+    } ],
+    "routed" : true,
+    "layer" : "flow"
+  } ]
+}

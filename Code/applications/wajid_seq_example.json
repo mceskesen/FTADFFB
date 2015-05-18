@@ -1,0 +1,165 @@
+{
+    "architecture": null,
+    "assay": "seq-wajid-example-figure2-5",
+    "bound": false,
+    "operations": [
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i1",
+            "operation": "input"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i2",
+            "operation": "input"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i3",
+            "operation": "input"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i4",
+            "operation": "input"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i1"
+                }
+            ],
+            "executionTime": 4,
+            "isOperation": true,
+            "name": "O1",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i2"
+                }
+            ],
+            "executionTime": 4,
+            "isOperation": true,
+            "name": "O2",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i3"
+                }
+            ],
+            "executionTime": 4,
+            "isOperation": true,
+            "name": "O3",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i4"
+                }
+            ],
+            "executionTime": 5,
+            "isOperation": true,
+            "name": "O4",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O1"
+                }
+            ],
+            "executionTime": 3,
+            "isOperation": true,
+            "name": "O5",
+            "operation": "heat"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O3"
+                },
+                {
+                    "amount": 10,
+                    "name": "O4"
+                }
+            ],
+            "executionTime": 3,
+            "isOperation": true,
+            "name": "O6",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O2"
+                },
+                {
+                    "amount": 10,
+                    "name": "O5"
+                }
+            ],
+            "executionTime": 4,
+            "isOperation": true,
+            "name": "O7",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O6"
+                }
+            ],
+            "executionTime": 2,
+            "isOperation": true,
+            "name": "O8",
+            "operation": "heat"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O8"
+                }
+            ],
+            "executionTime": 5,
+            "isOperation": true,
+            "name": "O9",
+            "operation": "filter"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O7"
+                },
+                {
+                    "amount": 10,
+                    "name": "O9"
+                }
+            ],
+            "executionTime": 2,
+            "isOperation": true,
+            "name": "O10",
+            "operation": "mix"
+        }
+    ],
+    "scheduledOps": false,
+    "scheduledRoutes": false
+}

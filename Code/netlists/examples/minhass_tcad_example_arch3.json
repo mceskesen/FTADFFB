@@ -1,0 +1,407 @@
+{
+    "architecture": "minhass_tcad_example",
+    "flowPlaced": false,
+    "flowRouted": false,
+    "width": 200,
+    "height": 250,
+    "componentList": [
+        {
+            "objectType": "component",
+            "name": "In1",
+            "functions": [
+                "input"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "In2",
+            "functions": [
+                "input"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "In3",
+            "functions": [
+                "input"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "In4",
+            "functions": [
+                "input"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "In5",
+            "functions": [
+                "input"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Out1",
+            "functions": [
+                "output"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Out2",
+            "functions": [
+                "output"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Out3",
+            "functions": [
+                "output"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Out4",
+            "functions": [
+                "output"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Out5",
+            "functions": [
+                "output"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Mixer1",
+            "functions": [
+                "mixer"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Mixer2",
+            "functions": [
+                "mixer"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Heater1",
+            "functions": [
+                "heater"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Filter1",
+            "functions": [
+                "filter"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Detector1",
+            "functions": [
+                "detector"
+            ],
+            "orientation": 0
+        }
+    ],
+    "connectionList": [
+        {
+            "objectType": "connection",
+            "name": "In1-Mixer1",
+            "sourceComponent": "In1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Mixer1"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "In2-Mixer1",
+            "sourceComponent": "In2",
+            "sinkComponent": [
+                {
+                    "sinkName": "Mixer1"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "In3-Mixer2",
+            "sourceComponent": "In3",
+            "sinkComponent": [
+                {
+                    "sinkName": "Mixer2"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "In4-Mixer2",
+            "sourceComponent": "In4",
+            "sinkComponent": [
+                {
+                    "sinkName": "Mixer2"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "In5-Heater1",
+            "sourceComponent": "In5",
+            "sinkComponent": [
+                {
+                    "sinkName": "Heater1"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Mixer1-Filter1",
+            "sourceComponent": "Mixer1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Filter1"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Mixer2-Detector1",
+            "sourceComponent": "Mixer2",
+            "sinkComponent": [
+                {
+                    "sinkName": "Detector1"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Filter1-Heater1",
+            "sourceComponent": "Filter1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Heater1"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Detector1-Mixer1",
+            "sourceComponent": "Detector1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Mixer1"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Heater1-Mixer1",
+            "sourceComponent": "Heater1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Mixer1"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Mixer1-Filter1",
+            "sourceComponent": "Mixer1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Filter1"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Heater1-Mixer1",
+            "sourceComponent": "Heater1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Mixer1"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Filter1-Mixer1",
+            "sourceComponent": "Filter1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Mixer1"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Mixer1-Detector1",
+            "sourceComponent": "Mixer1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Detector1"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Mixer1-Detector1",
+            "sourceComponent": "Mixer1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Detector1"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Detector1-Out5",
+            "sourceComponent": "Detector1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Out5"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "In1-Out1",
+            "sourceComponent": "In1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Out1"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "In2-Out1",
+            "sourceComponent": "In2",
+            "sinkComponent": [
+                {
+                    "sinkName": "Out1"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "In3-Out2",
+            "sourceComponent": "In3",
+            "sinkComponent": [
+                {
+                    "sinkName": "Out2"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "In4-Out2",
+            "sourceComponent": "In4",
+            "sinkComponent": [
+                {
+                    "sinkName": "Out2"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "In5-Out5",
+            "sourceComponent": "In5",
+            "sinkComponent": [
+                {
+                    "sinkName": "Out5"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Heater1-Out3",
+            "sourceComponent": "Heater1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Out3"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "In5-Out4",
+            "sourceComponent": "In5",
+            "sinkComponent": [
+                {
+                    "sinkName": "Out4"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        }
+    ]
+}

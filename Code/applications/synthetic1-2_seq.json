@@ -1,0 +1,180 @@
+{
+    "architecture": null,
+    "assay": "synthetic1",
+    "bound": false,
+    "operations": [
+        {
+            "executionTime": 0,
+            "name": "i1",
+            "objectType": "component",
+            "operation": "input",
+			"component": "Source1"
+        },
+        {
+            "executionTime": 0,
+            "name": "i2",
+            "objectType": "component",
+            "operation": "input",
+			"component": "Source1"
+        },
+        {
+            "executionTime": 0,
+            "name": "i3",
+            "objectType": "component",
+            "operation": "input",
+			"component": "Source1"
+        },
+        {
+            "executionTime": 0,
+            "name": "i4",
+            "objectType": "component",
+            "operation": "input",
+			"component": "Source1"
+        },
+        {
+            "executionTime": 0,
+            "name": "i5",
+            "objectType": "component",
+            "operation": "input",
+			"component": "Source1"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i1"
+                },
+                {
+                    "amount": 10,
+                    "name": "i2"
+                }
+            ],
+            "executionTime": 4,
+            "name": "O1",
+            "objectType": "component",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i3"
+                },
+                {
+                    "amount": 10,
+                    "name": "i4"
+                }
+            ],
+            "executionTime": 7,
+            "name": "O2",
+            "objectType": "component",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i5"
+                }
+            ],
+            "executionTime": 3,
+            "name": "O3",
+            "objectType": "component",
+            "operation": "heat"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 20,
+                    "name": "O1"
+                }
+            ],
+            "executionTime": 5,
+            "name": "O4",
+            "objectType": "component",
+            "operation": "filter"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 20,
+                    "name": "O2"
+                }
+            ],
+            "executionTime": 4,
+            "name": "O5",
+            "objectType": "component",
+            "operation": "detect"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O4"
+                }
+            ],
+            "executionTime": 8,
+            "name": "O6",
+            "objectType": "component",
+            "operation": "heat"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O5"
+                },
+                {
+                    "amount": 10,
+                    "name": "O3"
+                }
+            ],
+            "executionTime": 5,
+            "name": "O7",
+            "objectType": "component",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 20,
+                    "name": "O7"
+                }
+            ],
+            "executionTime": 2,
+            "name": "O8",
+            "objectType": "component",
+            "operation": "filter"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O6"
+                },
+                {
+                    "amount": 10,
+                    "name": "O8"
+                }
+            ],
+            "executionTime": 4,
+            "name": "O9",
+            "objectType": "component",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 20,
+                    "name": "O9"
+                }
+            ],
+            "executionTime": 2,
+            "name": "O10",
+            "objectType": "component",
+            "operation": "detect"
+        }
+    ],
+    "scheduledOps": false,
+    "scheduledRoutes": false
+}
