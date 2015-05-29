@@ -37,10 +37,46 @@ np.parse()
 fmp = FaultModelParser('faultmodels/faultmodel-arch-mes.json')
 rfsg = RandomFaultScenarioGenerator(fmp.faultmodel, config.data['faultscenarios'])
 rfsg.generate_fault_scenarios()
-#print('Random scenarios generated')
+
 #am = ArchitectureModifier(np.architecture, ap.application, rfsg.faultscenarios, config.data)
+print(np.architecture)
 sa = SimulatedAnnealing(np.architecture, ap.application, rfsg.faultscenarios, config.data)
+#print(am.architecture)
+
+#am.insert_component_to_make_random_component_redundant()
+#am.add_connection_between_two_random_components()
+#am.remove_random_component()
+
+#for x in range(0,15):
+#    am.insert_component_to_make_random_component_redundant()
+#    if (x % 3) == 0:
+#        #print('UNDO MOVE')
+#        #am.undo_last_move()
+#        print('REMOVE COMP MOVE')
+#        am.remove_random_component()
+#        print('UNDO MOVE')
+#        am.undo_last_move()
+#    am.add_connection_between_two_random_components()
+
 print(sa.cost)
+print(sa.architecture)
+#a = am.make_random_component_fault_tolerant()
+#am.add_connection_between_two_random_components()
+#am.make_random_component_non_fault_tolerant()
+#print(am.architecture)
+#am.add_connection_between_two_random_components()
+#for x in range(0, 10):
+#    am.add_connection_between_two_random_components()
+#print(am.connections_added)
+#am.remove_random_component()
+#print(am.connections_added)
+#am.undo_last_move()
+#print(am.connections_added)
+
+#for x in range(0, 10):
+#    am.remove_random_connection()
+
+
 
 #c = 6570230.0 - 311096.0
 #print(c)
@@ -51,7 +87,12 @@ print(sa.cost)
 #print(c)
 #i = c / 9900.448802097482
 #print(i)
-print(sa.architecture)
+#print(sa.architecture)
+#print(am.architecture)
+#for each in sa.architecture.components:
+#    print(each)
+#    print('Out connections: '+each.out_connections)
+#    print('In connections: '+each.in_connections)
 
 
 #print('Random component is inserted: '+ str(b))

@@ -60,14 +60,38 @@ class Architecture(object):
 		for incon in component.in_connections.values():
 			other = incon.get_other_component(component)
 			other.remove_added_out_connection(component)
-			other.total_out_connections -= 1
+			#other.total_out_connections -= 1
+			#if other.get_type() == 'switch':
+			#	other.total_in_connections -= 1
 			#self.connections_removed.add(incon)
 			self.connections.discard(incon)
 
 		for outcon in component.out_connections.values():
 			other = outcon.get_other_component(component)
 			other.remove_added_in_connection(component)
-			other.total_in_connections -= 1
+			#other.total_in_connections -= 1
+			#if other.get_type() == 'switch' and other.total_in_connections < other.total_out_connections:
+			#	other.total_out_connections = other.total_in_connections
+			#self.connections_removed.add(outcon)
+			#if other.get_type() == 'switch':
+			#	other.total_out_connections -= 1
+			self.connections.discard(outcon)
+
+		self.components.discard(component)
+		self.types_to_components[component.get_type()].remove(component)
+
+	def remove_replacement_component(self, component):
+		for incon in component.in_connections.values():
+			other = incon.get_other_component(component)
+			other.remove_added_out_connection(component)
+			#other.total_out_connections -= 1
+			#self.connections_removed.add(incon)
+			self.connections.discard(incon)
+
+		for outcon in component.out_connections.values():
+			other = outcon.get_other_component(component)
+			other.remove_added_in_connection(component)
+			#other.total_in_connections -= 1
 			#if other.get_type() == 'switch' and other.total_in_connections < other.total_out_connections:
 			#	other.total_out_connections = other.total_in_connections
 			#self.connections_removed.add(outcon)
@@ -146,14 +170,14 @@ class Architecture(object):
 	def remove_added_connection(self, connection):
 		from_c = connection.components[0]
 		to_c = connection.components[1]
-		from_c.total_out_connections -= 1
+		#from_c.total_out_connections -= 1
 
-		if(from_c.get_type() == 'switch'):
-			from_c.total_in_connections -= 1
+		#if(from_c.get_type() == 'switch'):
+		#	from_c.total_in_connections -= 1
 
-		to_c.total_in_connections -= 1
-		if(to_c.get_type() == 'switch'):
-			to_c.total_out_connections -= 1
+		#to_c.total_in_connections -= 1
+		#if(to_c.get_type() == 'switch'):
+		#	to_c.total_out_connections -= 1
 
 		from_c.remove_added_in_connection(to_c)
 		from_c.remove_added_out_connection(to_c)
@@ -233,12 +257,17 @@ class Architecture(object):
 
 	def modify_connection_to_have_comp_in_middle(self, connection, component):
 		#This is only used by connections between switches and a component that is a switch
+		print('Modifying connection: '+str(connection))
 		from_c = connection.components[0]
 		to_c = connection.components[1]
-		from_c.remove_in_connection(from_c)
-		from_c.remove_out_connection(to_c)
-		to_c.remove_in_connection(from_c)
-		to_c.remove_out_connection(from_c)
+		#from_c.remove_in_connection(from_c)
+		from_c.remove_added_in_connection(to_c)
+		#from_c.remove_out_connection(to_c)
+		from_c.remove_added_out_connection(to_c)
+		#to_c.remove_in_connection(from_c)
+		to_c.remove_added_in_connection(from_c)
+		#to_c.remove_out_connection(from_c)
+		to_c.remove_added_out_connection(from_c)
 		self.connections.discard(connection)
 		con1name = 'con-{}-{}'.format(from_c.id, component.id)
 		con1 = Connection(con1name, from_c, component)
@@ -256,18 +285,18 @@ class Architecture(object):
 		component.add_out_connection(from_c, con1)
 		component.add_in_connection(to_c, con2)
 		component.add_out_connection(to_c, con2)
-		component.total_out_connections += 2
-		component.total_in_connections += 2
+		#component.total_out_connections += 2
+		#component.total_in_connections += 2
 
 	def find_two_available_switches(self):
 		switches_in_architecture = list(filter(lambda s: s.type[:6] == 'switch', self.components))
 		switch1 = None
 		switch2 = None
 		for each in switches_in_architecture:
-			if each.total_out_connections < 4 and switch1 == None:
+			if each.total_out_connections() < 4 and switch1 == None:
 				switch1 = each
 				continue
-			if each.total_out_connections < 4 and switch2 == None:
+			if each.total_out_connections() < 4 and switch2 == None:
 				switch2 = each
 				break
 		return switch1, switch2
@@ -308,7 +337,8 @@ class Architecture(object):
 
 		self.components_replaced.pop(org_component)
 		self.replaced_by.pop(org_component)
-		self.remove_added_component(rep_component)
+		#self.remove_added_component(rep_component)
+		self.remove_replacement_component(rep_component)
 
 		for incon in self.components_replaced_in_connections[org_component]:
 			other = incon.get_other_component(org_component)
@@ -322,8 +352,8 @@ class Architecture(object):
 			self.connections.add(outcon)
 			self.connection_by_name[outcon.name] = outcon
 
-		org_component.total_in_connections = rep_component.total_in_connections
-		org_component.total_out_connections = rep_component.total_out_connections
+		#org_component.total_in_connections = rep_component.total_in_connections
+		#org_component.total_out_connections = rep_component.total_out_connections
 		org_component.added_out_connections = rep_component.added_out_connections
 		org_component.added_in_connections = rep_component.added_out_connections
 		org_component.removed_in_connections = rep_component.removed_in_connections
@@ -362,8 +392,8 @@ class Architecture(object):
 			self.connections.add(con)
 			self.connection_by_name[con.name] = con
 
-		other_component.total_in_connections = component.total_in_connections
-		other_component.total_out_connections = component.total_out_connections
+		#other_component.total_in_connections = component.total_in_connections
+		#other_component.total_out_connections = component.total_out_connections
 		other_component.added_out_connections = component.added_out_connections
 		other_component.added_in_connections = component.added_out_connections
 		other_component.removed_in_connections = component.removed_in_connections
@@ -596,14 +626,14 @@ class Architecture(object):
 		total_valves = 0
 		for each in allcomponents:
 			if each.get_type() == 'switch':
-				valves = each.total_out_connections
+				valves = each.total_out_connections()
 			elif each.get_type() == 'input' or each.get_type() == 'output':
 				valves = len(self.component_library.get_valvelist_for_component(each))
 			else:
 				valves = len(self.component_library.get_valvelist_for_component(each))
 				valves = valves - 2
-				valves += each.total_in_connections
-				valves += each.total_out_connections
+				valves += each.total_in_connections()
+				valves += each.total_out_connections()
 			total_valves += valves
 		return total_valves
 
@@ -613,14 +643,14 @@ class Architecture(object):
 	def add_connection(self, con):
 		self.connections.add(con)
 		self.connection_by_name[con.name] = con
-		con.components[0].total_out_connections += 1
+		#con.components[0].total_out_connections += 1
 
-		if(con.components[0].get_type() == 'switch'):
-			con.components[0].total_in_connections += 1
+		#if(con.components[0].get_type() == 'switch'):
+		#	con.components[0].total_in_connections += 1
 
-		con.components[1].total_in_connections += 1
-		if(con.components[1].get_type() == 'switch'):
-			con.components[1].total_out_connections += 1
+		#con.components[1].total_in_connections += 1
+		#if(con.components[1].get_type() == 'switch'):
+		#	con.components[1].total_out_connections += 1
 
 		if self.component_library.route_through_component(con.components[0]) and self.component_library.route_through_component(con.components[1]):
 			self.add_bidirectional_connection(con)
@@ -821,8 +851,10 @@ class Component(Ordered):
 		self.added_in_connections = {}
 		self.added_out_connections = {}
 
-		self.total_in_connections = 0
-		self.total_out_connections = 0
+		self.total_connections = set()
+
+		#self.total_in_connections = 0
+		#self.total_out_connections = 0
 
 		self.occupied_by = None
 		self.operations = set()
@@ -840,21 +872,55 @@ class Component(Ordered):
 		self.finish_time = 0
 
 	def add_out_connection(self, component, connection):
+		self.total_connections.add(connection)
 		if component in self.out_connections:
 			self.added_out_connections[component] = connection
 		else:
 			self.out_connections[component] = connection
 
 	def add_in_connection(self, component, connection):
+		self.total_connections.add(connection)
 		#con.components[1].in_connections[con.components[0]] = con
 		if component in self.in_connections:
 			self.added_in_connections[component] = connection
 		else:
 			self.in_connections[component] = connection
 
+	def total_in_connections(self):
+		if self.get_type() == 'switch':
+			return len(self.total_connections)
+			#if len(self.out_connections) < len(self.in_connections):
+			#	return len(self.in_connections)
+			#else:
+			#	return len(self.out_connections)
+		else:
+			in_con = 0
+			for each in self.in_connections.values():
+				if self == each.components[1]:
+					in_con += 1
+			return in_con
+			#return len(self.in_connections)
+
+	def total_out_connections(self):
+		if self.get_type() == 'switch':
+			return len(self.total_connections)
+			#if len(self.out_connections) < len(self.in_connections):
+			#	return len(self.in_connections)
+			#else:
+			#	return len(self.out_connections)
+		else:
+			out_con = 0
+			for each in self.out_connections.values():
+				if self == each.components[0]:
+					out_con += 1
+			return out_con
+			#return len(self.out_connections)
+
+
 	def remove_added_out_connection(self, component):
 		try:
 			con = self.out_connections.pop(component)
+			self.total_connections.discard(con)
 			#self.removed_out_connections[component] = con
 			if component in self.added_out_connections:
 				con1 = self.out_connections[component]
@@ -863,6 +929,7 @@ class Component(Ordered):
 				#		con1.components[1] = self
 				#	else:
 				#		con1.components[0] = self
+				self.total_connections.add(con1)
 				self.out_connections[component] = con1
 				self.added_out_connections.pop(component)
 			return con
@@ -872,6 +939,7 @@ class Component(Ordered):
 	def remove_added_in_connection(self, component):
 		try:
 			con = self.in_connections.pop(component)
+			self.total_connections.discard(con)
 			#self.removed_in_connections[component] = con
 			if component in self.added_in_connections:
 				con1 = self.added_in_connections[component]
@@ -881,6 +949,7 @@ class Component(Ordered):
 				#	else:
 				#		con1.components[0] = self
 				self.in_connections[component] = con1
+				self.total_connections.add(con1)
 				self.added_in_connections.pop(component)
 			return con
 		except KeyError:
