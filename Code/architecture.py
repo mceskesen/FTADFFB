@@ -37,6 +37,7 @@ class Architecture(object):
 		self.component_library = None
 		self.discovered_by = {}
 		self.component_out_connections = {}
+		self.component_in_connections = {}
 		self.component_extra_valves = {}
 
 	def remove_component(self, component):
@@ -59,7 +60,7 @@ class Architecture(object):
 	def remove_added_component(self, component):
 		for incon in component.in_connections.values():
 			other = incon.get_other_component(component)
-			other.remove_added_out_connection(component)
+			other.remove_added_out_connection(component, incon)
 			#other.total_out_connections -= 1
 			#if other.get_type() == 'switch':
 			#	other.total_in_connections -= 1
@@ -68,7 +69,7 @@ class Architecture(object):
 
 		for outcon in component.out_connections.values():
 			other = outcon.get_other_component(component)
-			other.remove_added_in_connection(component)
+			other.remove_added_in_connection(component, outcon)
 			#other.total_in_connections -= 1
 			#if other.get_type() == 'switch' and other.total_in_connections < other.total_out_connections:
 			#	other.total_out_connections = other.total_in_connections
@@ -83,14 +84,14 @@ class Architecture(object):
 	def remove_replacement_component(self, component):
 		for incon in component.in_connections.values():
 			other = incon.get_other_component(component)
-			other.remove_added_out_connection(component)
+			other.remove_added_out_connection(component, incon)
 			#other.total_out_connections -= 1
 			#self.connections_removed.add(incon)
 			self.connections.discard(incon)
 
 		for outcon in component.out_connections.values():
 			other = outcon.get_other_component(component)
-			other.remove_added_in_connection(component)
+			other.remove_added_in_connection(component, outcon)
 			#other.total_in_connections -= 1
 			#if other.get_type() == 'switch' and other.total_in_connections < other.total_out_connections:
 			#	other.total_out_connections = other.total_in_connections
@@ -136,34 +137,37 @@ class Architecture(object):
 			self.connections.add(outcon)
 
 	def replaced_component(self, component):
-		self.components_replaced_in_connections[component] = list()
-		self.components_replaced_out_connections[component] = list()
-		for incon in component.in_connections.values():
-			other = incon.get_other_component(component)
-			other.remove_out_connection(component)
-			self.components_replaced_in_connections[component].append(incon)
-			self.connections.discard(incon)
+		#self.components_replaced_in_connections[component] = list()
+		#self.components_replaced_out_connections[component] = list()
+		#for incon in component.in_connections.values():
+		#	other = incon.get_other_component(component)
+		#	other.remove_out_connection(component)
+		#	self.components_replaced_in_connections[component].append(incon)
+		#	self.connections.discard(incon)
 
-		for outcon in component.out_connections.values():
-			other = outcon.get_other_component(component)
-			other.remove_in_connection(component)
-			self.components_replaced_in_connections[component].append(outcon)
-			self.connections.discard(outcon)
+		for each in component.total_connections:
+			self.connections.discard(each)
+
+		#for outcon in component.out_connections.values():
+		#	other = outcon.get_other_component(component)
+		#	other.remove_in_connection(component)
+		#	self.components_replaced_in_connections[component].append(outcon)
+		#	self.connections.discard(outcon)
 
 		self.types_to_components[component.get_type()].remove(component)
 
 	def unreplaced_component(self, component):
-		for incon in component.in_connections.values():
-			other = incon.get_other_component(component)
-			other.remove_added_out_connection(component)
-			self.connections_replaced.remove(incon)
-			self.connections.add(incon)
+		#for incon in component.in_connections.values():
+		#	other = incon.get_other_component(component)
+		#	other.remove_added_out_connection(component)
+		#	self.connections_replaced.remove(incon)
+		#	self.connections.add(incon)
 
-		for outcon in component.out_connections.values():
-			other = outcon.get_other_component(component)
-			other.remove_added_in_connection(component)
-			self.connections_replaced.remove(outcon)
-			self.connections.add(outcon)
+		#for outcon in component.out_connections.values():
+		#	other = outcon.get_other_component(component)
+		#	other.remove_added_in_connection(component)
+		#	self.connections_replaced.remove(outcon)
+		#	self.connections.add(outcon)
 
 		self.types_to_components[component.get_type()].append(component)
 
@@ -179,11 +183,11 @@ class Architecture(object):
 		#if(to_c.get_type() == 'switch'):
 		#	to_c.total_out_connections -= 1
 
-		from_c.remove_added_in_connection(to_c)
-		from_c.remove_added_out_connection(to_c)
+		from_c.remove_added_in_connection(to_c, connection)
+		from_c.remove_added_out_connection(to_c, connection)
 
-		to_c.remove_added_in_connection(from_c)
-		to_c.remove_added_out_connection(from_c)
+		to_c.remove_added_in_connection(from_c, connection)
+		to_c.remove_added_out_connection(from_c, connection)
 		self.connections.discard(connection)
 
 	def remove_connection(self, connection):
@@ -340,30 +344,59 @@ class Architecture(object):
 		#self.remove_added_component(rep_component)
 		self.remove_replacement_component(rep_component)
 
-		for incon in self.components_replaced_in_connections[org_component]:
-			other = incon.get_other_component(org_component)
-			other.add_out_connection(org_component, incon)
-			self.connections.add(incon)
-			self.connection_by_name[incon.name] = incon
+		for each in rep_component.total_connections:
+			other = each.get_other_component(rep_component)
+			name = each.name
+			other.remove_added_in_connection(rep_component, each)
+			other.remove_added_out_connection(rep_component, each)
+			
+			if rep_component == each.components[0]:
+				con = Connection(name, org_component, other)
+			else:
+				con = Connection(name, other, org_component)
+			
+			if self.component_library.route_through_component(con.components[0]) and self.component_library.route_through_component(con.components[1]):
+				#con.components[0].out_connections[con.components[1]] = con
+				con.components[0].add_out_connection(con.components[1], con)
+				#con.components[1].in_connections[con.components[0]] = con
+				con.components[1].add_in_connection(con.components[0], con)
 
-		for outcon in self.components_replaced_out_connections[org_component]:
-			other = outcon.get_other_component(org_component)
-			other.add_in_connection(org_component, outcon)
-			self.connections.add(outcon)
-			self.connection_by_name[outcon.name] = outcon
+				#con.components[1].out_connections[con.components[0]] = con
+				con.components[1].add_out_connection(con.components[0], con)
+				#con.components[0].in_connections[con.components[1]] = con
+				con.components[0].add_in_connection(con.components[1], con)
+			else:
+				con.components[1].add_in_connection(con.components[0], con)
+				con.components[0].add_out_connection(con.components[1], con)
+
+			self.connections.add(con)
+			self.connection_by_name[con.name] = con
+
+		#for incon in self.components_replaced_in_connections[org_component]:
+		#	other = incon.get_other_component(org_component)
+		#	other.add_out_connection(org_component, incon)
+		#	self.connections.add(incon)
+		#	self.connection_by_name[incon.name] = incon
+
+		#for outcon in self.components_replaced_out_connections[org_component]:
+		#	other = outcon.get_other_component(org_component)
+		#	other.add_in_connection(org_component, outcon)
+		#	self.connections.add(outcon)
+		#	self.connection_by_name[outcon.name] = outcon
 
 		#org_component.total_in_connections = rep_component.total_in_connections
 		#org_component.total_out_connections = rep_component.total_out_connections
-		org_component.added_out_connections = rep_component.added_out_connections
-		org_component.added_in_connections = rep_component.added_out_connections
-		org_component.removed_in_connections = rep_component.removed_in_connections
-		org_component.removed_out_connections = rep_component.removed_out_connections
+		#org_component.added_out_connections = rep_component.added_out_connections
+		#org_component.added_in_connections = rep_component.added_out_connections
+		#org_component.removed_in_connections = rep_component.removed_in_connections
+		#org_component.removed_out_connections = rep_component.removed_out_connections
 		org_component.faults = list()
 		org_component.faults.extend(rep_component.faults)
-		self.components_replaced_in_connections.pop(org_component)
-		self.components_replaced_out_connections.pop(org_component)
+		#self.components_replaced_in_connections.pop(org_component)
+		#self.components_replaced_out_connections.pop(org_component)
 		self.types_to_components[org_component.get_type()].append(org_component)
-		cons_to_remove = list(rep_component.out_connections.values()) + list(rep_component.in_connections.values())
+		#cons_to_remove = list(rep_component.out_connections.values()) + list(rep_component.in_connections.values())
+		cons_to_remove = rep_component.total_connections
 		for each in cons_to_remove:
 			print('Removing connection: '+str(each))
 			self.connections.discard(each)
@@ -372,32 +405,60 @@ class Architecture(object):
 	def replace_component_with_other_component(self, component, other_component):
 		#remove connections from other components
 		self.add_component(other_component)
-		for incon in component.in_connections.values():
-			other = incon.get_other_component(component)
-			#name = 'con-{}-{}'.format(other.id, other_component.id)
-			name = incon.name
-			con = Connection(name, other, other_component)
-			other.add_out_connection(other_component, con)
-			other_component.add_in_connection(other, con)
+
+		for each in component.total_connections:
+			other = each.get_other_component(component)
+			name = each.name
+			other.remove_added_in_connection(component, each)
+			other.remove_added_out_connection(component, each)
+			if component == each.components[0]:
+				con = Connection(name, other_component, other)
+			else:
+				con = Connection(name, other, other_component)
+
+			if self.component_library.route_through_component(con.components[0]) and self.component_library.route_through_component(con.components[1]):
+				#con.components[0].out_connections[con.components[1]] = con
+				con.components[0].add_out_connection(con.components[1], con)
+				#con.components[1].in_connections[con.components[0]] = con
+				con.components[1].add_in_connection(con.components[0], con)
+
+				#con.components[1].out_connections[con.components[0]] = con
+				con.components[1].add_out_connection(con.components[0], con)
+				#con.components[0].in_connections[con.components[1]] = con
+				con.components[0].add_in_connection(con.components[1], con)
+			else:
+				con.components[1].add_in_connection(con.components[0], con)
+				con.components[0].add_out_connection(con.components[1], con)
+
 			self.connections.add(con)
 			self.connection_by_name[con.name] = con
 
-		for outcon in component.out_connections.values():
-			other = outcon.get_other_component(component)
+		#for incon in component.in_connections.values():
+		#	other = incon.get_other_component(component)
+			#name = 'con-{}-{}'.format(other.id, other_component.id)
+		#	name = incon.name
+		#	con = Connection(name, other, other_component)
+		#	other.add_out_connection(other_component, con)
+		#	other_component.add_in_connection(other, con)
+		#	self.connections.add(con)
+		#	self.connection_by_name[con.name] = con
+
+		#for outcon in component.out_connections.values():
+		#	other = outcon.get_other_component(component)
 			#name = 'con-{}-{}'.format(other_component.id, other.id)
-			name = outcon.name
-			con = Connection(name, other_component, other)
-			other.add_in_connection(other_component, con)
-			other_component.add_out_connection(other, con)
-			self.connections.add(con)
-			self.connection_by_name[con.name] = con
+		#	name = outcon.name
+		#	con = Connection(name, other_component, other)
+		#	other.add_in_connection(other_component, con)
+		#	other_component.add_out_connection(other, con)
+		#	self.connections.add(con)
+		#	self.connection_by_name[con.name] = con
 
 		#other_component.total_in_connections = component.total_in_connections
 		#other_component.total_out_connections = component.total_out_connections
-		other_component.added_out_connections = component.added_out_connections
-		other_component.added_in_connections = component.added_out_connections
-		other_component.removed_in_connections = component.removed_in_connections
-		other_component.removed_out_connections = component.removed_out_connections
+		#other_component.added_out_connections = component.added_out_connections
+		#other_component.added_in_connections = component.added_out_connections
+		#other_component.removed_in_connections = component.removed_in_connections
+		#other_component.removed_out_connections = component.removed_out_connections
 		other_component.faults = list()
 		other_component.faults.extend(component.faults)
 		#self.types_to_components[other_component.get_type()].append(other_component)
@@ -709,13 +770,20 @@ class Architecture(object):
 		for each in self.types_to_components[ctype]:
 			#if not each.out_connections or not each.in_connections or each.faulty:
 			#	pass
-			if each.faulty or each in self.components_removed or each in self.components_replaced:
-				pass
+			if ctype != 'output':
+				if each.faulty or each in self.components_removed or each in self.components_replaced or len(each.out_connections) == 0:
+					pass
+				else:
+					components.append(each)
 			else:
-				components.append(each)
+				if each.faulty or each in self.components_removed or each in self.components_replaced or len(each.in_connections) == 0:
+					pass
+				else:
+					components.append(each)
 		return components
 
 	def find_route(self, from_c, to_c):
+		print('Finding route from: '+str(from_c)+' to '+str(to_c))
 		self.breadth_first_search(from_c, to_c)
 		#print('Finding route from: '+str(from_c)+' to '+str(to_c))
 		return self.backtrack_breadth_first_search(from_c, to_c)
@@ -726,6 +794,7 @@ class Architecture(object):
 		allcomponents = list(self.components) + list(self.components_removed)
 		minus_inputs = len(inputs) - 1
 		start = random.choice(inputs)
+		#start = self.component_by_name['In2']
 
 		q = Queue()
 		q.put(start)
@@ -737,6 +806,8 @@ class Architecture(object):
 
 			v_out = list(v.removed_out_connections.values()) + list(v.out_connections.values())
 
+			print('Current component: '+str(v))
+			print('Out connections: '+str(v_out))
 			#for each in v.out_connections.values():
 			for each in v_out:
 				if each in self.connections_removed:
@@ -754,6 +825,123 @@ class Architecture(object):
 		return len(visited) == (len(allcomponents) - minus_inputs)
 
 
+	def test_is_connected(self):
+		allcomponents = set(self.components) | set(self.components_removed)
+		pos_comps = set(filter(lambda c: c.type[:5] != 'input' and c.type[:6] != 'output', allcomponents))
+		if any(len(c.in_connections.values()) == 0 for c in pos_comps):
+			return False
+		else:
+			return True
+		#for c in allcomponents:
+		#	if any(type(f).__name__ == 'ChannelFault' for f in switch.faults):
+		#	if not any(c.in_connections.values() for c in self.connections)
+		#unreachable_comps = set(filter(lambda comp: ,allcomponents))
+
+	def find_route(self, from_c, to_c):
+		print('Finding route from: '+str(from_c)+' to '+str(to_c))
+		#self.breadth_first_search(from_c, to_c)
+		disc = self.reverse_route_finding(from_c, to_c)
+		#print('Finding route from: '+str(from_c)+' to '+str(to_c))
+		#print('discovered_by')
+		#print(disc)
+		return self.backtrack_reverse(from_c, to_c, disc)
+
+	def generate_in_connections_for_component_going_to(self, component, to_c):
+		if component.type != 'switch':
+			#self.component_out_connections[component] = component.out_connections.values()
+			self.component_in_connections[component] = set(component.in_connections.values())
+			#return component_out_connections
+		elif len(component.faults) > 1 or not component.faults:
+			self.component_in_connections[component] = set(component.in_connections.values())
+			#component_out_connections[component] = component.out_connections.values()
+			#return component_out_connections
+		else:
+			in_connections = set()
+			#faultconname = component.faults[0].control
+			#faultconname = self.find_connection_for_switch_by_valvename(component, component.faults[0])
+			con = self.connection_by_name[component.faults[0].affected]
+			#con = component.valve_to_connections[component.faults[0].control]
+			if con.get_other_component(component) == to_c:
+				self.component_in_connections[component] = set(component.in_connections.values())
+				#component_out_connections[component] = component.out_connections.values()
+				#return component_out_connections
+			else:
+				in_connections.add(con)
+				self.component_in_connections[component] = in_connections
+				#component_out_connections[component] = out_connections
+				#return component_out_connections
+
+
+	def reverse_route_finding(self, start, end):
+		visited = set()
+		discovered_by = {}
+		discovered_by[end] = None
+		
+		self.generate_in_connections_for_component_going_to(end, None)
+		q = Queue()
+		q.put(end)
+		visited.add(end)
+
+		while(not q.empty()):
+			v = q.get()
+
+			for each in v.in_connections.values():
+				w = each.get_other_component(v)
+
+				self.generate_in_connections_for_component_going_to(w, v)
+
+				if w not in visited and each in self.component_in_connections[v]:
+					#if type(w).__name__ == 'Component' and w != end and w != start:
+					#	pass
+					#else:
+					#if type(w).__name__ == 'Component' and w != end and w != start and w.occupied_by:
+					#	print(str(w) + ' has been passed')
+					#	pass
+					#else:
+					discovered_by[w] = v
+					if self.component_library.route_through_component(w):
+						q.put(w)
+					visited.add(w)
+
+		return discovered_by
+
+	def backtrack_reverse(self, from_component, to_component, discovered_by):
+		connections = []
+		previous = from_component
+		
+		try:
+			current = discovered_by[from_component]
+			backtracked = True
+		except KeyError:
+			current = None
+			backtracked = False
+
+		print('Backtracked: '+str(backtracked))
+
+
+		while(current != None and previous != to_component):
+			connection = current.in_connections[previous]
+			#connections.insert(0, connection)
+			connections.append(connection)
+			previous = current
+			current = discovered_by[current]
+
+		if backtracked:
+			routetime = len(connections) * self.average_connection_time
+			r = Route(from_component, to_component, connections, routetime)
+		else:
+			r = None
+		#self.discovered_by = {}
+		self.component_in_connections = {}
+		return r
+
+	'''
+	def find_route(self, from_c, to_c):
+		print('Finding route from: '+str(from_c)+' to '+str(to_c))
+		self.breadth_first_search(from_c, to_c)
+		#print('Finding route from: '+str(from_c)+' to '+str(to_c))
+		return self.backtrack_breadth_first_search(from_c, to_c)
+
 	def breadth_first_search(self, start, end):
 		visited = set()
 		self.discovered_by[start] = None
@@ -765,15 +953,20 @@ class Architecture(object):
 
 		while(not q.empty()):
 			v = q.get()
+			#print('At component: '+str(v))
 
+			#print('All out connections: '+str(v.out_connections.values()))
 			for each in v.out_connections.values():
 				#print(each)
 				w = each.get_other_component(v)
+				#print('Generating out connections for '+str(w)+ ' coming from '+str(v))
 				self.generate_out_connections_for_component_coming_from(w, v)
+				#print('Out connections for '+str(w)+': '+str(self.component_out_connections[v]))
 				if w not in visited and each in self.component_out_connections[v]:
 					if type(w).__name__ == 'Component' and w != end and w != start and w.occupied_by:
 						pass
 					else:
+						#print(str(w)+' was discovered by '+str(v))
 						self.discovered_by[w] = v
 						if self.component_library.route_through_component(w):
 							q.put(w)
@@ -791,6 +984,8 @@ class Architecture(object):
 			current = None
 			backtracked = False
 
+		print('Backtracked: '+str(backtracked))
+
 
 		while(current != None and previous != from_component):
 			connection = current.out_connections[previous]
@@ -807,6 +1002,7 @@ class Architecture(object):
 		self.component_out_connections = {}
 		return r
 
+	'''
 	def __str__(self):
 
 		components = list(self.components)
@@ -847,6 +1043,8 @@ class Component(Ordered):
 		self.type = componenttype
 		self.in_connections = {}
 		self.out_connections = {}
+		#self.in_connections = set()
+		#self.out_connections = set()
 
 		self.added_in_connections = {}
 		self.added_out_connections = {}
@@ -895,9 +1093,15 @@ class Component(Ordered):
 			#	return len(self.out_connections)
 		else:
 			in_con = 0
-			for each in self.in_connections.values():
+			#print(self)
+			#print(self.total_connections)
+			#print(self.in_connections.values())
+			for each in self.total_connections:
 				if self == each.components[1]:
 					in_con += 1
+			#for each in self.in_connections.values():
+			#	if self == each.components[1]:
+			#		in_con += 1
 			return in_con
 			#return len(self.in_connections)
 
@@ -910,48 +1114,85 @@ class Component(Ordered):
 			#	return len(self.out_connections)
 		else:
 			out_con = 0
-			for each in self.out_connections.values():
+			#print(self.out_connections.values())
+			for each in self.total_connections:
 				if self == each.components[0]:
 					out_con += 1
+			#for each in self.out_connections.values():
+			#	if self == each.components[0]:
+			#		out_con += 1
 			return out_con
 			#return len(self.out_connections)
 
 
-	def remove_added_out_connection(self, component):
+	def remove_added_out_connection(self, component, connection):
 		try:
-			con = self.out_connections.pop(component)
-			self.total_connections.discard(con)
-			#self.removed_out_connections[component] = con
 			if component in self.added_out_connections:
-				con1 = self.out_connections[component]
+				con_add = self.added_out_connections[component]
+			else:
+				con_add = None
+
+			if component in self.out_connections:
+				con_org = self.out_connections[component]
+			else:
+				con_org = None
+
+			if con_add == connection:
+				self.added_out_connections.pop(component)
+
+			if con_org == connection:
+				self.out_connections.pop(component)
+			#con = self.out_connections.pop(component)
+			#self.total_connections.discard(con)
+			self.total_connections.discard(connection)
+			#self.removed_out_connections[component] = con
+			#if component in self.added_out_connections:
+			#	con1 = self.out_connections[component]
 				#if con1.get_other_component(component) != self:
 				#	if con1.components[0] == component:
 				#		con1.components[1] = self
 				#	else:
 				#		con1.components[0] = self
-				self.total_connections.add(con1)
-				self.out_connections[component] = con1
-				self.added_out_connections.pop(component)
-			return con
+			#	self.total_connections.add(con1)
+			#	self.out_connections[component] = con1
+			#	self.added_out_connections.pop(component)
+			return connection
 		except KeyError:
 			return None
 
-	def remove_added_in_connection(self, component):
+	def remove_added_in_connection(self, component, connection):
 		try:
-			con = self.in_connections.pop(component)
-			self.total_connections.discard(con)
-			#self.removed_in_connections[component] = con
 			if component in self.added_in_connections:
-				con1 = self.added_in_connections[component]
+				con_add = self.added_in_connections[component]
+			else:
+				con_add = None
+
+			if component in self.in_connections:
+				con_org = self.in_connections[component]
+			else:
+				con_org = None
+
+			if con_add == connection:
+				self.added_in_connections.pop(component)
+
+			if con_org == connection:
+				self.in_connections.pop(component)
+
+			#con = self.in_connections.pop(component)
+			#self.total_connections.discard(con)
+			self.total_connections.discard(connection)
+			#self.removed_in_connections[component] = con
+			#if component in self.added_in_connections:
+			#	con1 = self.added_in_connections[component]
 				#if con1.get_other_component != self:
 				#	if con1.components[0] == component:
 				#		con1.components[1] = self
 				#	else:
 				#		con1.components[0] = self
-				self.in_connections[component] = con1
-				self.total_connections.add(con1)
-				self.added_in_connections.pop(component)
-			return con
+			#	self.in_connections[component] = con1
+			#	self.total_connections.add(con1)
+			#	self.added_in_connections.pop(component)
+			return connection
 		except KeyError:
 			return None
 
@@ -998,9 +1239,13 @@ class Component(Ordered):
 		#Restore component from the faults
 		for each in self.removed_in_connections.keys():
 			con = self.removed_in_connections[each]
+			if each in self.in_connections:
+				self.added_in_connections[each] = self.in_connections[each]
 			self.in_connections[each] = con
 		for each in self.removed_out_connections.keys():
 			con = self.removed_out_connections[each]
+			if each in self.out_connections:
+				self.added_out_connections[each] = self.out_connections[each]
 			self.out_connections[each] = con
 		self.faulty = False
 		self.faults = list()
@@ -1199,19 +1444,3 @@ class Route(object):
 
 	def __str__(self):
 		return self.name
-
-
-class CompositeRoute(object):
-	def __init__(self, route1, route2):
-		self.route1 = route1
-		self.route2 = route2
-
-		self.start = self.route1.start
-		self.end = self.route2.end
-
-		self.time = route1.time + route2.time
-		self.connections = route1.connections + route2.connections
-
-	def __lt__(self, other):
-		return id(self) < id(other)
-

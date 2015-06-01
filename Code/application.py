@@ -155,8 +155,6 @@ class Application(object):
 		return s
 
 
-
-
 class Operation(object):
 
 	def __init__(self, application, operationid, operationtype, executiontime):
@@ -307,7 +305,8 @@ class Flow(object):
 		return hash(self.id)
 
 	def __repr__(self):
-		return self.id
+		#return self.id
+		return self.name
 
 	def __str__(self):
 		return self.name

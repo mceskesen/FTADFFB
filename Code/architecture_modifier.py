@@ -90,6 +90,7 @@ class ArchitectureModifier(object):
 													'storage': 2,
 													'heater': 2}
 
+	'''
 	def make_random_component_fault_tolerant(self):
 		types = self.architecture.component_library.get_types_with_a_fault_tolerant_version()
 		#randomtype = random.choice(types)
@@ -416,6 +417,7 @@ class ArchitectureModifier(object):
 			return True
 		else:
 			return False
+	'''
 
 	def add_fault_scenario_to_architecture(self, faultscenario):
 		for f in faultscenario.faults:
@@ -630,11 +632,352 @@ class ArchitectureModifier(object):
 			applicationtime = self.application.sink.finish_time
 		except NoScheduleFoundError:
 			applicationtime = self.application_deadline * 2
-
+		print(applicationtime)
 		returnvalue = max(0, applicationtime - self.application_deadline)
 		self.application.unschedule()
 		self.architecture.unschedule()
 		return returnvalue
+
+	def make_random_component_fault_tolerant(self):
+		types = self.architecture.component_library.get_types_with_a_fault_tolerant_version()
+		#randomtype = random.choice(types)
+		allcomps = list(self.architecture.components) + list(self.architecture.components_removed)
+		comptypes = list(filter(lambda c: not c.is_fault_tolerant() and c.type in types, allcomps))
+		#while(randomtype not in self.architecture.types_to_components):
+		#	randomtype = random.choice(comptypes)
+		if comptypes:
+			component = random.choice(comptypes)
+		else:
+			component = None
+		#randomcomponents = self.architecture.types_to_components[randomtype]
+		#any(type(f).__name__ == 'ChannelFault' for f in switch.faults):
+		#randomcomponents = list(filter(lambda c: c.is_fault_tolerant() == False, self.architecture.types_to_components[randomtype])) 
+		#component = random.choice(randomcomponents)
+		if component is not None:
+			self.make_component_fault_tolerant(component)
+			if len(comptypes) == 1:
+				self.possible_moves.discard(self.ftcomponent_move)
+			return True
+		else:
+			return False
+
+	def make_component_fault_tolerant(self, component):
+		ftcomp = self.architecture.component_library.get_faulttolerance_version_of_component(component)
+		num = randint(1, 1000)
+		try:
+			while num in self.component_type_to_numbers[ftcomp.get_type()]:
+				num = randint(1, 1000)
+
+			self.component_type_to_numbers[ftcomp.get_type()].append(num)
+		except KeyError:
+			self.component_type_to_numbers[ftcomp.get_type()] = list()
+			self.component_type_to_numbers[ftcomp.get_type()].append(num)
+		#try:
+		#	l = self.architecture.types_to_components[ftcomp.get_type()]
+		#	num = len(l) + 1
+		#except KeyError:
+		#	num = 1
+		componenttype = ftcomp.type
+		componentid = str(ftcomp.type)+ '-' + str(num)
+		new_component = Component(componentid, componenttype)
+		print('Replacing: '+str(component) + ' with '+str(new_component))
+		self.architecture.replace_component_with_other_component(component, new_component)
+		self.ftcomponents_replaced[new_component] = component
+		#if not component in self.architecture.original_components:
+		#	components_added.append(new_component)
+		#	components_added.remove(component)
+		if component in self.components_added:
+			self.components_added.append(new_component)
+			self.components_added.remove(component)
+		self.last_ftcomponent_replaced = new_component
+		self.possible_moves.add(self.non_ftcomponent_move)
+		self.last_move = self.ftcomponent_move
+		#print(self.last_ftcomponent_replaced)
+		#print(self.ftcomponents_replaced)
+
+	def make_random_component_non_fault_tolerant(self):
+		if self.ftcomponents_replaced:
+			ftcomp = random.sample(self.ftcomponents_replaced.keys(), 1)
+			org_component = self.ftcomponents_replaced[ftcomp[0]]
+			self.make_component_non_fault_tolerant(org_component, ftcomp[0])
+			return True
+		else:
+			return False
+
+	def make_component_non_fault_tolerant(self, org_component, ftcomp):
+		print('Unreplacing: '+str(ftcomp) + ' with '+str(org_component))
+		self.architecture.unreplace_component(org_component, ftcomp)
+		self.ftcomponents_replaced.pop(ftcomp)
+		if ftcomp in self.components_added:
+			self.components_added.append(org_component)
+			self.components_added.remove(ftcomp)
+		self.ftcomponents_unreplaced[org_component] = ftcomp
+		self.last_nonftcomponent_replaced = org_component
+		self.last_move = self.non_ftcomponent_move
+		self.possible_moves.add(self.ftcomponent_move)
+		if not self.ftcomponents_replaced:
+			self.possible_moves.discard(self.non_ftcomponent_move)
+
+	def add_connection_between_two_random_components(self):
+		for each in self.architecture.components:
+			s = str(each) + ': in connections: ' + str(each.total_in_connections())
+			print(s)
+			s = str(each) + ': out connections: ' + str(each.total_out_connections())
+			print(s)
+		pos_out_comps = list(filter(lambda c: c.total_out_connections() < self.max_out_connections_for_components[c.get_type()], self.architecture.components))
+		pos_in_comps = list(filter(lambda c: c.total_in_connections() < self.max_in_connections_for_components[c.get_type()], self.architecture.components)) 
+		print('Possible out comps: '+str(pos_out_comps))
+		print('Possible in comps: '+str(pos_in_comps))
+		if pos_out_comps and pos_in_comps:
+			to_c = random.choice(pos_in_comps)
+			from_c = random.choice(pos_out_comps)
+			while from_c == to_c:
+				from_c = random.choice(pos_out_comps)
+				to_c = random.choice(pos_in_comps)
+			self.add_connection_between_two_components(from_c, to_c)
+			if len(pos_out_comps) == 1 or len(pos_in_comps) == 1:
+				self.possible_moves.discard(self.add_connection_move)
+			return True
+		else:
+			return False
+
+
+	def add_connection_between_two_components(self, from_c, to_c):
+		name = 'con-{}-{}'.format(from_c.id, to_c.id)
+		con = Connection(name, from_c, to_c)
+		print('Adding connection between: ' + str(from_c)+ ' and ' + str(to_c))
+		self.architecture.add_connection(con)
+		self.connections_added.append(con)
+		self.last_connection_added = con
+		self.possible_moves.add(self.remove_connection_move)
+		self.last_move = self.add_connection_move
+
+	def insert_component_to_make_random_component_redundant(self):
+		#pos_comps = list(filter(lambda c: not c.is_fault_tolerant() and c.type[:5] != 'switch' and c.type[:5] != 'input' and c.type[:6] != 'ouput', self.architecture.components))
+		allcomps = list(self.architecture.components) + list(self.architecture.components_removed)
+		pos_comps = list(filter(lambda c: c.type[:6] != 'switch' and c.type[:5] != 'input' and c.type[:6] != 'output', allcomps))
+		#pos_comps = list(filter(lambda c: c.type[:5] != 'switch' or c.type[:5] != 'input' or c.type[:6] != 'ouput', list(self.architecture.components) + list(self.architecture.components_removed)))
+		if pos_comps:
+			component = random.choice(pos_comps)
+			num = randint(1, 1000)
+			try:
+				while num in self.component_type_to_numbers[component.get_type()]:
+					num = randint(1, 1000)
+
+				self.component_type_to_numbers[component.get_type()].append(num)
+			except KeyError:
+				self.component_type_to_numbers[component.get_type()] = list()
+				self.component_type_to_numbers[component.get_type()].append(num)
+
+			#l = self.architecture.types_to_components[component.get_type()]
+			#num = len(l) + 1
+			componenttype = component.type
+			componentid = 'added ' + str(component.type) + '-' + str(num)
+			new_component = Component(componentid, componenttype)
+			print('Adding component: '+ str(new_component) + ' to make '+str(component) + ' redundant')
+			self.insert_redundant_component(new_component)
+			return True
+		else:
+			return False
+
+
+	def insert_redundant_component(self, new_component):
+		switches = self.architecture.find_two_available_switches()
+		if switches[0] == None and switches[1] == None:
+			#Add new switches and all their connections
+			cons = self.architecture.find_connections_between_two_switches(2)
+			if cons[0] != None and cons[1] != None:
+				l = self.architecture.types_to_components['switch']
+				num = len(l) + 1
+				switch1id = 'switch-' + str(num)
+				new_switch1 = Component(switch1id, 'switch')
+				num += 1
+				switch2id = 'switch-' + str(num)
+				new_switch2 = Component(switch2id, 'switch')
+				self.architecture.add_component(new_switch1)
+				self.architecture.add_component(new_switch2)
+
+				#self.last_component_added_modified_connections = cons[0], cons[1]
+				self.component_added_modified_connections[new_component] = cons[0], cons[1]
+
+				self.architecture.modify_connection_to_have_comp_in_middle(cons[0], new_switch1)
+				self.architecture.modify_connection_to_have_comp_in_middle(cons[1], new_switch2)
+
+				self.architecture.add_component(new_component)
+				con1name = 'con-{}-{}'.format(new_switch1.id, new_component.id)
+				con1 = Connection(con1name, new_switch1, new_component)
+
+				con2name = 'con-{}-{}'.format(new_component.id, new_switch2)
+				con2 = Connection(con2name, new_component, new_switch2)
+				self.architecture.add_connection(con1)
+				self.architecture.add_connection(con2)
+				self.component_added_switch_added[new_component] = new_switch1, new_switch2
+				#self.last_component_switch_added = new_switch1, new_switch2
+				#self.last_component_connections_added = con1, con2
+
+		elif switches[1] == None:
+			#Only one switch available
+			con = self.architecture.find_connections_between_two_switches(1)
+			if con != None:
+				#add a new switch and have it as middle point between the two component of this connection
+				l = self.architecture.types_to_components['switch']
+				num = len(l) + 1
+				switchid = 'switch-' + str(num)
+				new_switch = Component(switchid, 'switch')
+				self.architecture.add_component(new_switch)
+				#self.last_component_added_modified_connections = con, None
+				self.component_added_modified_connections[new_component] = con, None
+				self.architecture.modify_connection_to_have_comp_in_middle(con, new_switch)
+
+				self.architecture.add_component(new_component)
+				con1name = 'con-{}-{}'.format(switches[0].id, new_component.id)
+				con1 = Connection(con1name, switches[0], new_component)
+
+				con2name = 'con-{}-{}'.format(new_component.id, new_switch)
+				con2 = Connection(con2name, new_component, new_switch)
+				self.architecture.add_connection(con1)
+				self.architecture.add_connection(con2)
+				#self.last_component_switch_added = new_switch, None
+				self.component_added_switch_added[new_component] = new_switch, None
+				#self.last_component_connections_added = con1, con2
+		else:
+			#Two switches available
+			self.architecture.add_component(new_component)
+			con1name = 'con-{}-{}'.format(switches[0].id, new_component.id)
+			con1 = Connection(con1name, switches[0], new_component)
+			con2name = 'con-{}-{}'.format(new_component.id, switches[1])
+			con2 = Connection(con2name, new_component, switches[1])
+			self.architecture.add_connection(con1)
+			self.architecture.add_connection(con2)
+
+			self.component_added_switch_added[new_component] = None, None
+			self.component_added_modified_connections[new_component] = None, None
+			#self.last_component_switch_added = None, None
+			#self.last_component_added_modified_connections = None, None
+			#self.last_component_connections_added = con1, con2
+		self.components_added.append(new_component)
+		self.last_component_added = new_component
+		self.possible_moves.add(self.remove_component_move)
+		self.last_move = self.add_component_move
+		print('New component in_connections: ' + str(new_component.in_connections))
+		print('New component out_connections: '+str(new_component.out_connections))
+		if not new_component.is_fault_tolerant():
+			self.possible_moves.add(self.ftcomponent_move)
+
+	def remove_random_connection(self):
+		if self.connections_added:
+			con = random.choice(self.connections_added)
+			self.remove_connection(con)
+			return True
+		else:
+			return False
+
+	def remove_connection(self, con):
+		self.connections_added.remove(con)
+		print('Removing connection: '+str(con))
+		self.architecture.remove_added_connection(con)
+		self.last_connection_removed = con
+		if not self.connections_added:
+			self.possible_moves.discard(self.remove_connection_move)
+		self.last_move = self.remove_connection_move
+		self.possible_moves.add(self.add_connection_move)
+
+	def remove_random_component(self):
+		if self.components_added:
+			comp = random.choice(self.components_added)
+			self.remove_component(comp)
+			return True
+		else:
+			return False
+
+	def remove_component(self, comp):
+		print('Trying to remove: '+str(comp))
+		self.components_added.remove(comp)
+		#self.last_component_removed_connections = list(comp.out_connections.values()) + list(comp.in_connections.values())
+		self.last_component_removed_connections = set(comp.out_connections.values()) | set(comp.in_connections.values())
+		self.last_component_removed_added_connections = set(filter(lambda c: c in self.connections_added, self.last_component_removed_connections))
+		
+		if comp in self.component_added_switch_added:
+			switches = self.component_added_switch_added[comp]
+		else:
+			switches = None, None
+		if comp in self.component_added_modified_connections:
+			connections = self.component_added_modified_connections[comp]
+		else:
+			connections = None, None
+		
+		if switches[1] != None:
+			switch1_con = set(switches[1].out_connections.values()) | set(switches[1].in_connections.values())
+			switch0_con = set(switches[0].out_connections.values()) | set(switches[0].in_connections.values())
+			switch0_c = set(filter(lambda c: c.get_other_component(switches[0]) != connections[0].components[0] and c.get_other_component(switches[0]) != connections[0].components[1] and c.get_other_component(switches[0]) != comp, switch0_con))
+			switch1_c = set(filter(lambda c: c.get_other_component(switches[1]) != connections[1].components[0] and c.get_other_component(switches[1]) != connections[1].components[1] and c.get_other_component(switches[1]) != comp, switch1_con))
+
+			print(switch0_con)
+			if len(switch0_c) == 0:
+				print('Removing comp:' + str(switches[0]))
+				self.architecture.remove_added_component(switches[0])
+				print('Adding con:' + str(connections[0]))
+				if connections[0].components[0] in self.architecture.components and connections[0].components[1] in self.architecture.components:
+					print('Adding con:' + str(connections[0]))
+					self.architecture.add_connection(connections[0])
+			else:
+				print('Adding: '+str(switches[0])+' to added components')
+				self.components_added.append(switches[0])
+				self.switch_to_modified_connection[switches[0]] = connections[0]
+
+			print(switch1_con)
+			print(switch1_c)
+			if len(switch1_c) == 0:
+				print('Removing comp:' + str(switches[1]))
+				self.architecture.remove_added_component(switches[1])
+				if connections[1].components[1] in self.architecture.components and connections[1].components[1] in self.architecture.components:
+					print('Adding con:' + str(connections[1]))
+					self.architecture.add_connection(connections[1])
+			else:
+				print('Adding: '+str(switches[1])+' to added components')
+				self.components_added.append(switches[1])
+				self.switch_to_modified_connection[switches[1]] = connections[1]
+
+		elif switches[0] != None:
+			switch0_con = set(switches[0].out_connections.values()) | set(switches[0].in_connections.values())
+			switch0_c = set(filter(lambda c: c.get_other_component(switches[0]) != connections[0].components[0] and c.get_other_component(switches[0]) != connections[0].components[1] and c.get_other_component(switches[0]) != comp, switch0_con))
+			print(switch0_con)
+			if len(switch0_c) == 0:
+				print('Removing comp:' + str(switches[0]))
+				self.architecture.remove_added_component(switches[0])
+				if connections[0].components[0] in self.architecture.components and connections[0].components[1] in self.architecture.components:
+					print('Adding con:' + str(connections[0]))
+					self.architecture.add_connection(connections[0])
+			else:
+				print('Adding: '+str(switches[0])+' to added components')
+				self.components_added.append(switches[0])
+				self.switch_to_modified_connection[switches[0]] = connections[0]
+		else:
+			pass
+
+		print('Removing component: '+ str(comp))
+		self.architecture.remove_added_component(comp)
+		self.last_component_removed = comp
+		if comp in self.switch_to_modified_connection:
+			print('Readding modified connection: '+str(switch_to_modified_connection[comp]))
+			self.architecture.add_connection(self.switch_to_modified_connection[comp])
+
+		if len(self.last_component_removed_added_connections) > 0:
+			for each in self.last_component_removed_added_connections:
+				print(each)
+				self.connections_added.remove(each)
+		else:
+			self.last_component_removed_added_connections = None
+		if comp in self.ftcomponents_replaced.keys():
+			comprep = self.ftcomponents_replaced[comp]
+			self.ftcomponents_replaced.pop(comp)
+			self.last_move_removed_ftcomp = comp, comprep
+		else:
+			self.last_move_removed_ftcomp = None, None
+		if not self.components_added:
+			self.possible_moves.discard(self.remove_component_move)
+		self.last_move = self.remove_component_move
+		self.possible_moves.add(self.add_component_move)
 
 class SimulatedAnnealing(ArchitectureModifier):
 

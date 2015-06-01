@@ -24,6 +24,7 @@ from parsing import NetlistParser, ComponentLibraryParser, ApplicationParser, Fa
 from faultmodel import RandomFaultScenarioGenerator
 from scheduling import ListScheduler
 from architecture_modifier import ArchitectureModifier, SimulatedAnnealing
+from architecture import Component
 import random
 import math
 
@@ -38,10 +39,281 @@ fmp = FaultModelParser('faultmodels/faultmodel-arch-mes.json')
 rfsg = RandomFaultScenarioGenerator(fmp.faultmodel, config.data['faultscenarios'])
 rfsg.generate_fault_scenarios()
 
-#am = ArchitectureModifier(np.architecture, ap.application, rfsg.faultscenarios, config.data)
-print(np.architecture)
-sa = SimulatedAnnealing(np.architecture, ap.application, rfsg.faultscenarios, config.data)
-#print(am.architecture)
+am = ArchitectureModifier(np.architecture, ap.application, rfsg.faultscenarios, config.data)
+#print(np.architecture)
+#sa = SimulatedAnnealing(np.architecture, ap.application, rfsg.faultscenarios, config.data)
+#print(sa.architecture)
+#print('Final cost: '+str(sa.cost))
+
+#c = am.is_architecture_non_fault_tolerant()
+#print('Non fault tolerance: '+ str(c))
+#ap = am.application_finish_time()
+#print('App finish time: '+str(ap))
+filterop = ap.operations['O3']
+f = fmp.faults['Open-valve-Switch4-to-Switch3']
+#f2 = fmp.faults['Open-valve-Filter1-output']
+in1 = am.architecture.component_by_name['In1']
+switch3 = am.architecture.component_by_name['Switch3']
+switch4 = am.architecture.component_by_name['Switch4']
+switch5 = am.architecture.component_by_name['Switch5']
+filter1 = am.architecture.component_by_name['Filter1']
+storage = am.architecture.component_by_name['Storage-8']
+s = ListScheduler(am.application, am.architecture, 0.5)
+s.schedule_application()
+
+#print(filterop)
+#print(filterop.input_flow_start_times)
+#print(filterop.occupant_output_flow_start_times)
+#print(filterop.inputs)
+for each in filterop.inputs:
+    print(str(each) + 's route is:')
+    print(each.route)
+    print('Start-time for flow: '+str(each.start_time))
+    print('Time for flow: '+str(each.time))
+    print('Finish-time for flow: '+str(each.finish_time))
+    print(str(each.to_storage) + 's route is:')
+    print(each.to_storage.route)
+    print(each.to_storage.start_time)
+    print(each.to_storage.finish_time)
+    print(str(each.from_storage) + 's route is:')
+    print(each.from_storage.route)
+    print(each.from_storage.start_time)
+    print(each.from_storage.finish_time)
+print(filterop.outputs)
+
+am.application.unschedule()
+am.architecture.unschedule()
+am.architecture.add_fault(f)
+s2 = ListScheduler(am.application, am.architecture, 0.5)
+s2.schedule_application()
+for each in filterop.inputs:
+    print(str(each) + 's route is:')
+    print(each.route)
+    print('Start-time for flow: '+str(each.start_time))
+    print('Time for flow: '+str(each.time))
+    print('Finish-time for flow: '+str(each.finish_time))
+    print(str(each.to_storage) + 's route is:')
+    print(each.to_storage.route)
+    print(each.to_storage.start_time)
+    print(each.to_storage.finish_time)
+    print(str(each.from_storage) + 's route is:')
+    print(each.from_storage.route)
+    print(each.from_storage.start_time)
+    print(each.from_storage.finish_time)
+print(filterop.outputs)
+
+#am.architecture.average_connection_time = 0.2
+#c = am.application_finish_time()
+#print(c)
+
+#am.architecture.add_fault(f)
+#am.architecture.average_connection_time = 0.2
+
+
+'''
+print('Going to switch4 from Filter1')
+s = am.architecture.test_generate_in_connections_for_component_going_to(switch4, filter1)
+print(s)
+print('Going to switch4 from switch5')
+s = am.architecture.test_generate_in_connections_for_component_going_to(switch4, switch5)
+print(s)
+print('Going to switch4 from switch3')
+s = am.architecture.test_generate_in_connections_for_component_going_to(switch4, switch3)
+print(s)
+
+#d = am.architecture.test_is_connected()
+#print('Is connected before first fault: '+str(d))
+#c = am.application_finish_time()
+#print(c)
+
+am.architecture.add_fault(f)
+print('Going to switch4 from Filter1')
+s = am.architecture.test_generate_in_connections_for_component_going_to(switch4, filter1)
+print(s)
+print('Going to switch4 from switch5')
+s = am.architecture.test_generate_in_connections_for_component_going_to(switch4, switch5)
+print(s)
+print('Going to switch4 from switch3')
+s = am.architecture.test_generate_in_connections_for_component_going_to(switch4, switch3)
+print(s)
+'''
+#am.architecture.find_route(am.architecture.component_by_name['Mixer1'], am.architecture.component_by_name['Filter1'])
+#c = am.application_finish_time()
+#print(c)
+#d = am.architecture.test_is_connected()
+#print('Is connected after fault: '+str(d))
+#c = am.application_finish_time()
+#print(c)
+
+
+#print('Restoring')
+#am.architecture.restore()
+#d = am.architecture.test_is_connected()
+#print('Is connected after restoring: '+str(d))
+#c = am.application_finish_time()
+#print(c)
+
+#d = am.application_finish_time()
+#print(d)
+
+'''
+mix1 = am.architecture.component_by_name['Mixer1']
+switch1 = am.architecture.component_by_name['Switch1']
+am.make_component_fault_tolerant(mix1)
+
+print('Switch1 in connections: '+str(switch1.in_connections))
+print('Switch1 added in connections: '+str(switch1.added_in_connections))
+print('Switch1 total in connections: '+str(switch1.total_in_connections()))
+print('Switch1 out connections: '+str(switch1.out_connections))
+print('Switch1 added out connections: '+str(switch1.added_out_connections))
+print('Switch1 total out connections: '+str(switch1.total_out_connections()))
+print(switch1.total_connections)
+
+print('REPLACED MIXER1 WITH FTMIXER - types to components')
+print(am.architecture.types_to_components)
+print('Set of mixers usable')
+s = am.architecture.get_components_of_type('mixer')
+print(s)
+am.add_connection_between_two_random_components()
+print(am.architecture)
+#am.undo_last_move()
+am.make_random_component_non_fault_tolerant()
+print('Switch1 in connections: '+str(switch1.in_connections))
+print('Switch1 added in connections: '+str(switch1.added_in_connections))
+print('Switch1 total in connections: '+str(switch1.total_in_connections()))
+print('Switch1 out connections: '+str(switch1.out_connections))
+print('Switch1 added out connections: '+str(switch1.added_out_connections))
+print('Switch1 total out connections: '+str(switch1.total_out_connections()))
+print(switch1.total_connections)
+print(am.architecture)
+print('UNREPLACED MIXER1 WITH FTMIXER - types to components')
+print(am.architecture.types_to_components)
+print('Set of mixers usable')
+s = am.architecture.get_components_of_type('mixer')
+print(s)
+am.add_connection_between_two_random_components()
+'''
+
+'''
+switch1 = am.architecture.component_by_name['Switch1']
+filter1 = am.architecture.component_by_name['Filter1']
+heater1 = am.architecture.component_by_name['Heater1']
+
+print(am.architecture)
+c = am.evaluate_architecture()
+print('Inital cost: '+str(c))
+am.make_component_fault_tolerant(filter1)
+
+c = am.evaluate_architecture()
+print(am.architecture)
+print('Cost: '+str(c))
+
+am.make_component_fault_tolerant(heater1)
+
+c = am.evaluate_architecture()
+print(am.architecture)
+print('Cost: '+str(c))
+
+componenttype = mix1.type
+componentid = 'added ' + str(mix1.type) + '-546'
+new_component = Component(componentid, componenttype)
+
+am.insert_redundant_component(new_component)
+
+c = am.evaluate_architecture()
+
+print(am.architecture)
+print('Cost: '+str(c))
+'''
+
+'''
+f = fmp.faults['Blocked-channel-Switch1-Mixer1']
+
+mix1 = am.architecture.component_by_name['Mixer1']
+switch1 = am.architecture.component_by_name['Switch1']
+
+print('Mixer1 in connections: '+str(mix1.in_connections))
+print('Mixer1 added in connections: '+str(mix1.added_in_connections))
+print('Mixer1 total in connections: '+str(mix1.total_in_connections()))
+print('Mixer1 out connections: '+str(mix1.out_connections))
+print('Mixer1 added out connections: '+str(mix1.added_out_connections))
+print('Mixer1 total out connections: '+str(mix1.total_out_connections()))
+
+print('Switch1 in connections: '+str(switch1.in_connections))
+print('Switch1 added in connections: '+str(switch1.added_in_connections))
+print('Switch1 total in connections: '+str(switch1.total_in_connections()))
+print('Switch1 out connections: '+str(switch1.out_connections))
+print('Switch1 added out connections: '+str(switch1.added_out_connections))
+print('Switch1 total out connections: '+str(switch1.total_out_connections()))
+
+print('Inserting connection')
+am.add_connection_between_two_components(switch1, mix1)
+
+print('Mixer1 in connections: '+str(mix1.in_connections))
+print('Mixer1 added in connections: '+str(mix1.added_in_connections))
+print('Mixer1 total in connections: '+str(mix1.total_in_connections()))
+print('Mixer1 out connections: '+str(mix1.out_connections))
+print('Mixer1 added out connections: '+str(mix1.added_out_connections))
+print('Mixer1 total out connections: '+str(mix1.total_out_connections()))
+
+print('Switch1 in connections: '+str(switch1.in_connections))
+print('Switch1 added in connections: '+str(switch1.added_in_connections))
+print('Switch1 total in connections: '+str(switch1.total_in_connections()))
+print('Switch1 out connections: '+str(switch1.out_connections))
+print('Switch1 added out connections: '+str(switch1.added_out_connections))
+print('Switch1 total out connections: '+str(switch1.total_out_connections()))
+
+print('Adding fault to architecture')
+am.architecture.add_fault(f)
+
+print('Mixer1 in connections: '+str(mix1.in_connections))
+print('Mixer1 added in connections: '+str(mix1.added_in_connections))
+print('Mixer1 total in connections: '+str(mix1.total_in_connections()))
+print('Mixer1 out connections: '+str(mix1.out_connections))
+print('Mixer1 added out connections: '+str(mix1.added_out_connections))
+print('Mixer1 total out connections: '+str(mix1.total_out_connections()))
+
+print('Switch1 in connections: '+str(switch1.in_connections))
+print('Switch1 added in connections: '+str(switch1.added_in_connections))
+print('Switch1 total in connections: '+str(switch1.total_in_connections()))
+print('Switch1 out connections: '+str(switch1.out_connections))
+print('Switch1 added out connections: '+str(switch1.added_out_connections))
+print('Switch1 total out connections: '+str(switch1.total_out_connections()))
+
+print('Restoring architecture')
+am.architecture.restore()
+print('Mixer1 in connections: '+str(mix1.in_connections))
+print('Mixer1 added in connections: '+str(mix1.added_in_connections))
+print('Mixer1 total in connections: '+str(mix1.total_in_connections()))
+print('Mixer1 out connections: '+str(mix1.out_connections))
+print('Mixer1 added out connections: '+str(mix1.added_out_connections))
+print('Mixer1 total out connections: '+str(mix1.total_out_connections()))
+
+print('Switch1 in connections: '+str(switch1.in_connections))
+print('Switch1 added in connections: '+str(switch1.added_in_connections))
+print('Switch1 total in connections: '+str(switch1.total_in_connections()))
+print('Switch1 out connections: '+str(switch1.out_connections))
+print('Switch1 added out connections: '+str(switch1.added_out_connections))
+print('Switch1 total out connections: '+str(switch1.total_out_connections()))
+
+print('Undoing')
+am.undo_last_move()
+print('Mixer1 in connections: '+str(mix1.in_connections))
+print('Mixer1 added in connections: '+str(mix1.added_in_connections))
+print('Mixer1 total in connections: '+str(mix1.total_in_connections()))
+print('Mixer1 out connections: '+str(mix1.out_connections))
+print('Mixer1 added out connections: '+str(mix1.added_out_connections))
+print('Mixer1 total out connections: '+str(mix1.total_out_connections()))
+
+print('Switch1 in connections: '+str(switch1.in_connections))
+print('Switch1 added in connections: '+str(switch1.added_in_connections))
+print('Switch1 total in connections: '+str(switch1.total_in_connections()))
+print('Switch1 out connections: '+str(switch1.out_connections))
+print('Switch1 added out connections: '+str(switch1.added_out_connections))
+print('Switch1 total out connections: '+str(switch1.total_out_connections()))
+'''
+
+
 
 #am.insert_component_to_make_random_component_redundant()
 #am.add_connection_between_two_random_components()
@@ -58,8 +330,8 @@ sa = SimulatedAnnealing(np.architecture, ap.application, rfsg.faultscenarios, co
 #        am.undo_last_move()
 #    am.add_connection_between_two_random_components()
 
-print(sa.cost)
-print(sa.architecture)
+#print(sa.cost)
+#print(sa.architecture)
 #a = am.make_random_component_fault_tolerant()
 #am.add_connection_between_two_random_components()
 #am.make_random_component_non_fault_tolerant()
