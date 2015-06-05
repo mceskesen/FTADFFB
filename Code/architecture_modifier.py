@@ -4,6 +4,7 @@ Created 28 April 2015
 @author: Morten Chabert Eskesen
 '''
 
+from parsing import NetlistParser
 from scheduling import ListScheduler, NoScheduleFoundError
 from application import Application
 from architecture import Architecture, Component, Connection
@@ -20,6 +21,7 @@ class ArchitectureModifier(object):
 		self.config = config
 		self.application_deadline = config['deadline']
 		self.average_connection_time = config['average_connection_time']
+		self.architecture.average_connection_time = self.average_connection_time
 		self.ftcomponent_move = 'ftcomponent'
 		self.non_ftcomponent_move = 'non ftcomponent'
 
@@ -89,7 +91,6 @@ class ArchitectureModifier(object):
 													'seperator': 2,
 													'storage': 2,
 													'heater': 2}
-
 	'''
 	def make_random_component_fault_tolerant(self):
 		types = self.architecture.component_library.get_types_with_a_fault_tolerant_version()
@@ -418,49 +419,61 @@ class ArchitectureModifier(object):
 		else:
 			return False
 	'''
-
+	'''
 	def add_fault_scenario_to_architecture(self, faultscenario):
 		for f in faultscenario.faults:
 			self.architecture.add_fault(f)
 
 	def restore_architecture_from_fault_scenario(self):
 		self.architecture.restore()
+	'''
 
-	def evaluate_architecture_with_two_faultscenarios(self):
-		fs1 = random.choice(self.faultscenarios)
-		fs2 = random.choice(self.faultscenarios)
+	def reset(self):
+		self.components_added = list()
+		#self.ftcomponents_added = list()
+		self.connections_added = list()
+		#self.moves = list()
+		self.possible_moves = set()
+		self.possible_moves.add(self.ftcomponent_move)
+		self.possible_moves.add(self.add_connection_move)
+		self.possible_moves.add(self.add_component_move)
 
-		self.add_fault_scenario_to_architecture(fs1)
-		print('With fault: '+ str(fs1))
-		print(self.architecture)
-		for each in self.architecture.components:
-			print(each)
-			print(each.in_connections)
-			print(each.out_connections)
-		a = self.is_architecture_non_fault_tolerant()
-		b = self.application_finish_time()
-		print('Architecture is connected: '+str(a))
-		print('Scheduled application: '+str(b))
-		cost = a * self.fault_tolerant_weight + b * self.schedulable_weight + self.architecture.number_of_valves() + self.architecture.number_of_connections()
-		print('Cost: '+str(cost))
+		#self.moves.append('non ftcomponent')
+		#self.moves.append('ftcomponent')
+		#self.moves.append('remove component')
+		#self.moves.append('add component')
+		#self.moves.append('remove connection')
+		#self.moves.append('add connection')
 
-		self.restore_architecture_from_fault_scenario()
+		self.last_ftcomponent_replaced = None
+		self.last_nonftcomponent_replaced = None
+		self.last_component_added = None
+		#self.last_component_connections_added = None, None
+		self.component_added_switch_added = {}
+		self.component_added_modified_connections = {}
+		#self.last_component_switch_added = None, None
+		#self.last_component_added_modified_connections = None, None
+		self.last_connection_added = None
+		self.last_connection_removed = None
+		self.last_component_removed = None
+		self.last_component_removed_added_connections = None
+		self.last_component_removed_connections = None
+		self.last_move_removed_ftcomp = None, None
+		self.last_move = None
+		self.switch_to_modified_connection = {}
 
-		self.add_fault_scenario_to_architecture(fs2)
-		print('With fault: '+ str(fs2))
-		print(self.architecture)
-		for each in self.architecture.components:
-			print(each)
-			print(each.in_connections)
-			print(each.out_connections)
-		a = self.is_architecture_non_fault_tolerant()
-		b = self.application_finish_time()
-		print('Architecture is connected: '+str(a))
-		print('Scheduled application: '+str(b))
-		cost = a * self.fault_tolerant_weight + b * self.schedulable_weight + self.architecture.number_of_valves() + self.architecture.number_of_connections()
-		print('Cost: '+str(cost))
+		self.component_type_to_numbers = {}
 
-		self.restore_architecture_from_fault_scenario()
+
+		self.ftcomponents_replaced = {}
+		self.ftcomponents_unreplaced = {}
+
+	def add_fault_scenario_to_architecture(self, faultscenario, architecture):
+		for f in faultscenario.faults:
+			architecture.add_fault(f)
+
+	def restore_architecture_from_fault_scenario(self, architecture):
+		architecture.restore()
 
 	def undo_last_move(self):
 		if self.last_move == self.non_ftcomponent_move:
@@ -604,11 +617,55 @@ class ArchitectureModifier(object):
 		else:
 			pass
 
+	def evaluate_architecture(self, architecture):
+		schedulable_sum = 0
+		fault_tolerant_sum = 0
+		for fs in self.faultscenarios:
+			#print('Adding fault scenario to architecture:')
+			#print(fs)
+			self.add_fault_scenario_to_architecture(fs, architecture)
+			#d = self.is_architecture_non_fault_tolerant()
+			#k = True if d == 0 else False
+			#print('Architecture is connected with this fault scenario: '+str(k))
+			fault_tolerant_sum += self.is_architecture_non_fault_tolerant(architecture)
+			schedulable_sum += self.application_finish_time(architecture)
+			self.restore_architecture_from_fault_scenario()
+
+		#schedulable_sum = (schedulable_sum * self.schedulable_weight) / 100
+		schedulable_sum = schedulable_sum * self.schedulable_weight
+		#fault_tolerant_sum = (fault_tolerant_sum * self.fault_tolerant_weight) / 100
+		fault_tolerant_sum = fault_tolerant_sum * self.fault_tolerant_weight
+		architecture_cost = architecture.number_of_valves() + architecture.number_of_connections()
+
+		return fault_tolerant_sum + schedulable_sum + architecture_cost
+
+	def is_architecture_non_fault_tolerant(self, architecture):
+		return 0 if architecture.is_connected() else 1
+
+	def application_finish_time(self, architecture):
+		s = ListScheduler(self.application, architecture, self.average_connection_time)
+		applicationtime = 0
+		try:
+			s.schedule_application()
+			applicationtime = self.application.sink.finish_time
+		except NoScheduleFoundError:
+			applicationtime = self.application_deadline * 2
+		#print('With this fault scenario the application time is: '+str(applicationtime))
+		returnvalue = max(0, applicationtime - self.application_deadline)
+		self.application.unschedule()
+		architecture.unschedule()
+		return returnvalue
+	'''
 	def evaluate_architecture(self):
 		schedulable_sum = 0
 		fault_tolerant_sum = 0
 		for fs in self.faultscenarios:
+			#print('Adding fault scenario to architecture:')
+			#print(fs)
 			self.add_fault_scenario_to_architecture(fs)
+			#d = self.is_architecture_non_fault_tolerant()
+			#k = True if d == 0 else False
+			#print('Architecture is connected with this fault scenario: '+str(k))
 			fault_tolerant_sum += self.is_architecture_non_fault_tolerant()
 			schedulable_sum += self.application_finish_time()
 			self.restore_architecture_from_fault_scenario()
@@ -632,12 +689,12 @@ class ArchitectureModifier(object):
 			applicationtime = self.application.sink.finish_time
 		except NoScheduleFoundError:
 			applicationtime = self.application_deadline * 2
-		print(applicationtime)
+		#print('With this fault scenario the application time is: '+str(applicationtime))
 		returnvalue = max(0, applicationtime - self.application_deadline)
 		self.application.unschedule()
 		self.architecture.unschedule()
 		return returnvalue
-
+	'''
 	def make_random_component_fault_tolerant(self):
 		types = self.architecture.component_library.get_types_with_a_fault_tolerant_version()
 		#randomtype = random.choice(types)
@@ -995,7 +1052,7 @@ class SimulatedAnnealing(ArchitectureModifier):
 		return temp - 20
 
 	def run(self):
-		self.cost = self.evaluate_architecture()
+		self.cost = self.evaluate_architecture(self.architecture)
 		print('Inital cost: '+str(self.cost))
 		while not self.terminated():
 			self.iterations()
@@ -1064,10 +1121,145 @@ class SimulatedAnnealing(ArchitectureModifier):
 
 class GreedilyRandomAdaptiveSearchProcedure(ArchitectureModifier):
 
-	def __init__(self, architecture, application, faultscenarios, config):
+	def __init__(self, architecture, application, faultscenarios, config, architecture_file):
 		super().__init__(architecture, application, faultscenarios, config)
 
+		self.number_of_iterations = 500
+		self.best_architecutre = architecture
+		self.best_cost = self.evaluate_architecture(self.best_architecutre)
+		self.max_number_of_iterations_before_increasing_c = 25
+		self.number_of_unsuccesful_iterations = 0
+		self.c = 1
+		self.increase_c = 2
+		self.make_redundant = 'redundant component'
+		self.make_ftcomponent = 'ftcomponent'
+		self.make_ftcomponent_with_in_con = 'ftcomponent with in connection'
+		self.make_ftcomponent_with_out_con = 'ftcomponent with out connection'
+		self.make_ftcomponent_with_both_con = 'ftcomponent with both connections'
+		self.design_transformations = set()
+		self.create_design_transformations()
+		self.component_transformation = {}
+
+	def create_design_transformations(self):
+		self.design_transformations.add(self.make_redundant)
+		self.design_transformations.add(self.make_ftcomponent)
+		self.design_transformations.add(self.make_ftcomponent_with_in_con)
+		self.design_transformations.add(self.make_ftcomponent_with_out_con)
+		self.design_transformations.add(self.make_ftcomponent_with_both_con)
+
+	def apply_design_transformations(self):
+		for c in self.component_transformation:
+			self.apply_single_design_transformation(c, self.component_transformation[c])
+
+	def apply_single_design_transformation(self, component, transformation):
+		if transformation == self.make_redundant:
+			self.insert_redundant_component(component)
+
+		elif transformation == self.make_ftcomponent:
+			self.make_component_fault_tolerant(component)
+
+		elif transformation == self.make_ftcomponent_with_in_con:
+			self.make_component_fault_tolerant(component)
+			#make in con
+			pos_in_comps = set(filter(lambda c: c.total_in_connections() < self.max_in_connections_for_components[c.get_type()], self.architecture.components))
+			if pos_in_comps:
+				to_comp = random.sample(pos_in_comps, 1)
+				to_c = to_comp[0]
+				while to_c == component:
+					to_comp = random.sample(pos_in_comps, 1)
+					to_c = to_comp[0]
+
+				self.add_connection_between_two_components(component, to_c)
+
+		elif transformation == self.make_ftcomponent_with_out_con:
+			self.make_component_fault_tolerant(component)
+			#make out con
+			pos_out_comps = set(filter(lambda c: c.total_out_connections() < self.max_out_connections_for_components[c.get_type()], self.architecture.components))
+			if pos_out_comps:
+				from_comp = random.sample(pos_out_comps, 1)
+				from_c = from_comp[0]
+				while from_c == to_c:
+					from_comp = random.sample(pos_out_comps, 1)
+					from_c = from_comp[0]
+
+				self.add_connection_between_two_components(from_c, component)
+
+		elif transformation == self.make_ftcomponent_with_both_con:
+			self.make_component_fault_tolerant(component)
+			#make in con and out con
+			pos_out_comps = set(filter(lambda c: c.total_out_connections() < self.max_out_connections_for_components[c.get_type()], self.architecture.components))
+			pos_in_comps = set(filter(lambda c: c.total_in_connections() < self.max_in_connections_for_components[c.get_type()], self.architecture.components))
+			if pos_out_comps:
+				from_comp = random.sample(pos_out_comps, 1)
+				from_c = from_comp[0]
+				while from_c == to_c:
+					from_comp = random.sample(pos_out_comps, 1)
+					from_c = from_comp[0]
+
+				self.add_connection_between_two_components(from_c, component)
+
+			if pos_in_comps:
+				to_comp = random.sample(pos_in_comps, 1)
+				to_c = to_comp[0]
+				while to_c == component:
+					to_comp = random.sample(pos_in_comps, 1)
+					to_c = to_comp[0]
+
+				self.add_connection_between_two_components(component, to_c)
+		else:
+			pass
+
+	def choose_and_apply_design_transformations(self, rcl):
+		for c in rcl:
+			self.choose_random_design_transformation_for_component(c)
+
+		self.apply_design_transformations()
+		self.reset()
+		self.component_transformation = {}
+
+	def choose_random_design_transformation_for_component(self, component):
+		transformation = random.sample(self.design_transformations, 1)
+		self.component_transformation[component] = transformation[0]
+
 	def run(self):
+		i = 0
+		while(i < self.number_of_iterations):
+			new_arch = load_original_architecture()
+			cl = create_candidates(new_arch.components, self.c)
+			rcl = choose_candidates(cl)
+			self.choose_and_apply_design_transformations(rcl)
+			#do local search
+			new_arch_cost = self.evaluate_architecture(new_arch)
+			if new_arch_cost < self.best_cost:
+				self.best_architecutre = new_arch
+				self.best_cost = new_arch_cost
+				self.number_of_unsuccesful_iterations = 0
+			else:
+				self.number_of_unsuccesful_iterations += 1
+			if self.number_of_unsuccesful_iterations >= self.max_number_of_iterations_before_increasing_c:
+				self.c = self.c * self.increase_c
+				self.number_of_unsuccesful_iterations = 0
+			i += 1
+
+	def load_original_architecture(self):
+		np = NetlistParser(self.architecture_file)
+		np.architecture.component_library = clp.get_component_library()
+		np.parse()
+		return np.architecture
+
+	def choose_candidates(self, candidatelist):
+		num = randint(1, len(candidatelist))
+		rcl = set(random.sample(candidatelist, num))
+		return rcl
+
+	def local_search(self, architecture):
+		raise NotImplementedError
+
+	def create_candidates(self, components, amount):
+		#return set of candidates (with number of components = amount)
+		raise NotImplementedError
+
+	def rank_component(self, component):
 		raise NotImplementedError
 
 

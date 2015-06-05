@@ -38,17 +38,51 @@ np.parse()
 fmp = FaultModelParser('faultmodels/faultmodel-arch-mes.json')
 rfsg = RandomFaultScenarioGenerator(fmp.faultmodel, config.data['faultscenarios'])
 rfsg.generate_fault_scenarios()
-
+f = fmp.faults['Blocked-channel-Switch3-Switch4']
+f2 = fmp.faults['Open-valve-Switch4-to-Switch3']
+f3 = fmp.faults['Blocked-channel-Mixer1']
 am = ArchitectureModifier(np.architecture, ap.application, rfsg.faultscenarios, config.data)
+switch4 = am.architecture.component_by_name['Switch4']
+#c = am.evaluate_architecture()
+#print('Cost of architecture: '+str(c))
+filter1 = am.architecture.component_by_name['Filter1']
+mixer1 = am.architecture.component_by_name['Mixer1']
+#am.make_component_fault_tolerant(f)
+#c = am.evaluate_architecture()
+#print('Cost of architecture: '+str(c))
+print(am.architecture.get_components_of_type('mixer'))
+am.architecture.add_fault(f3)
 #print(np.architecture)
+print(am.architecture)
+print(am.architecture.get_components_of_type('mixer'))
+
+print('Restoring')
+am.architecture.restore()
+print(am.architecture)
+print(am.architecture.get_components_of_type('mixer'))
+
+
+
+
 #sa = SimulatedAnnealing(np.architecture, ap.application, rfsg.faultscenarios, config.data)
 #print(sa.architecture)
 #print('Final cost: '+str(sa.cost))
-
+#d = am.architecture.is_connected()
+#print(d)
+#am.architecture.add_fault(f2)
+#d = am.architecture.is_connected()
+#print(d)
+#am.architecture.add_fault(f2)
+#d = am.architecture.is_connected()
+#print(d)
+#am.architecture.restore()
+#d = am.architecture.is_connected()
+#print(d)
 #c = am.is_architecture_non_fault_tolerant()
 #print('Non fault tolerance: '+ str(c))
 #ap = am.application_finish_time()
 #print('App finish time: '+str(ap))
+'''
 filterop = ap.operations['O3']
 f = fmp.faults['Open-valve-Switch4-to-Switch3']
 #f2 = fmp.faults['Open-valve-Filter1-output']
@@ -101,7 +135,7 @@ for each in filterop.inputs:
     print(each.from_storage.start_time)
     print(each.from_storage.finish_time)
 print(filterop.outputs)
-
+'''
 #am.architecture.average_connection_time = 0.2
 #c = am.application_finish_time()
 #print(c)

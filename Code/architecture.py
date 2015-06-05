@@ -4,7 +4,7 @@ Created 24 March 2015
 @author: Morten Chabert Eskesen
 '''
 
-from queue import Queue
+from queue import Queue, PriorityQueue
 import random
 
 class Architecture(object):
@@ -104,13 +104,13 @@ class Architecture(object):
 	def remove_component_and_connections(self, component):
 		for incon in component.in_connections.values():
 			other = incon.get_other_component(component)
-			other.remove_added_out_connection(component)
+			other.remove_added_out_connection(component, incon)
 			self.connections_removed.add(incon)
 			self.connections.discard(incon)
 
 		for outcon in component.out_connections.values():
 			other = outcon.get_other_component(component)
-			other.remove_added_in_connection(component)
+			other.remove_added_in_connection(component, outcon)
 			self.connections_removed.add(outcon)
 			self.connections.discard(outcon)
 
@@ -200,6 +200,12 @@ class Architecture(object):
 		to_c.remove_in_connection(from_c)
 		to_c.remove_out_connection(from_c)
 		self.remove_connection_from_arch(connection)
+		if from_c.get_type() == 'switch':
+			if any(f.affected == connection.name for f in from_c.faults):
+				self.remove_component_and_connections(from_c)
+		if to_c.get_type() == 'switch':
+			if any(f.affected == connection.name for f in to_c.faults):
+				self.remove_component_and_connections(to_c)
 
 	def parsing_done(self):
 		self.original_components = self.components.copy()
@@ -209,6 +215,7 @@ class Architecture(object):
 		if connection != None:
 			self.connections_removed.add(connection)
 			self.connections.discard(connection)
+			print(self.connections_removed)
 
 	def find_connections_between_two_switches(self, num):
 		switches_in_architecture = list(filter(lambda s: s.type[:6] == 'switch', self.components))
@@ -265,13 +272,13 @@ class Architecture(object):
 		from_c = connection.components[0]
 		to_c = connection.components[1]
 		#from_c.remove_in_connection(from_c)
-		from_c.remove_added_in_connection(to_c)
+		from_c.remove_added_in_connection(to_c, connection)
 		#from_c.remove_out_connection(to_c)
-		from_c.remove_added_out_connection(to_c)
+		from_c.remove_added_out_connection(to_c, connection)
 		#to_c.remove_in_connection(from_c)
-		to_c.remove_added_in_connection(from_c)
+		to_c.remove_added_in_connection(from_c, connection)
 		#to_c.remove_out_connection(from_c)
-		to_c.remove_added_out_connection(from_c)
+		to_c.remove_added_out_connection(from_c, connection)
 		self.connections.discard(connection)
 		con1name = 'con-{}-{}'.format(from_c.id, component.id)
 		con1 = Connection(con1name, from_c, component)
@@ -532,6 +539,7 @@ class Architecture(object):
 			self.remove_component(detector)
 
 	def affect_switch_with_open_valve_fault(self, switch, valvefault):
+		print('Affecting '+str(switch) +' with valvefault')
 		if not switch.faults:
 			#No faults already - hard part
 			#We can only route to the valvefault.control connection if input is from other connections
@@ -541,8 +549,11 @@ class Architecture(object):
 			switch.faults.append(valvefault)
 			#con = switch.valve_to_connections[valvefault.control]
 			con = self.connection_by_name[valvefault.affected]
-			if con in switch.removed_out_connections:
-				self.remove_component(switch) #the connection is blocked and cannot be used therefore the switch should be removed
+			#if con in switch.removed_out_connections:
+				#print(con)
+			#	self.remove_component(switch) #the connection is blocked and cannot be used therefore the switch should be removed
+			if con in self.connections_removed:
+				self.remove_component_and_connections(switch) #the connection is blocked and cannot be used therefore the switch should be removed
 		else:
 			if any(type(f).__name__ == 'ChannelFault' for f in switch.faults):
 				#Already removed - do nothing but add the fault
@@ -698,6 +709,94 @@ class Architecture(object):
 			total_valves += valves
 		return total_valves
 
+	def mdst(self, root):
+		self.contract():
+		return self.expand(root)
+
+	def contract(self):
+		vertices = set(self.components) | set(self.components_removed)
+		noninputs = set(filter(lambda c: c.get_type() != 'input', vertices))
+		#edges = set(self.connections)
+		weighted_edges = self.initialize_vertices_for_mdst(vertices)
+
+		vertice = random.sample(noninputs, 1)[0]
+		while not vertice.mdst_priorityqueue.empty():
+			edge = vertice.mdst_priorityqueue.get()
+			#b = edge.connections.get_other_component(vertice)
+			b = self.mdst_find(edge.connection.get_other_component(vertice))
+			if vertice != b:
+				vertice.mdst_in = edge
+				vertice.mdst_prev = b
+				if b.mdst_in == None:
+					vertice = b
+				else:
+					c = Component('Super Vertex', None)
+					self.initialize_vertice_for_mdst(c)
+					while(vertice.mdst_parent == None):
+						vertice.mdst_parent = c
+						#vertice.mdst_const = - self.mdst_weight(vertice.mdst_in)
+						vertice.mdst_const = -vertice.mdst_in
+						c.mdst_children.append(vertice)
+						pq = PriorityQueue()
+						while not vertice.mdst_priorityqueue.empty():
+							pq.put(vertice.mdst_priorityqueue.get())
+						while not c.mdst_priorityqueue.empty():
+							pq.put(c.mdst_priorityqueue.get())
+
+						c.mdst_priorityqueue = pq
+						vertice = vertice.mdst_prev
+					vertice = c
+
+	def mdst_find(self, vertice):
+		while(vertice.mdst_parent != None):
+			vertice = vertice.mdst_parent
+		return vertice
+
+	def mdst_weight(self, weighted_connection):
+		raise NotImplementedError
+
+	def mdst_dismantle(self, r, vertice):
+		raise NotImplementedError
+
+	def initialize_vertice_for_mdst(self, v):
+		v.mdst_in = None
+		v.mdst_const = 0
+		v.mdst_prev = None
+		v.mdst_parent = None
+		v.mdst_children = list()
+		v.mdst_priorityqueue = PriorityQueue()
+
+
+	def initialize_vertices_for_mdst(self, vertices):
+		weighted_edges = set()
+		for v in vertices:
+			self.initialize_vertice_for_mdst(v)
+			for e in v.in_connections.values():
+				weighted_con = WeightedConnection(e)
+				#weight = 100
+				weight = 10
+				other = e.get_other_component(v)
+				out = self.mdst_generate_out_connections_for_component_coming_from(v, other)
+				#weight /= len(out)
+				weight *= len(out)
+				weighted_con.weight = weight
+				weighted_edges.add(weighted_con)
+				v.mdst_priorityqueue.put(weighted_con)
+
+		return weighted_edges
+
+	def expand(self, root):
+		r = list()
+		self.mdst_dismantle(r, root)
+		while r:
+			c = r.pop()
+			edge = c.mdst_in
+			v = edge.connection.get_other_component(c)
+			v.mdst_in = edge
+			self.mdst_dismantle(r, v)
+
+		return 
+
 	def number_of_connections(self):
 		return len(self.connections_removed) + len(self.connections)
 
@@ -738,6 +837,22 @@ class Architecture(object):
 			comp.unschedule()
 		for con in self.connections:
 			con.unschedule()
+
+	def mdst_generate_out_connections_for_component_coming_from(self, component, from_c):
+		if component.type != 'switch':
+			component_out_connections = set(component.out_connections.values())
+		elif len(component.faults) > 1 or not component.faults:
+			component_out_connections = set(component.out_connections.values())
+		else:
+			out_connections = set()
+			con = self.connection_by_name[component.faults[0].affected]
+			if con.get_other_component(component) == from_c:
+				component_out_connections = set(component.out_connections.values())
+			else:
+				out_connections.add(con)
+				component_out_connections = out_connections
+
+		return component_out_connections
 
 	def generate_out_connections_for_component_coming_from(self, component, from_c):
 		#component_out_connections = {}
@@ -781,13 +896,7 @@ class Architecture(object):
 				else:
 					components.append(each)
 		return components
-
-	def find_route(self, from_c, to_c):
-		print('Finding route from: '+str(from_c)+' to '+str(to_c))
-		self.breadth_first_search(from_c, to_c)
-		#print('Finding route from: '+str(from_c)+' to '+str(to_c))
-		return self.backtrack_breadth_first_search(from_c, to_c)
-
+	'''
 	def is_connected(self):
 		visited = set()
 		inputs = list(filter(lambda c: c.type[:5] == 'input', self.components))
@@ -806,8 +915,6 @@ class Architecture(object):
 
 			v_out = list(v.removed_out_connections.values()) + list(v.out_connections.values())
 
-			print('Current component: '+str(v))
-			print('Out connections: '+str(v_out))
 			#for each in v.out_connections.values():
 			for each in v_out:
 				if each in self.connections_removed:
@@ -823,9 +930,33 @@ class Architecture(object):
 		#self.discovered_by = {}
 		self.component_out_connections = {}
 		return len(visited) == (len(allcomponents) - minus_inputs)
+	'''
 
+	def is_connected(self):
+		inputs = self.get_components_of_type('input')
+		#outputs = self.get_components_of_type('output')
+		inputcomp = random.choice(inputs)
+		#outputcomp = random.choice(outputs)
+		allcomponents = set(self.components) | set(self.components_removed)
+		#reachablecomps = set(filter(lambda comp: c:type != 'input'))
+		pos_comps = set(filter(lambda c: c.type[:5] != 'input', allcomponents))
+		routable_comps = set(filter(lambda c: c.type[:5] != 'switch' and c.type != 'input', allcomponents))
+		comps = set()
+		for c in routable_comps:
+			disc = self.reverse_route_finding(inputcomp, c)
+			s = set(disc.values())
+			comps = comps | s
+			#r = self.find_route(inputcomp, c)
+			#if not r:
+			#	return False
+		#if all()
+		#print(comps)
+		#print(pos_comps)
+		return all(c in comps for c in pos_comps)
+		#return True
 
-	def test_is_connected(self):
+	'''
+	def is_connected(self):
 		allcomponents = set(self.components) | set(self.components_removed)
 		pos_comps = set(filter(lambda c: c.type[:5] != 'input' and c.type[:6] != 'output', allcomponents))
 		if any(len(c.in_connections.values()) == 0 for c in pos_comps):
@@ -836,9 +967,8 @@ class Architecture(object):
 		#	if any(type(f).__name__ == 'ChannelFault' for f in switch.faults):
 		#	if not any(c.in_connections.values() for c in self.connections)
 		#unreachable_comps = set(filter(lambda comp: ,allcomponents))
-
+	'''
 	def find_route(self, from_c, to_c):
-		print('Finding route from: '+str(from_c)+' to '+str(to_c))
 		#self.breadth_first_search(from_c, to_c)
 		disc = self.reverse_route_finding(from_c, to_c)
 		#print('Finding route from: '+str(from_c)+' to '+str(to_c))
@@ -870,7 +1000,6 @@ class Architecture(object):
 				self.component_in_connections[component] = in_connections
 				#component_out_connections[component] = out_connections
 				#return component_out_connections
-
 
 	def reverse_route_finding(self, start, end):
 		visited = set()
@@ -915,8 +1044,6 @@ class Architecture(object):
 		except KeyError:
 			current = None
 			backtracked = False
-
-		print('Backtracked: '+str(backtracked))
 
 
 		while(current != None and previous != to_component):
@@ -1063,6 +1190,14 @@ class Component(Ordered):
 		self.faults = list()
 		self.removed_out_connections = {}
 		self.removed_in_connections = {}
+
+		#mdst stuff
+		self.mdst_in = None
+		self.mdst_const = 0
+		self.mdst_prev = None
+		self.mdst_parent = None
+		self.mdst_children = None
+		self.mdst_priorityqueue = PriorityQueue()
 
 	def unschedule(self):
 		self.occupied_by = None
@@ -1317,6 +1452,22 @@ class Connection(Ordered):
 
 	def __eq__(self, other):
 		return self.__class__ == other.__class__ and self.id == other.id and self.name == other.name
+
+class WeightedConnection(object):
+	order_id_counter = 0
+
+	def __init__(self, connection):
+		self.order_id = __class__.order_id_counter
+		__class__.order_id_counter = +1
+		self.connection = connection
+		self.weight = None
+
+	def __hash__(self):
+		return hash(self.order_id)
+
+	def __lt__(self, other):
+		return self.weight < other.weight
+
 
 class ComponentLibrary(object):
 	def __init__(self):

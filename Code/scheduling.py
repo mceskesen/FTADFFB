@@ -59,14 +59,12 @@ class ListScheduler(Scheduler):
 			Flow.storage_operation.component = self.storage_component
 
 		Flow.architecture = architecture
-		
 
 	def schedule_application(self):
 		self.schedule_inputs()
 		self.schedule_operations()
 
 	def schedule_operation_on_component(self, operation, component, start_time):
-		print('Scheduling operation '+str(operation)+ ' on component '+str(component))
 		operation.schedule(component,start_time)
 		component.schedule(operation)
 
@@ -87,7 +85,6 @@ class ListScheduler(Scheduler):
 
 		while(not readyops.empty()):
 			o = readyops.get()
-			print('Scheduling: '+str(o))
 			if not o.scheduled:
 				self.bind_and_schedule(o)
 			for each in o.successors_ready():
@@ -97,12 +94,9 @@ class ListScheduler(Scheduler):
 		t_min = float('inf')
 		best_component = None
 		possible_components = self.get_components_for_operation(o)
-		print('Possible components for o: '+str(possible_components))
 
 		for component in possible_components:
-			print('Estimating ready time on component')
 			t = o.ready_time_on_component(component)
-			print('Estimated time = '+str(t))
 			if t_min > t:
 				t_min = t
 				best_component = component
