@@ -136,6 +136,7 @@ class Application(object):
 			o.unschedule()
 		for f in self.flows:
 			f.unschedule()
+		self.storage_operation.unschedule()
 
 	def add_operation(self, operationid, operationtype, executiontime):
 		o = Operation(self, operationid, operationtype, executiontime)
@@ -323,8 +324,8 @@ class Flow(object):
 		self.route = None
 		self.requires_storage = False
 		if type(self).__name__ == 'Flow':
-			self.to_storage.unschedule()
-			self.from_storage.unschedule()
+			self.to_storage = FlowToStorage(self, self.operations[0])
+			self.from_storage = FlowFromStorage(self, self.operations[1])
 
 	def schedule(self, start_time):
 		if self.requires_storage:
@@ -342,6 +343,7 @@ class Flow(object):
 
 			self.finish_time = self.start_time + self.time
 			self.set_connection_finish_times()
+
 			self.scheduled = True
 			self.release_component(self.operations[0])
 		self.occupy_component(self.operations[1])
@@ -369,6 +371,7 @@ class Flow(object):
 			return self.from_storage.predict_time(to_c)
 		else:
 			r = self.predict_route(to_c)
+			
 			if not r:
 				return float('inf')
 			else:
@@ -392,8 +395,12 @@ class Flow(object):
 		return maximum
 
 	def set_connection_finish_times(self):
+		if self.route.connections != None:
+			if len(self.route.connections) > 0:
+				previous_con = self.route.connections[0]
 		for each in self.route.connections:
-			each.finish_time = self.finish_time
+			each.finish_time = previous_con.finish_time + Flow.architecture.average_connection_time
+			previous_con = each
 
 	def find_route(self):
 		if self.operations[0].type == 'source' or self.operations[1].type == 'sink':

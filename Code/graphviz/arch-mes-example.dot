@@ -1,0 +1,35 @@
+graph {
+rankdir=LR;
+Switch4[label=Switch4][shape=point];
+Switch6[label=Switch6][shape=point];
+In2[label=In2][shape=plaintext];
+Switch3[label=Switch3][shape=point];
+Switch2[label=Switch2][shape=point];
+In1[label=In1][shape=plaintext];
+Storage8[label=storage1][shape=rectangular];
+Switch7[label=Switch7][shape=point];
+Mixer1[label=mixer1][shape=rectangular];
+Out1[label=Out1][shape=plaintext];
+Switch5[label=Switch5][shape=point];
+Heater1[label=heater1][shape=rectangular];
+Out2[label=Out2][shape=plaintext];
+Switch1[label=Switch1][shape=point];
+Filter1[label=filter1][shape=rectangular];
+Heater1 -- Switch6;
+In2 -- Switch2;
+Switch4 -- Switch5;
+Mixer1 -- Switch3;
+Switch3 -- Out2;
+Switch3 -- Switch4;
+Switch2 -- Storage8;
+Switch1 -- Mixer1;
+Filter1 -- Switch6;
+Switch3 -- Heater1;
+In1 -- Switch1;
+Switch4 -- Filter1;
+Switch5 -- Switch7;
+Switch6 -- Switch7;
+Switch7 -- Out1;
+Switch1 -- Switch2;
+Storage8 -- Switch5;
+}

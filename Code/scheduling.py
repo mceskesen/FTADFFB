@@ -53,6 +53,8 @@ class ListScheduler(Scheduler):
 
 	def __init__(self, application, architecture, averagetime):
 		super().__init__(application, architecture, averagetime)
+		self.architecture.unschedule()
+		self.application.unschedule()
 
 		if self.storage_component:
 			application.storage_allowed = True

@@ -1,0 +1,74 @@
+{
+    "architecture": "arch_mes_example",
+    "faultmodel": "Example2",
+    "valvefaults": 2,
+    "channelfaults": 2,
+    "channelfaultList": [
+        {
+            "fault": "block",
+            "name": "Blocked-channel-Switch1-Mixer1",
+            "shortname": "c1",
+            "objectType": "connection",
+            "objectName": "Switch1-Mixer1"
+        },
+        {
+            "fault": "block",
+            "name": "Blocked-channel-Filter1",
+            "shortname": "c2",
+            "objectType": "component",
+            "objectName": "Filter1"
+        },
+        {
+            "fault": "block",
+            "name": "Blocked-channel-Heater1",
+            "shortname": "c3",
+            "objectType": "component",
+            "objectName": "Heater1"
+        },
+        {
+            "fault": "block",
+            "name": "Blocked-channel-Switch2-Storage",
+            "shortname": "c5",
+            "objectType": "connection",
+            "objectName": "Switch2-Storage8"
+        }
+    ],
+    "valvefaultList": [
+        {
+            "fault": "open",
+            "name": "Open-valve-Switch6-to-Switch7",
+            "shortname": "v1",
+            "objectType": "component",
+            "objectName": "Switch6",
+            "control": "south-valve",
+            "affected": "Switch6-Switch7"
+        },
+        {
+            "fault": "open",
+            "name": "Open-valve-Mixer1-pump",
+            "shortname": "v2",
+            "objectType": "component",
+            "objectName": "Mixer1",
+            "control": "pumpvalve2",
+            "affected": "pump"
+        },
+        {
+            "fault": "open",
+            "name": "Open-valve-Switch5-to-Storage",
+            "shortname": "v3",
+            "objectType": "component",
+            "objectName": "Switch5",
+            "control": "west-valve",
+            "affected": "Storage8-Switch5"
+        },
+        {
+            "fault": "open",
+            "name": "Open-valve-Switch3-to-Switch4",
+            "shortname": "v4",
+            "objectType": "component",
+            "objectName": "Switch3",
+            "control": "south-valve",
+            "affected": "Switch3-Switch4"
+        }
+    ]
+}

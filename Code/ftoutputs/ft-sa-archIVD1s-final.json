@@ -1,0 +1,1404 @@
+{
+    "architecture": "ft-archIVD1s",
+    "flowPlaced": false,
+    "flowRouted": false,
+    "width": 170,
+    "height": 135,
+    "initialCost": 1800274,
+    "cost": 285,
+    "components": 53,
+    "ftcomponents": 2,
+    "connections": 80,
+    "valves": 205,
+    "faultscenarios": 100,
+    "generatedByAlgorithm": "simulated_annealing",
+    "runtime": 665428.041741,
+    "componentList": [
+        {
+            "objectType": "component",
+            "name": "Switch30",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch21",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch33",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch26",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch12",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch6",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Storage1",
+            "functions": [
+                "storage"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch39",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch2",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch36",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "switch-10224",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch23",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch43",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch5",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch41",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch29",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch19",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch38",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch7",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch1",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch22",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch20",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch8",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch32",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch4",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Source2",
+            "functions": [
+                "input"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Mixer2",
+            "functions": [
+                "ftmixer"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch18",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch10",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch31",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Detector2",
+            "functions": [
+                "detector"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Out1",
+            "functions": [
+                "output"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch34",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch11",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch40",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Mixer1",
+            "functions": [
+                "mixer"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch3",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Detector1",
+            "functions": [
+                "ftdetector"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch35",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch14",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch28",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Out2",
+            "functions": [
+                "output"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch27",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch37",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch9",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch25",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch24",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch15",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch17",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch13",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch42",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Source1",
+            "functions": [
+                "input"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch16",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        }
+    ],
+    "connectionList": [
+        {
+            "objectType": "connection",
+            "name": "con_110",
+            "sourceComponent": "Switch13",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch20"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_31",
+            "sourceComponent": "Switch7",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch29"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "add-con-Switch22-Switch40",
+            "sourceComponent": "Switch22",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch40"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_73",
+            "sourceComponent": "Storage1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch17"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_9",
+            "sourceComponent": "Source2",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch38"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_39",
+            "sourceComponent": "Switch35",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch39"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con-Switch18-switch-10224",
+            "sourceComponent": "Switch18",
+            "sinkComponent": [
+                {
+                    "sinkName": "switch-10224"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_16",
+            "sourceComponent": "Switch1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch4"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_35",
+            "sourceComponent": "Switch14",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch23"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_67",
+            "sourceComponent": "Detector2",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch42"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_10",
+            "sourceComponent": "Switch38",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch43"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_18",
+            "sourceComponent": "Switch4",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch8"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_104",
+            "sourceComponent": "Switch11",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch21"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_88",
+            "sourceComponent": "Switch1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch5"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_82",
+            "sourceComponent": "Switch11",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch41"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_1",
+            "sourceComponent": "Source1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch32"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_119",
+            "sourceComponent": "Switch7",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch27"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_38",
+            "sourceComponent": "Mixer1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch39"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_63",
+            "sourceComponent": "Switch5",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch20"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_137",
+            "sourceComponent": "Switch30",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch41"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_68",
+            "sourceComponent": "Switch23",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch24"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_8",
+            "sourceComponent": "Switch24",
+            "sinkComponent": [
+                {
+                    "sinkName": "Out1"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_41",
+            "sourceComponent": "Switch14",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch35"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_47",
+            "sourceComponent": "Switch6",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch37"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_141",
+            "sourceComponent": "Switch12",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch17"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_53",
+            "sourceComponent": "Switch9",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch18"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_112",
+            "sourceComponent": "Switch8",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch40"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_14",
+            "sourceComponent": "Switch1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch31"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_27",
+            "sourceComponent": "Detector1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch29"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_55",
+            "sourceComponent": "Switch21",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch32"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_37",
+            "sourceComponent": "Switch23",
+            "sinkComponent": [
+                {
+                    "sinkName": "Out2"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_114",
+            "sourceComponent": "Switch26",
+            "sinkComponent": [
+                {
+                    "sinkName": "Mixer1"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_133",
+            "sourceComponent": "Switch16",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch31"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_80",
+            "sourceComponent": "Switch33",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch41"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_6",
+            "sourceComponent": "Switch24",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch38"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_43",
+            "sourceComponent": "Switch14",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch42"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_98",
+            "sourceComponent": "Switch10",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch22"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_90",
+            "sourceComponent": "Switch1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch40"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_127",
+            "sourceComponent": "Switch3",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch43"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_12",
+            "sourceComponent": "Switch31",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch43"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_94",
+            "sourceComponent": "Switch3",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch26"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_24",
+            "sourceComponent": "Switch2",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch12"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_96",
+            "sourceComponent": "Switch3",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch10"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_51",
+            "sourceComponent": "Switch18",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch30"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_76",
+            "sourceComponent": "Switch19",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch25"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_129",
+            "sourceComponent": "Switch27",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch35"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_84",
+            "sourceComponent": "Switch11",
+            "sinkComponent": [
+                {
+                    "sinkName": "Mixer2"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_57",
+            "sourceComponent": "Switch21",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch28"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_102",
+            "sourceComponent": "Switch28",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch43"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_72",
+            "sourceComponent": "Switch2",
+            "sinkComponent": [
+                {
+                    "sinkName": "Storage1"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_22",
+            "sourceComponent": "Switch2",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch34"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_30",
+            "sourceComponent": "Switch9",
+            "sinkComponent": [
+                {
+                    "sinkName": "Detector2"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_135",
+            "sourceComponent": "Switch15",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch33"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_78",
+            "sourceComponent": "Switch25",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch33"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_92",
+            "sourceComponent": "Switch26",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch40"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_59",
+            "sourceComponent": "Switch16",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch28"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_117",
+            "sourceComponent": "Switch13",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch15"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_45",
+            "sourceComponent": "Switch6",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch42"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_106",
+            "sourceComponent": "Switch32",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch37"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_100",
+            "sourceComponent": "Switch22",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch23"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_74",
+            "sourceComponent": "Switch17",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch19"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_125",
+            "sourceComponent": "Switch22",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch35"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_70",
+            "sourceComponent": "Switch34",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch39"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_61",
+            "sourceComponent": "Switch5",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch16"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_86",
+            "sourceComponent": "Switch5",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch15"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_121",
+            "sourceComponent": "Switch2",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch27"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_26",
+            "sourceComponent": "Switch12",
+            "sinkComponent": [
+                {
+                    "sinkName": "Detector1"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_33",
+            "sourceComponent": "Switch7",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch14"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_115",
+            "sourceComponent": "Switch10",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch24"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_4",
+            "sourceComponent": "Switch36",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch38"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_123",
+            "sourceComponent": "Switch26",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch31"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_108",
+            "sourceComponent": "Switch13",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch25"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_28",
+            "sourceComponent": "Switch9",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch29"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con-switch-10224-Switch19",
+            "sourceComponent": "switch-10224",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch19"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_139",
+            "sourceComponent": "Switch6",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch36"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_20",
+            "sourceComponent": "Switch8",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch34"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_49",
+            "sourceComponent": "Switch30",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch37"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_65",
+            "sourceComponent": "Switch4",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch20"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_85",
+            "sourceComponent": "Mixer2",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch15"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_2",
+            "sourceComponent": "Switch32",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch36"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        }
+    ]
+}

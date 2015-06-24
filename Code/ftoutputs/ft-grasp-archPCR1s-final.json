@@ -1,0 +1,336 @@
+{
+    "architecture": "ft-archPCR1s",
+    "flowPlaced": false,
+    "flowRouted": false,
+    "width": 100,
+    "height": 120,
+    "initialCost": 1695088,
+    "cost": 92,
+    "components": 14,
+    "ftcomponents": 1,
+    "connections": 17,
+    "valves": 75,
+    "faultscenarios": 50,
+    "generatedByAlgorithm": "grasp",
+    "runtime": 8631.87423899999,
+    "componentList": [
+        {
+            "objectType": "component",
+            "name": "Mixer2",
+            "functions": [
+                "ftmixer"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch1",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Source2",
+            "functions": [
+                "input"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch4",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Source1",
+            "functions": [
+                "input"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Out1",
+            "functions": [
+                "output"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Out2",
+            "functions": [
+                "output"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Storage1",
+            "functions": [
+                "storage"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch3",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch6",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Mixer1",
+            "functions": [
+                "mixer"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch2",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch7",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch5",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        }
+    ],
+    "connectionList": [
+        {
+            "objectType": "connection",
+            "name": "con_9",
+            "sourceComponent": "Switch2",
+            "sinkComponent": [
+                {
+                    "sinkName": "Mixer1"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_21",
+            "sourceComponent": "Switch2",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch6"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_6",
+            "sourceComponent": "Source2",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch1"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_11",
+            "sourceComponent": "Switch5",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch6"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_5",
+            "sourceComponent": "Switch4",
+            "sinkComponent": [
+                {
+                    "sinkName": "Out2"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_10",
+            "sourceComponent": "Storage1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch6"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_15",
+            "sourceComponent": "Switch4",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch7"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_1",
+            "sourceComponent": "Mixer1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch3"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_13",
+            "sourceComponent": "Switch5",
+            "sinkComponent": [
+                {
+                    "sinkName": "Mixer2"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_20",
+            "sourceComponent": "Switch7",
+            "sinkComponent": [
+                {
+                    "sinkName": "Out1"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_14",
+            "sourceComponent": "Mixer2",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch7"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "add-con-Mixer2-Mixer1",
+            "sourceComponent": "Mixer2",
+            "sinkComponent": [
+                {
+                    "sinkName": "Mixer1"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_17",
+            "sourceComponent": "Source1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch5"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_3",
+            "sourceComponent": "Switch3",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch4"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_18",
+            "sourceComponent": "Switch1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch5"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_7",
+            "sourceComponent": "Switch1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch2"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con_2",
+            "sourceComponent": "Switch3",
+            "sinkComponent": [
+                {
+                    "sinkName": "Storage1"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        }
+    ]
+}

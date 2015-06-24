@@ -76,24 +76,6 @@
             "objectName": "Switch2",
             "control": "north-valve",
             "affected": "Switch1-Switch2"
-        },
-        {
-            "fault": "open",
-            "name": "Open-valve-Switch4-to-Switch3",
-            "shortname": "v5",
-            "objectType": "component",
-            "objectName": "Switch4",
-            "control": "north-valve",
-            "affected": "Switch3-Switch4"
-        },
-        {
-            "fault": "open",
-            "name": "Open-valve-Switch4-to-Switch5",
-            "shortname": "v5",
-            "objectType": "component",
-            "objectName": "Switch4",
-            "control": "south-valve",
-            "affected": "Switch4-Switch5"
         }
     ]
 }

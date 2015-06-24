@@ -1,0 +1,85 @@
+{
+    "architecture": null,
+    "assay": "seq-mes-example",
+    "bound": false,
+    "operations": [
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i1",
+            "operation": "input"
+        },
+        {
+            "executionTime": 0,
+            "isOperation": true,
+            "name": "i2",
+            "operation": "input"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i1"
+                }
+            ],
+            "executionTime": 4,
+            "isOperation": true,
+            "name": "O1",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "i2"
+                }
+            ],
+            "executionTime": 4,
+            "isOperation": true,
+            "name": "O2",
+            "operation": "mix"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O1"
+                }
+            ],
+            "executionTime": 2,
+            "isOperation": true,
+            "name": "O3",
+            "operation": "filter"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O2"
+                }
+            ],
+            "executionTime": 2,
+            "isOperation": true,
+            "name": "O4",
+            "operation": "heat"
+        },
+        {
+            "dependencies": [
+                {
+                    "amount": 10,
+                    "name": "O3"
+                },
+                {
+                    "amount": 10,
+                    "name": "O4"
+                }
+            ],
+            "executionTime": 4,
+            "isOperation": true,
+            "name": "O5",
+            "operation": "mix"
+        }
+    ],
+    "scheduledOps": false,
+    "scheduledRoutes": false
+}

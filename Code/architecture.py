@@ -5,6 +5,7 @@ Created 24 March 2015
 '''
 
 from queue import Queue, PriorityQueue
+import data_structures
 import random
 
 class Architecture(object):
@@ -41,6 +42,7 @@ class Architecture(object):
 		self.component_extra_valves = {}
 
 	def remove_component(self, component):
+		'''
 		for incon in component.in_connections.values():
 			other = incon.get_other_component(component)
 			other.remove_out_connection(component)
@@ -52,6 +54,7 @@ class Architecture(object):
 			other.remove_in_connection(component)
 			#self.connections_removed.add(outcon)
 			#self.connections.discard(outcon)
+		'''
 
 		component.faulty = True
 		self.components_removed.add(component)
@@ -78,6 +81,9 @@ class Architecture(object):
 			#	other.total_out_connections -= 1
 			self.connections.discard(outcon)
 
+		for each in component.total_connections:
+			self.connections.discard(each)
+
 		self.components.discard(component)
 		self.types_to_components[component.get_type()].remove(component)
 
@@ -102,22 +108,28 @@ class Architecture(object):
 		self.types_to_components[component.get_type()].remove(component)
 
 	def remove_component_and_connections(self, component):
-		for incon in component.in_connections.values():
-			other = incon.get_other_component(component)
-			other.remove_added_out_connection(component, incon)
-			self.connections_removed.add(incon)
-			self.connections.discard(incon)
+		#for incon in component.in_connections.values():
+		#	other = incon.get_other_component(component)
+			#other.remove_added_out_connection(component, incon)
+		#	other.remove_out_connection(component)
+		#	self.connections_removed.add(incon)
+		#	self.connections.discard(incon)
 
+		remove_self_out_cons = set()
 		for outcon in component.out_connections.values():
 			other = outcon.get_other_component(component)
-			other.remove_added_in_connection(component, outcon)
+			remove_self_out_cons.add(other)
+			#other.remove_added_in_connection(component, outcon)
+			other.remove_in_connection(component)
 			self.connections_removed.add(outcon)
 			self.connections.discard(outcon)
-
-		self.types_to_components[component.get_type()].remove(component)
-		#component.faulty = True
-		#self.components_removed.add(component)
-		#self.components.discard(component)
+		#print(remove_self_out_cons)
+		for each in remove_self_out_cons:
+			component.remove_out_connection(each)
+		#self.types_to_components[component.get_type()].remove(component)
+		component.faulty = True
+		self.components_removed.add(component)
+		self.components.discard(component)
 
 	def unremove_component_and_connections(self, component):
 		for incon in component.in_connections.values():
@@ -215,7 +227,7 @@ class Architecture(object):
 		if connection != None:
 			self.connections_removed.add(connection)
 			self.connections.discard(connection)
-			print(self.connections_removed)
+			#print(self.connections_removed)
 
 	def find_connections_between_two_switches(self, num):
 		switches_in_architecture = list(filter(lambda s: s.type[:6] == 'switch', self.components))
@@ -268,7 +280,7 @@ class Architecture(object):
 
 	def modify_connection_to_have_comp_in_middle(self, connection, component):
 		#This is only used by connections between switches and a component that is a switch
-		print('Modifying connection: '+str(connection))
+		#print('Modifying connection: '+str(connection))
 		from_c = connection.components[0]
 		to_c = connection.components[1]
 		#from_c.remove_in_connection(from_c)
@@ -405,7 +417,7 @@ class Architecture(object):
 		#cons_to_remove = list(rep_component.out_connections.values()) + list(rep_component.in_connections.values())
 		cons_to_remove = rep_component.total_connections
 		for each in cons_to_remove:
-			print('Removing connection: '+str(each))
+			#print('Removing connection: '+str(each))
 			self.connections.discard(each)
 		#self.types_to_components[rep_component.get_type()].remove(rep_component)
 
@@ -484,7 +496,7 @@ class Architecture(object):
 			#print(self.components)
 			self.components_replaced[component] = 'added'
 
-	def affect_storage_with_channel_fault(self, storage, channelfault):
+	def affect_storage_with_blocked_channel_fault(self, storage, channelfault):
 		if len(storage.faults) == 3:
 			self.remove_component(storage)
 			storage.faults.append(channelfault)
@@ -539,7 +551,6 @@ class Architecture(object):
 			self.remove_component(detector)
 
 	def affect_switch_with_open_valve_fault(self, switch, valvefault):
-		print('Affecting '+str(switch) +' with valvefault')
 		if not switch.faults:
 			#No faults already - hard part
 			#We can only route to the valvefault.control connection if input is from other connections
@@ -641,7 +652,7 @@ class Architecture(object):
 				if component.get_type() == 'mixer':
 					compf = self.component_library.get_faulttolerance_for_component(component)
 					if self.component_library.get_faulttolerance_for_component(component) == fault.affected:
-						components.faults.append(fault)
+						component.faults.append(fault)
 					elif component.faulty:
 						component.faults.append(fault)
 						self.remove_component(component)
@@ -709,6 +720,8 @@ class Architecture(object):
 			total_valves += valves
 		return total_valves
 
+	'''
+
 	def mdst(self, root):
 		self.contract():
 		return self.expand(root)
@@ -757,6 +770,8 @@ class Architecture(object):
 
 	def mdst_dismantle(self, r, vertice):
 		raise NotImplementedError
+
+	'''
 
 	def initialize_vertice_for_mdst(self, v):
 		v.mdst_in = None
@@ -835,8 +850,15 @@ class Architecture(object):
 	def unschedule(self):
 		for comp in self.components:
 			comp.unschedule()
+		for rem_comp in self.components_removed:
+			rem_comp.unschedule()
+		for rep_comp in self.components_replaced.keys():
+			rep_comp.unschedule()
 		for con in self.connections:
 			con.unschedule()
+		for rem_con in self.connections_removed:
+			rem_con.unschedule()
+		self.storage.unschedule()
 
 	def mdst_generate_out_connections_for_component_coming_from(self, component, from_c):
 		if component.type != 'switch':
@@ -896,15 +918,24 @@ class Architecture(object):
 				else:
 					components.append(each)
 		return components
-	'''
+	
 	def is_connected(self):
 		visited = set()
-		inputs = list(filter(lambda c: c.type[:5] == 'input', self.components))
+		#inputs = list(filter(lambda c: c.type[:5] == 'input', self.components))
+		#outputs = self.get_components_of_type('output')
+		inputs = self.get_components_of_type('input')
+		#allcomponents = list(self.components) + list(self.components_removed)
 		allcomponents = list(self.components) + list(self.components_removed)
 		minus_inputs = len(inputs) - 1
+		#minus_outputs = len(outputs) - 1
+		#end = random.choice(outputs)
 		start = random.choice(inputs)
 		#start = self.component_by_name['In2']
-
+		#self.generate_in_connections_for_component_going_to(end, None)
+		#q = Queue()
+		#q.put(end)
+		#visited.add(end)
+		
 		q = Queue()
 		q.put(start)
 		visited.add(start)
@@ -912,7 +943,7 @@ class Architecture(object):
 
 		while(not q.empty()):
 			v = q.get()
-
+			#print('At component: '+str(v))
 			v_out = list(v.removed_out_connections.values()) + list(v.out_connections.values())
 
 			#for each in v.out_connections.values():
@@ -920,18 +951,55 @@ class Architecture(object):
 				if each in self.connections_removed:
 					continue
 				w = each.get_other_component(v)
-				self.generate_out_connections_for_component_coming_from(w, v)
-				if w not in visited and each in self.component_out_connections[v]:
+				#self.generate_out_connections_for_component_coming_from(w, v)
+				if w not in visited:
 					#self.discovered_by[w] = v
-					if self.component_library.route_through_component(w):
-						q.put(w)
+					#if self.component_library.route_through_component(w):
+					#print('Adding '+str(w) + ' to the queue')
+					q.put(w)
 					visited.add(w)
-
+		
 		#self.discovered_by = {}
+		self.component_in_connections = {}
 		self.component_out_connections = {}
-		return len(visited) == (len(allcomponents) - minus_inputs)
-	'''
+		s = set(filter(lambda c: c not in visited and c.type[:5] != 'input', allcomponents))
+		#for each in s:
+		#	print(str(each) + ' is not reachable')
+		return len(s) == 0
+		#return any(c not in visited and c.type[:5] != 'input' for c in allcomponents)
+		#return len(visited) == (len(allcomponents) - minus_inputs)
 
+	'''
+	def test_is_connected(self):
+		allcomponents = set(self.components) | set(self.components_removed)
+		s = UF(allcomponents)
+		w = UF(allcomponents)
+
+		f = set()
+		component_in_connections_weights = {}
+		component_in_sorted_weights = {}
+		for each in allcomponents:
+			for incon in each.in_connections.values():
+				weight_times = len(mdst_generate_out_connections_for_component_coming_from(each, incon.get_other_component(each)))
+				component_in_connections_weights[each] = incon, 10 * weight_times
+				#if each == incon.components[0]:
+				#	incon.component1_weight = 10 * weight_times
+				#else:
+				#	incon.component2_weight = 10 * weight_times
+			sorted(inputflows, key = lambda f: (f.predict_start_time(c), f.name))
+			component_in_sorted_weights[each] = sorted(component_in_connections_weights[each], key=f[1], reverse=True)
+			each.connected_min = each
+
+		roots = allcomponents.copy()
+		while(len(roots) > 0):
+			r = roots.pop()
+			if len(r.in_connections.values()) = 0:
+				root = r
+				break
+
+			edge = component_in_sorted_weights[r][0]
+	'''
+	'''
 	def is_connected(self):
 		inputs = self.get_components_of_type('input')
 		#outputs = self.get_components_of_type('output')
@@ -952,9 +1020,10 @@ class Architecture(object):
 		#if all()
 		#print(comps)
 		#print(pos_comps)
+		print(comps)
 		return all(c in comps for c in pos_comps)
 		#return True
-
+	'''
 	'''
 	def is_connected(self):
 		allcomponents = set(self.components) | set(self.components_removed)
@@ -1013,7 +1082,7 @@ class Architecture(object):
 
 		while(not q.empty()):
 			v = q.get()
-
+			#print('At component: '+str(v))
 			for each in v.in_connections.values():
 				w = each.get_other_component(v)
 
@@ -1191,7 +1260,11 @@ class Component(Ordered):
 		self.removed_out_connections = {}
 		self.removed_in_connections = {}
 
+		self.grasp_ranking = 0
 		#mdst stuff
+		#self.connected_min = None
+		#self.connected_enter = None
+		#self.connected_cycle = None
 		self.mdst_in = None
 		self.mdst_const = 0
 		self.mdst_prev = None
@@ -1453,20 +1526,6 @@ class Connection(Ordered):
 	def __eq__(self, other):
 		return self.__class__ == other.__class__ and self.id == other.id and self.name == other.name
 
-class WeightedConnection(object):
-	order_id_counter = 0
-
-	def __init__(self, connection):
-		self.order_id = __class__.order_id_counter
-		__class__.order_id_counter = +1
-		self.connection = connection
-		self.weight = None
-
-	def __hash__(self):
-		return hash(self.order_id)
-
-	def __lt__(self, other):
-		return self.weight < other.weight
 
 
 class ComponentLibrary(object):
@@ -1504,6 +1563,18 @@ class ComponentLibrary(object):
 
 	def get_faulttolerance_for_component(self, component):
 		return self.type_to_faulttolerance[component.type]
+
+	def get_non_faulttolerance_version_of_component(self, component):
+		c = None
+		for each in self.librarycomponents:
+			if component.is_fault_tolerant_version_of(each):
+				c = each
+				break
+		if type(c).__name__  == 'NoneType':
+			ret = None
+		else:
+			ret = c
+		return ret
 
 	def get_faulttolerance_version_of_component(self, component):
 		c = None

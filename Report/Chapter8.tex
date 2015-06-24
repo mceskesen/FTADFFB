@@ -1,0 +1,25 @@
+\chapter{Conclusions and Future Work}
+\label{chap:conclusions}
+This chapter presents the conclusions and possible extensions of the work presented in this thesis.
+
+\section{Conclusions}
+This thesis describes the problems involved in synthesising a fault-tolerant architecture. We use the biochip architecture model and application model proposed before in \cite{wajid} and propose extensions to the biochip architecture model for achieving fault-tolerance. We propose a fault model, which consists of a set of valve faults and a set of channel faults where a maximum number of valve faults and a maximum number of channel faults can happen at any given time. Furthermore, the component library for the flow layer model has been extended with fault tolerant components which are the fault-tolerant switch, mixer, heater, filter, separator, detector and storage.
+
+In order to achieve a fault-tolerant architecture, metaheuristics have been implemented. Two metaheuristics have been proposed as solutions to the problem. Simulated Annealing (SA) has been implemented. SA has the important property that the found solution converges towards the global optimum. The second metaheuristic is Greedily Randomized Adaptive Search Procedure (GRASP) which constructs randomised semi-greedy solutions as starting points for local search. It then uses local search to find the local optimum.
+
+An important factor is to decide and define what a good solution is. In this thesis, an architecture is considered fault-tolerant if, despite faults, the application that has to run on the architecture can complete within its deadline and that the architecture is connected such that all components on the chip are reachable. The fault scenarios used in the evaluation are randomly generated from the fault model considering the maximum number of valve faults and channel faults. Furthermore, the physical constraints have to be considered as the size of the architecture should be kept small. The physical constraints have been defined as the total number of valves and the total number of channels in the architecture. The total number of valves and channels should therefore be kept as small as possible while still achieving a fault-tolerant architecture. The two metaheuristics must optimise the architecture with respect to these features.
+
+These two algorithmic approaches are evaluated on benchmarks, both synthetic and real-life benchmarks. The evaluations were done in terms of solution quality and performance. The quality of a solution is defined by two things: minimising the cost of the architecture and increasing the yield of biochips. The metaheuristic GRASP produced the best results in terms of solution quality with an average of 20\% less costly solutions compared to SA. Both of the algorithms produced fault-tolerant architectures. Furthermore, the evaluation proved that generating even a fraction of the possible fault scenarios in the fault model provided good results in fault-tolerance to all possible fault scenarios. Generating 21\% percent of the possible fault scenarios provided fault tolerance to 86\% of all the possible fault scenarios. Generating approximately 70\% of the possible fault scenarios provided a fault-tolerance of 100\%. GRASP also performed better than SA in terms of performance by finding a solution between 4-7 times faster than SA depending on the benchmark.
+
+\section{Future Work}
+The fault-tolerant architecture synthesis algorithms can be extended and improved in many ways. Either to improve the quality of the fault-tolerance or to improve algorithm performance. Some possible extensions are listed below.
+
+
+\begin{itemize}
+\item Considering a general fault model instead of a specific fault model. A general fault model means considering, e.g., that any $k$ channel(s) can suffer from a fault in the architecture where $k$ is the max number of failing channels. Similarly, extended the model to valves, where $k$ valves could suffer from faults. In the extreme case, the fault model could therefore be that any valve will be stuck open and any channel will be blocked.
+
+\item The objective function could be optimised such that when generating a neighbouring solution, only the affected fault scenarios should be evaluated as it adds considerable complexity to go through each fault scenario. For larger architectures, it takes a long time to produce a fault-tolerant architecture as it has to schedule and consider connectivity for each fault scenario.
+
+\item An extension could take the same approach as \cite{mirela}. In this thesis, an application-specific architecture is generated, where the architecture is fault-tolerant to a maximum of $k$ permanent faults. This was done previously for droplet-based biochips as mentioned, hence this thesis introduce fault-tolerant design for the first time for flow-based biochips.
+
+\end{itemize}

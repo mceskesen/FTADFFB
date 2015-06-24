@@ -1,0 +1,388 @@
+{
+    "architecture": "ft-arch_mes_example",
+    "flowPlaced": false,
+    "flowRouted": false,
+    "width": 200,
+    "height": 250,
+    "initialCost": 23340084,
+    "cost": 109,
+    "components": 16,
+    "ftcomponents": 3,
+    "connections": 20,
+    "valves": 89,
+    "faultscenarios": 100,
+    "generatedByAlgorithm": "grasp",
+    "runtime": 5437.193371999994,
+    "componentList": [
+        {
+            "objectType": "component",
+            "name": "Switch2",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Out2",
+            "functions": [
+                "output"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Storage-8",
+            "functions": [
+                "storage"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "In1",
+            "functions": [
+                "input"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "In2",
+            "functions": [
+                "input"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "ftheater-80721",
+            "functions": [
+                "ftheater"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch4",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch5",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Out1",
+            "functions": [
+                "output"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch7",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch3",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Mixer1",
+            "functions": [
+                "mixer"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "ftfilter-42039",
+            "functions": [
+                "ftfilter"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "added ftmixer-70018",
+            "functions": [
+                "ftmixer"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch1",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch6",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        }
+    ],
+    "connectionList": [
+        {
+            "objectType": "connection",
+            "name": "con-ftmixer-1949-Switch2",
+            "sourceComponent": "Mixer1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch2"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Mixer1-Switch3",
+            "sourceComponent": "Mixer1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch3"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "In2-Switch2",
+            "sourceComponent": "In2",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch2"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Switch1-Switch2",
+            "sourceComponent": "Switch1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch2"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con-added ftmixer-70018-Component: Switch1",
+            "sourceComponent": "added ftmixer-70018",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch1"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Switch1-Mixer1",
+            "sourceComponent": "Switch1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Mixer1"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "In1-Switch1",
+            "sourceComponent": "In1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch1"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Switch4-Filter1",
+            "sourceComponent": "Switch4",
+            "sinkComponent": [
+                {
+                    "sinkName": "ftfilter-42039"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Switch2-Storage8",
+            "sourceComponent": "Switch2",
+            "sinkComponent": [
+                {
+                    "sinkName": "Storage-8"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Switch4-Switch5",
+            "sourceComponent": "Switch4",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch5"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Storage8-Switch5",
+            "sourceComponent": "Storage-8",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch5"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Filter1-Switch6",
+            "sourceComponent": "ftfilter-42039",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch6"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Switch5-Switch7",
+            "sourceComponent": "Switch5",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch7"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Switch3-Switch4",
+            "sourceComponent": "Switch3",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch4"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Switch6-Switch7",
+            "sourceComponent": "Switch6",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch7"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Heater1-Switch6",
+            "sourceComponent": "ftheater-80721",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch6"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Switch7-Out1",
+            "sourceComponent": "Switch7",
+            "sinkComponent": [
+                {
+                    "sinkName": "Out1"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Switch3-Heater1",
+            "sourceComponent": "Switch3",
+            "sinkComponent": [
+                {
+                    "sinkName": "ftheater-80721"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Switch3-Out2",
+            "sourceComponent": "Switch3",
+            "sinkComponent": [
+                {
+                    "sinkName": "Out2"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con-Switch7-added ftmixer-70018",
+            "sourceComponent": "Switch7",
+            "sinkComponent": [
+                {
+                    "sinkName": "added ftmixer-70018"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        }
+    ]
+}

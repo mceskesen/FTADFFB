@@ -1,0 +1,67 @@
+{
+    "architecture": "archPCR1s",
+    "faultmodel": "Example1",
+    "valvefaults": 2,
+    "channelfaults": 2,
+    "channelfaultList": [
+        {
+            "fault": "block",
+            "name": "Blocked-channel-Switch4-Switch7",
+            "shortname": "c1",
+            "objectType": "connection",
+            "objectName": "con_15"
+        },
+        {
+            "fault": "block",
+            "name": "Blocked-channel-Mixer1-Switch3",
+            "shortname": "c2",
+            "objectType": "connection",
+            "objectName": "con_1"
+        },
+        {
+            "fault": "block",
+            "name": "Blocked-channel-Switch5-Mixer2",
+            "shortname": "c5",
+            "objectType": "connection",
+            "objectName": "con_13"
+        }
+    ],
+    "valvefaultList": [
+        {
+            "fault": "open",
+            "name": "Open-valve-Switch1-to-Switch2",
+            "shortname": "v1",
+            "objectType": "component",
+            "objectName": "Switch1",
+            "control": "south-valve",
+            "affected": "con_7"
+        },
+        {
+            "fault": "open",
+            "name": "Open-valve-Mixer1-pump",
+            "shortname": "v2",
+            "objectType": "component",
+            "objectName": "Mixer1",
+            "control": "pumpvalve2",
+            "affected": "pump"
+        },
+        {
+            "fault": "open",
+            "name": "Open-valve-Switch3-to-Storage",
+            "shortname": "v3",
+            "objectType": "component",
+            "objectName": "Switch3",
+            "control": "east-valve",
+            "affected": "con_2"
+        },
+        {
+            "fault": "open",
+            "name": "Open-valve-Mixer2-pump",
+            "shortname": "v4",
+            "objectType": "component",
+            "objectName": "Mixer2",
+            "control": "pumpvalve1",
+            "affected": "pump"
+        }
+    ]
+}

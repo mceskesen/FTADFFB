@@ -1,0 +1,616 @@
+{
+    "architecture": "ft-arch_mes_example",
+    "flowPlaced": false,
+    "flowRouted": false,
+    "width": 200,
+    "height": 250,
+    "initialCost": 22350084,
+    "cost": 185,
+    "components": 24,
+    "ftcomponents": 1,
+    "connections": 35,
+    "valves": 146,
+    "faultscenarios": 100,
+    "generatedByAlgorithm": "simulated_annealing",
+    "runtime": 23034.992996,
+    "componentList": [
+        {
+            "objectType": "component",
+            "name": "switch-4741",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "added ftfilter-88289",
+            "functions": [
+                "filter"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "switch-51462",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Out1",
+            "functions": [
+                "output"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "In2",
+            "functions": [
+                "input"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Heater1",
+            "functions": [
+                "heater"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "In1",
+            "functions": [
+                "input"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "added storage-9805",
+            "functions": [
+                "storage"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch6",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "switch-27813",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch1",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "switch-40388",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Out2",
+            "functions": [
+                "output"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch7",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "added ftheater-61234",
+            "functions": [
+                "heater"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch3",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Mixer1",
+            "functions": [
+                "ftmixer"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch2",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Storage-8",
+            "functions": [
+                "storage"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch4",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Switch5",
+            "functions": [
+                "switch"
+            ],
+            "orientation": 0
+        },
+        {
+            "objectType": "component",
+            "name": "Filter1",
+            "functions": [
+                "filter"
+            ],
+            "orientation": 0
+        }
+    ],
+    "connectionList": [
+        {
+            "objectType": "connection",
+            "name": "add-con-Switch1-Mixer1",
+            "sourceComponent": "Switch1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Mixer1"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Switch1-Mixer1",
+            "sourceComponent": "Switch1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Mixer1"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Switch2-Storage8",
+            "sourceComponent": "Switch2",
+            "sinkComponent": [
+                {
+                    "sinkName": "Storage-8"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Filter1-Switch6",
+            "sourceComponent": "Filter1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch6"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "add-con-Switch5-Switch7",
+            "sourceComponent": "Switch5",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch7"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con-Switch5-switch-51462",
+            "sourceComponent": "Switch5",
+            "sinkComponent": [
+                {
+                    "sinkName": "switch-51462"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con-switch-27813-switch-40388",
+            "sourceComponent": "switch-27813",
+            "sinkComponent": [
+                {
+                    "sinkName": "switch-40388"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con-Switch4-switch-4741",
+            "sourceComponent": "Switch4",
+            "sinkComponent": [
+                {
+                    "sinkName": "switch-4741"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Switch3-Switch4",
+            "sourceComponent": "Switch3",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch4"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Switch3-Out2",
+            "sourceComponent": "Switch3",
+            "sinkComponent": [
+                {
+                    "sinkName": "Out2"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con-added ftfilter-88289-Component: switch-40388",
+            "sourceComponent": "added ftfilter-88289",
+            "sinkComponent": [
+                {
+                    "sinkName": "switch-40388"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "add-con-switch-51462-Heater1",
+            "sourceComponent": "switch-51462",
+            "sinkComponent": [
+                {
+                    "sinkName": "Heater1"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con-switch-27813-added storage-9805",
+            "sourceComponent": "switch-27813",
+            "sinkComponent": [
+                {
+                    "sinkName": "added storage-9805"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Mixer1-Switch3",
+            "sourceComponent": "Mixer1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch3"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "add-con-added ftheater-61234-switch-4741",
+            "sourceComponent": "added ftheater-61234",
+            "sinkComponent": [
+                {
+                    "sinkName": "switch-4741"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con-switch-40388-Switch5",
+            "sourceComponent": "switch-40388",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch5"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con-added storage-9805-switch-4741",
+            "sourceComponent": "added storage-9805",
+            "sinkComponent": [
+                {
+                    "sinkName": "switch-4741"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "In2-Switch2",
+            "sourceComponent": "In2",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch2"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Switch1-Switch2",
+            "sourceComponent": "Switch1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch2"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Switch4-Filter1",
+            "sourceComponent": "Switch4",
+            "sinkComponent": [
+                {
+                    "sinkName": "Filter1"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "add-con-Mixer1-Switch4",
+            "sourceComponent": "Mixer1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch4"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Switch3-Heater1",
+            "sourceComponent": "Switch3",
+            "sinkComponent": [
+                {
+                    "sinkName": "Heater1"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Heater1-Switch6",
+            "sourceComponent": "Heater1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch6"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Storage8-Switch5",
+            "sourceComponent": "Storage-8",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch5"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "add-con-switch-40388-switch-27813",
+            "sourceComponent": "switch-40388",
+            "sinkComponent": [
+                {
+                    "sinkName": "switch-27813"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con-switch-4741-switch-27813",
+            "sourceComponent": "switch-4741",
+            "sinkComponent": [
+                {
+                    "sinkName": "switch-27813"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con-switch-51462-Switch7",
+            "sourceComponent": "switch-51462",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch7"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con-Switch6-added ftheater-61234",
+            "sourceComponent": "Switch6",
+            "sinkComponent": [
+                {
+                    "sinkName": "added ftheater-61234"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "add-con-Heater1-Storage-8",
+            "sourceComponent": "Heater1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Storage-8"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Switch6-Switch7",
+            "sourceComponent": "Switch6",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch7"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "add-con-Storage-8-added ftfilter-88289",
+            "sourceComponent": "Storage-8",
+            "sinkComponent": [
+                {
+                    "sinkName": "added ftfilter-88289"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "Switch7-Out1",
+            "sourceComponent": "Switch7",
+            "sinkComponent": [
+                {
+                    "sinkName": "Out1"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con-switch-51462-added ftfilter-88289",
+            "sourceComponent": "switch-51462",
+            "sinkComponent": [
+                {
+                    "sinkName": "added ftfilter-88289"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "In1-Switch1",
+            "sourceComponent": "In1",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch1"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        },
+        {
+            "objectType": "connection",
+            "name": "con-added ftheater-61234-Component: Switch2",
+            "sourceComponent": "added ftheater-61234",
+            "sinkComponent": [
+                {
+                    "sinkName": "Switch2"
+                }
+            ],
+            "routed": false,
+            "layer": "flow"
+        }
+    ]
+}

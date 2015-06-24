@@ -23,46 +23,201 @@ for each in sorted(ap.application.operations):
 from parsing import NetlistParser, ComponentLibraryParser, ApplicationParser, FaultModelParser, ConfigParser
 from faultmodel import RandomFaultScenarioGenerator
 from scheduling import ListScheduler
-from architecture_modifier import ArchitectureModifier, SimulatedAnnealing
+from architecture_modifier import ArchitectureModifier, SimulatedAnnealing, GreedilyRandomAdaptiveSearchProcedure
 from architecture import Component
+from serializing import NetlistSerializer
 import random
 import math
+import time
 
 clp = ComponentLibraryParser('components/library.json')
 
-np = NetlistParser('netlists/arch-mes-example.json')
-config = ConfigParser('config/arch-mes-config.conf')
-ap = ApplicationParser('applications/mes_seq_example.json')
+arch_file = 'netlists/arch-mes-example.json'
+arch_file2 = 'netlists/archPCR1s.json'
+arch_file3 = 'netlists/archIVD1s.json'
+np = NetlistParser(arch_file)
+np2 = NetlistParser(arch_file2)
+np3 = NetlistParser(arch_file3)
 np.architecture.component_library = clp.get_component_library()
 np.parse()
-fmp = FaultModelParser('faultmodels/faultmodel-arch-mes.json')
+np2.architecture.component_library = clp.get_component_library()
+np2.parse()
+np3.architecture.component_library = clp.get_component_library()
+np3.parse()
+
+mes1 = np.architecture.number_of_valves() + np.architecture.number_of_connections()
+pcr = np2.architecture.number_of_valves() + np2.architecture.number_of_connections()
+ivd = np3.architecture.number_of_valves() + np3.architecture.number_of_connections()
+
+print('MES: '+str(np.architecture.number_of_valves())+ ' + '+str(np.architecture.number_of_connections())+' = '+str(mes1))
+print('PCR: '+str(np2.architecture.number_of_valves())+ ' + '+str(np2.architecture.number_of_connections())+' = '+str(pcr))
+print('IVD: '+str(np3.architecture.number_of_valves())+ ' + '+str(np3.architecture.number_of_connections())+' = '+str(ivd))
+
+#config = ConfigParser('config/arch-mes-config.conf')
+config = ConfigParser('config/arch-mes-config.conf')
+#config = ConfigParser('config/pcr-grasp-config.conf')
+#config = ConfigParser('config/ivd-grasp-config.conf')
+ap = ApplicationParser('applications/mes_seq_motivational-example.json')
+#ap = ApplicationParser('applications/pcr_seq.json')
+#ap = ApplicationParser('applications/ivd_seq.json')
+np.architecture.component_library = clp.get_component_library()
+np.parse()
+fmp = FaultModelParser('faultmodels/faultmodel-motivational-example.json')
+#fmp = FaultModelParser('faultmodels/faultmodel-pcr-example.json')
+#fmp = FaultModelParser('faultmodels/faultmodel-ivd-example.json')
 rfsg = RandomFaultScenarioGenerator(fmp.faultmodel, config.data['faultscenarios'])
 rfsg.generate_fault_scenarios()
+#rfsg.test_generate_fault_scenarios()
+#print(np.architecture)
+#start = time.clock()
+#am = ArchitectureModifier(np.architecture, ap.application, rfsg.faultscenarios, config.data)
+#print(am.architecture)
+#am.application_finish_time(am.architecture)
+#am.architecture.add_fault(fmp.faults['Blocked-channel-Filter1'])
+#am.application_finish_time(am.architecture)
+#am.architecture.restore()
+#am.make_component_fault_tolerant(am.architecture.component_by_name['Filter1'], am.architecture)
+#am.architecture.add_fault(fmp.faults['Blocked-channel-Filter1'])
+#am.application_finish_time(am.architecture)
+#check channel fault på filter på samme måde som før
+
+'''
+sa = SimulatedAnnealing(np.architecture, ap.application, rfsg.faultscenarios, config.data)
+print(sa.architecture)
+print(sa.cost)
+
+print('Components')
+for each in sa.architecture.components:
+    print('NEW COMPONENT: '+str(each))
+    print('In connections:')
+    for incon in each.in_connections:
+        t = incon in sa.architecture.components
+        print(str(incon)+ ' in components: '+str(t))
+    print('Out connections:')
+    for outcon in each.out_connections:
+        t = outcon in sa.architecture.components
+        print(str(outcon)+ ' in components: '+str(t))
+
+print('Connections')
+for each in sa.architecture.connections:
+    t = each.components[0] in sa.architecture.components
+    d = each.components[1] in sa.architecture.components
+    print(str(each) + ' both in components '+str(t)+ ' and '+str(d))
+'''
+
+
+
+#am.insert_component_to_make_random_component_redundant(am.architecture)
+#print(am.architecture)
+#am.insert_component_to_make_random_component_redundant(am.architecture)
+#print(am.architecture)
+
+#am.insert_component_to_make_random_component_redundant(am.architecture)
+#print(am.architecture)
+#for each in am.architecture.components:
+#    print(str(each) + ' type: '+str(each.type))
+#am.insert_component_to_make_random_component_redundant(am.architecture)
+#print(am.architecture)
+#print('Removing')
+#am.remove_random_component(am.architecture)
+#print(am.architecture)
+#for each in am.architecture.components:
+#    print(str(each) + ' type: '+str(each.type))
+#cost = am.evaluate_architecture(am.architecture)
+#tolerance = am.run_all_faultscenarios_on_architecture(am.architecture, rfsg.faultscenarios)
+#tolerated = tolerance[0]
+#not_tolerated = tolerance[1]
+#ns_grasp1 = NetlistSerializer(am.architecture, cost, cost, len(am.faultscenarios), 0, 'grasp', tolerated, not_tolerated)
+#ns_grasp1.export('testing-arch-output.json')
+#cost = am.evaluate_architecture(am.architecture)
+#end = time.clock()
+#runtime = end - start
+#archs = NetlistSerializer(am.architecture, cost, cost, len(am.faultscenarios), runtime, 'simulated_annealing')
+#archs.export('test-arch-ivd.json')
+#print('Is connected: '+str(am.architecture.is_connected()))
+#am.application_finish_time(am.architecture)
+#c = am.evaluate_architecture(am.architecture)
+#print('Cost: '+str(c))
+
+#sa = SimulatedAnnealing(np.architecture, ap.application, rfsg.faultscenarios, config.data)
+#print(sa.architecture)
+#print(sa.cost)
+'''
+for x in range(0, 20):
+    am.make_random_component_fault_tolerant(am.architecture)
+    am.evaluate_architecture(am.architecture)
+    if x == 5 or x == 10 or x == 15:
+        am.make_random_component_non_fault_tolerant(am.architecture)
+        am.evaluate_architecture(am.architecture)
+'''
+'''
 f = fmp.faults['Blocked-channel-Switch3-Switch4']
 f2 = fmp.faults['Open-valve-Switch4-to-Switch3']
 f3 = fmp.faults['Blocked-channel-Mixer1']
 am = ArchitectureModifier(np.architecture, ap.application, rfsg.faultscenarios, config.data)
 switch4 = am.architecture.component_by_name['Switch4']
+switch3 = am.architecture.component_by_name['Switch3']
+switch5 = am.architecture.component_by_name['Switch5']
+filter1 = am.architecture.component_by_name['Filter1']
+in1 = am.architecture.component_by_name['In1']
+
 #c = am.evaluate_architecture()
 #print('Cost of architecture: '+str(c))
-filter1 = am.architecture.component_by_name['Filter1']
-mixer1 = am.architecture.component_by_name['Mixer1']
+
+print(switch3)
+print(switch3.in_connections)
+print(switch3.out_connections)
+print(switch4)
+print(switch4.in_connections)
+print(switch4.out_connections)
+print(switch5)
+print(switch5.in_connections)
+print(switch5.out_connections)
+
+print('Is connected before faults: '+str(am.architecture.is_connected()))
+r = am.architecture.find_route(in1, filter1)
+print(r)
+am.architecture.add_fault(f2)
+am.architecture.add_fault(f)
+
+
+print('Is connected after faults: '+str(am.architecture.is_connected()))
+r = am.architecture.find_route(in1, filter1)
+print(r)
+
+print(switch3)
+print(switch3.in_connections)
+print(switch3.out_connections)
+print(switch4)
+print(switch4.in_connections)
+print(switch4.out_connections)
+print(switch5)
+print(switch5.in_connections)
+print(switch5.out_connections)
+'''
+
 #am.make_component_fault_tolerant(f)
 #c = am.evaluate_architecture()
 #print('Cost of architecture: '+str(c))
-print(am.architecture.get_components_of_type('mixer'))
-am.architecture.add_fault(f3)
-#print(np.architecture)
-print(am.architecture)
-print(am.architecture.get_components_of_type('mixer'))
 
+#print(np.architecture)
+'''
 print('Restoring')
 am.architecture.restore()
-print(am.architecture)
-print(am.architecture.get_components_of_type('mixer'))
+print('Is connected after restoring: '+str(am.architecture.is_connected()))
+r = am.architecture.find_route(in1, filter1)
+print(r)
 
-
-
+print(switch3)
+print(switch3.in_connections)
+print(switch3.out_connections)
+print(switch4)
+print(switch4.in_connections)
+print(switch4.out_connections)
+print(switch5)
+print(switch5.in_connections)
+print(switch5.out_connections)
+'''
 
 #sa = SimulatedAnnealing(np.architecture, ap.application, rfsg.faultscenarios, config.data)
 #print(sa.architecture)

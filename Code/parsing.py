@@ -34,6 +34,7 @@ class ArchitectureParser(Parser):
 		self.architecture = Architecture()
 		self.components = {}
 		self.component_types = {}
+		self.components_connections = {}
 
 		try:
 			self.data = self.load_data(file)
@@ -77,13 +78,16 @@ class ArchitectureParser(Parser):
 		self.architecture.parsing_done()
 
 	def add_connection(self, name, c1, c2):
-		con = Connection(name,c1, c2)
-		#self.architecture.connections.add(con)
-		self.architecture.add_connection(con)
+		if not c1 in self.components_connections[c2] and not c2 in self.components_connections[c1]:
+			self.components_connections[c1].append(c2)
+			con = Connection(name,c1, c2)
+			#self.architecture.connections.add(con)
+			self.architecture.add_connection(con)
 
 	def add_component(self, c):
 		self.components[c.id] = c
 		#self.architecture.components.add(c)
+		self.components_connections[c] = list()
 		self.architecture.add_component(c)
 
 		try:

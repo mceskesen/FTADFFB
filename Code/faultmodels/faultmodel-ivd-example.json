@@ -1,0 +1,122 @@
+{
+    "architecture": "archIVDs",
+    "faultmodel": "Example1",
+    "valvefaults": 2,
+    "channelfaults": 2,
+    "channelfaultList": [
+        {
+            "fault": "block",
+            "name": "Blocked-channel-Detector1",
+            "shortname": "c1",
+            "objectType": "component",
+            "objectName": "Detector1"
+        },
+        {
+            "fault": "block",
+            "name": "Blocked-channel-Detector2",
+            "shortname": "c2",
+            "objectType": "component",
+            "objectName": "Detector2"
+        },
+        {
+            "fault": "block",
+            "name": "Blocked-channel-Switch9-Detector2",
+            "shortname": "c3",
+            "objectType": "connection",
+            "objectName": "con_30"
+        },
+        {
+            "fault": "block",
+            "name": "Blocked-channel-Mixer1",
+            "shortname": "c4",
+            "objectType": "component",
+            "objectName": "Mixer1"
+        },
+        {
+            "fault": "block",
+            "name": "Blocked-channel-Switch21-Switch28",
+            "shortname": "c5",
+            "objectType": "connection",
+            "objectName": "con_57"
+        },
+        {
+            "fault": "block",
+            "name": "Blocked-channel-Switch16-Switch5",
+            "shortname": "c6",
+            "objectType": "connection",
+            "objectName": "con_61"
+        },
+        {
+            "fault": "block",
+            "name": "Blocked-channel-Storage1",
+            "shortname": "c7",
+            "objectType": "component",
+            "objectName": "Storage1"
+        }
+    ],
+    "valvefaultList": [
+        {
+            "fault": "open",
+            "name": "Open-valve-Switch23-to-Switch14",
+            "shortname": "v1",
+            "objectType": "component",
+            "objectName": "Switch23",
+            "control": "south-valve",
+            "affected": "con_37"
+        },
+        {
+            "fault": "open",
+            "name": "Open-valve-Mixer2-pump",
+            "shortname": "v2",
+            "objectType": "component",
+            "objectName": "Mixer2",
+            "control": "pumpvalve2",
+            "affected": "pump"
+        },
+        {
+            "fault": "open",
+            "name": "Open-valve-Switch42-to-Detector2",
+            "shortname": "v3",
+            "objectType": "component",
+            "objectName": "Switch42",
+            "control": "east-valve",
+            "affected": "con_67"
+        },
+        {
+            "fault": "open",
+            "name": "Open-valve-Switch2-to-Storage1",
+            "shortname": "v4",
+            "objectType": "component",
+            "objectName": "Switch2",
+            "control": "west-valve",
+            "affected": "con_72"
+        },
+        {
+            "fault": "open",
+            "name": "Open-valve-Switch5-to-Switch15",
+            "shortname": "v5",
+            "objectType": "component",
+            "objectName": "Switch5",
+            "control": "north-valve",
+            "affected": "con_86"
+        },
+        {
+            "fault": "open",
+            "name": "Open-valve-Switch10-to-Switch3",
+            "shortname": "v6",
+            "objectType": "component",
+            "objectName": "Switch10",
+            "control": "west-valve",
+            "affected": "con_96"
+        },
+        {
+            "fault": "open",
+            "name": "Open-valve-Switch11-to-Switch21",
+            "shortname": "v4",
+            "objectType": "component",
+            "objectName": "Switch11",
+            "control": "south-valve",
+            "affected": "con_104"
+        }
+    ]
+}
